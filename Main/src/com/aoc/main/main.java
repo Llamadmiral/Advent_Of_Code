@@ -1,6 +1,7 @@
 package com.aoc.main;
 
 import com.aoc.daybase.DayBase;
+import com.aoc.days.dayfour.DayFour;
 import com.aoc.days.dayone.DayOne;
 import com.aoc.days.daytwo.DayTwo;
 
@@ -13,7 +14,8 @@ public class main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        solved();
+        DayFour four = new DayFour();
+        four.tests2();
     }
 
     private static void printDay(final DayBase base) {

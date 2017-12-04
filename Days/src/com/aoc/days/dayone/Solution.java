@@ -8,7 +8,7 @@ import com.aoc.util.SolutionHelper;
  */
 public class Solution extends SolutionBase {
 
-    public Solution(final String input, final String dayNr) {
+    Solution(final String input, final String dayNr) {
         super(dayNr);
         this.input = input;
     }

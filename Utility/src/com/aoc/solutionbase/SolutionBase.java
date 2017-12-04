@@ -10,6 +10,10 @@ public abstract class SolutionBase {
     private Object solutionTwo = "NOT YET DONE";
     protected Object input;
 
+    public void setInput(final Object input) {
+        this.input = input;
+    }
+
     protected SolutionBase(final String day) {
         this.day = day;
     }
