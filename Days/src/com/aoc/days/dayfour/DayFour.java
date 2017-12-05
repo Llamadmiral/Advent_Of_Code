@@ -8,17 +8,17 @@ import com.aoc.util.reader.Reader;
  */
 public class DayFour extends DayBase {
 
+    public DayFour() {
+        this.dayNr = "Four";
+        this.solution = new Solution(dayNr, Reader.readFromInput("4.txt"));
+
+    }
+
     @Override
     public String getDayNr() {
         return "Four";
     }
 
-    @Override
-    public void finalSolution() {
-        final String file = Reader.readFromInput("3.txt");
-        Solution solution = new Solution(dayNr, file);
-        solution.getPartOne();
-    }
 
     @Override
     public void tests1() {

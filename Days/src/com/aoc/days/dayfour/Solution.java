@@ -2,6 +2,8 @@ package com.aoc.days.dayfour;
 
 import com.aoc.solutionbase.SolutionBase;
 
+import java.util.Arrays;
+
 /**
  * @author maczaka.
  */
@@ -81,16 +83,16 @@ public class Solution extends SolutionBase {
     private boolean isAnagram(final String one, final String two) {
         boolean isAnagram = false;
         if (one.length() == two.length()) {
-            int sameLetters = 0;
-            for (int i = 0; i < one.length(); i++) {
-                if (two.contains(Character.toString(one.charAt(i)))) {
-                    sameLetters++;
-                }
-            }
-            if (Integer.valueOf(one.length()).equals(sameLetters)) {
-                isAnagram = true;
-            }
+            final String sortedOne = sortString(one);
+            final String sortedTwo = sortString(two);
+            isAnagram = sortedOne.equals(sortedTwo);
         }
         return isAnagram;
+    }
+
+    private String sortString(final String string) {
+        char[] chars = string.toCharArray();
+        Arrays.sort(chars);
+        return new String(chars);
     }
 }
