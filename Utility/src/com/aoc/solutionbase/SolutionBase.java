@@ -4,7 +4,7 @@ package com.aoc.solutionbase;
  * @author maczaka.
  */
 public abstract class SolutionBase {
-    private static final String TEMPLATE_SOL = "Solution for Day %s, part %s: %s, Solution took %s ms";
+    private static final String TEMPLATE_SOL = "SolutionFive for Day %s, part %s: %s, SolutionFive took %s ms";
     protected Object input;
     private String day;
     private Object solutionOne = "NOT YET DONE";

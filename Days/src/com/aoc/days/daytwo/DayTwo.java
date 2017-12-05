@@ -23,12 +23,12 @@ public class DayTwo extends DayBase {
     public DayTwo() {
         final List<String> inputs = Reader.readFileIntoList("2.txt");
         dayNr = "Two";
-        solution = new Solution(inputs, dayNr);
+        solution = new SolutionTwo(inputs, dayNr);
     }
 
     @Override
     public void tests1() {
-        Solution test1 = new Solution(TEST, dayNr);
+        SolutionTwo test1 = new SolutionTwo(TEST, dayNr);
         test1.getPartOne();
     }
 }

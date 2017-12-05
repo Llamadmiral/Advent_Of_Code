@@ -11,22 +11,22 @@ public class DayFive extends DayBase {
 
     public DayFive() {
         dayNr = "Five";
-        solution = new Solution(dayNr);
+        solution = new SolutionFive(dayNr);
         solution.setInput(Reader.readFromInput("5.txt"));
         // solution.setInput(TEST_CASE);
     }
 
     @Override
     public void tests1() {
-        final Solution solution = new Solution("Five");
-        solution.setInput(TEST_CASE);
-        solution.getPartOne();
+        final SolutionFive solutionFive = new SolutionFive("Five");
+        solutionFive.setInput(TEST_CASE);
+        solutionFive.getPartOne();
     }
 
     @Override
     public void tests2() {
-        final Solution solution = new Solution("Five");
-        solution.setInput(TEST_CASE);
-        solution.getPartTwo();
+        final SolutionFive solutionFive = new SolutionFive("Five");
+        solutionFive.setInput(TEST_CASE);
+        solutionFive.getPartTwo();
     }
 }

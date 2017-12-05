@@ -7,14 +7,14 @@ import java.util.Arrays;
 /**
  * @author maczaka.
  */
-public class Solution extends SolutionBase {
+public class SolutionFour extends SolutionBase {
 
-    Solution(final String day, final String input) {
+    SolutionFour(final String day, final String input) {
         super(day);
         this.input = input;
     }
 
-    Solution(final String day) {
+    SolutionFour(final String day) {
         super(day);
     }
 

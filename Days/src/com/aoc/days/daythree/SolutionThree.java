@@ -5,17 +5,17 @@ import com.aoc.solutionbase.SolutionBase;
 /**
  * @author maczaka.
  */
-public class Solution extends SolutionBase {
+public class SolutionThree extends SolutionBase {
     private static final Integer INPUT = 289326;
     private static final Integer STARTPOS = 14;
     private static final Integer START_LEVEL = 5;
 
-    Solution(final String day) {
+    SolutionThree(final String day) {
         super(day);
         input = INPUT;
     }
 
-    Solution(final String day, final int input) {
+    SolutionThree(final String day, final int input) {
         super(day);
         this.input = input;
     }

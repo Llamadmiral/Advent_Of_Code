@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * @author maczaka.
  */
-public class Solution extends SolutionBase {
+public class SolutionTwo extends SolutionBase {
 
-    public Solution(final Object input, final String day) {
+    public SolutionTwo(final Object input, final String day) {
         super(day);
         this.input = input;
     }

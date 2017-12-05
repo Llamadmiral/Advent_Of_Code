@@ -11,7 +11,7 @@ public class DayOne extends DayBase {
     public DayOne() {
         final String input = Reader.readFromInput("1.txt");
         dayNr = "One";
-        solution = new Solution(input, dayNr);
+        solution = new SolutionOne(input, dayNr);
     }
 
     @Override
@@ -22,10 +22,10 @@ public class DayOne extends DayBase {
 
 
     public void tests1() {
-        Solution test1 = new Solution("1122", dayNr);
-        Solution test2 = new Solution("1111", dayNr);
-        Solution test3 = new Solution("1234", dayNr);
-        Solution test4 = new Solution("91212129", dayNr);
+        SolutionOne test1 = new SolutionOne("1122", dayNr);
+        SolutionOne test2 = new SolutionOne("1111", dayNr);
+        SolutionOne test3 = new SolutionOne("1234", dayNr);
+        SolutionOne test4 = new SolutionOne("91212129", dayNr);
         test1.getPartOne();
         test2.getPartOne();
         test3.getPartOne();
@@ -33,11 +33,11 @@ public class DayOne extends DayBase {
     }
 
     public void tests2() {
-        Solution test1 = new Solution("1212", dayNr);
-        Solution test2 = new Solution("1221", dayNr);
-        Solution test3 = new Solution("123425", dayNr);
-        Solution test4 = new Solution("123123", dayNr);
-        Solution test5 = new Solution("12131415", dayNr);
+        SolutionOne test1 = new SolutionOne("1212", dayNr);
+        SolutionOne test2 = new SolutionOne("1221", dayNr);
+        SolutionOne test3 = new SolutionOne("123425", dayNr);
+        SolutionOne test4 = new SolutionOne("123123", dayNr);
+        SolutionOne test5 = new SolutionOne("12131415", dayNr);
         test1.getPartTwo();
         test2.getPartTwo();
         test3.getPartTwo();

@@ -8,13 +8,13 @@ import java.util.List;
 /**
  * @author maczaka.
  */
-public class Solution extends SolutionBase {
+public class SolutionFive extends SolutionBase {
     private static final List<Integer> OFFSETS = new ArrayList<>();
     private static final int DELIMITER = 10000;
     private int steps = 0;
     private int position = 0;
 
-    protected Solution(final String day) {
+    protected SolutionFive(final String day) {
         super(day);
     }
 

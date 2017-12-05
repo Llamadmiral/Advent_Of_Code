@@ -9,15 +9,15 @@ public class DayThree extends DayBase {
 
     public DayThree() {
         dayNr = "Three";
-        solution = new Solution(dayNr);
+        solution = new SolutionThree(dayNr);
     }
 
     @Override
     public void tests1() {
-        Solution test1 = new Solution("Three", 1);
-        Solution test2 = new Solution("Three", 12);
-        Solution test3 = new Solution("Three", 23);
-        Solution test4 = new Solution("Three", 1024);
+        SolutionThree test1 = new SolutionThree("Three", 1);
+        SolutionThree test2 = new SolutionThree("Three", 12);
+        SolutionThree test3 = new SolutionThree("Three", 23);
+        SolutionThree test4 = new SolutionThree("Three", 1024);
         test1.getPartOne();
         test2.getPartOne();
         test3.getPartOne();

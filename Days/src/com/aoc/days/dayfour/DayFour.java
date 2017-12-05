@@ -10,7 +10,7 @@ public class DayFour extends DayBase {
 
     public DayFour() {
         this.dayNr = "Four";
-        this.solution = new Solution(dayNr, Reader.readFromInput("4.txt"));
+        this.solution = new SolutionFour(dayNr, Reader.readFromInput("4.txt"));
 
     }
 
@@ -22,24 +22,24 @@ public class DayFour extends DayBase {
 
     @Override
     public void tests1() {
-        Solution test1 = new Solution(dayNr);
+        SolutionFour test1 = new SolutionFour(dayNr);
         test1.setInput("aa bb cc dd ee");
         test1.getPartOne();
-        Solution test2 = new Solution(dayNr);
+        SolutionFour test2 = new SolutionFour(dayNr);
         test2.setInput("aa bb cc dd aa");
         test2.getPartOne();
-        Solution test3 = new Solution(dayNr);
+        SolutionFour test3 = new SolutionFour(dayNr);
         test3.setInput("aa bb cc dd aaa");
         test3.getPartOne();
     }
 
     @Override
     public void tests2() {
-        Solution test1 = new Solution(dayNr, "abcde fghij");
-        Solution test2 = new Solution(dayNr, "abcde xyz ecdab");
-        Solution test3 = new Solution(dayNr, "a ab abc abd abf abj");
-        Solution test4 = new Solution(dayNr, "iiii oiii ooii oooi oooo");
-        Solution test5 = new Solution(dayNr, "oiii ioii iioi iiio is");
+        SolutionFour test1 = new SolutionFour(dayNr, "abcde fghij");
+        SolutionFour test2 = new SolutionFour(dayNr, "abcde xyz ecdab");
+        SolutionFour test3 = new SolutionFour(dayNr, "a ab abc abd abf abj");
+        SolutionFour test4 = new SolutionFour(dayNr, "iiii oiii ooii oooi oooo");
+        SolutionFour test5 = new SolutionFour(dayNr, "oiii ioii iioi iiio is");
         test1.getPartTwo();
         test2.getPartTwo();
         test3.getPartTwo();

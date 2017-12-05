@@ -6,9 +6,9 @@ import com.aoc.util.SolutionHelper;
 /**
  * @author maczaka.
  */
-public class Solution extends SolutionBase {
+public class SolutionOne extends SolutionBase {
 
-    Solution(final String input, final String dayNr) {
+    SolutionOne(final String input, final String dayNr) {
         super(dayNr);
         this.input = input;
     }
