@@ -16,7 +16,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        solved();
+        printDay(new DayThree());
     }
 
     private static void printDay(final DayBase base) {

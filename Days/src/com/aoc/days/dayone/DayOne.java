@@ -21,6 +21,7 @@ public class DayOne extends DayBase {
     }
 
 
+    @Override
     public void tests1() {
         SolutionOne test1 = new SolutionOne("1122", dayNr);
         SolutionOne test2 = new SolutionOne("1111", dayNr);
@@ -32,6 +33,7 @@ public class DayOne extends DayBase {
         test4.getPartOne();
     }
 
+    @Override
     public void tests2() {
         SolutionOne test1 = new SolutionOne("1212", dayNr);
         SolutionOne test2 = new SolutionOne("1221", dayNr);

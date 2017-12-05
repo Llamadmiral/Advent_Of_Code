@@ -6,13 +6,13 @@ import com.aoc.solutionbase.SolutionBase;
  * @author maczaka.
  */
 public class SolutionThree extends SolutionBase {
-    private static final Integer INPUT = 289326;
+    private static final Integer BASE_INPUT = 289326;
     private static final Integer STARTPOS = 14;
     private static final Integer START_LEVEL = 5;
 
     SolutionThree(final String day) {
         super(day);
-        input = INPUT;
+        input = BASE_INPUT;
     }
 
     SolutionThree(final String day, final int input) {

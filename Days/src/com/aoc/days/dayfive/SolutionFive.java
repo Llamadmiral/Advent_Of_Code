@@ -10,7 +10,6 @@ import java.util.List;
  */
 public class SolutionFive extends SolutionBase {
     private static final List<Integer> OFFSETS = new ArrayList<>();
-    private static final int DELIMITER = 10000;
     private int steps = 0;
     private int position = 0;
 
