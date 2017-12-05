@@ -1,8 +1,10 @@
 package com.aoc.main;
 
 import com.aoc.daybase.DayBase;
+import com.aoc.days.dayfive.DayFive;
 import com.aoc.days.dayfour.DayFour;
 import com.aoc.days.dayone.DayOne;
+import com.aoc.days.daythree.DayThree;
 import com.aoc.days.daytwo.DayTwo;
 
 /**
@@ -14,7 +16,8 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        solved();
+        final DayFive five = new DayFive();
+        five.finalSolution();
     }
 
     private static void printDay(final DayBase base) {
@@ -24,9 +27,12 @@ public class Main {
 
     }
 
-    public static void solved(){
+    public static void solved() {
+        final long startTime = System.nanoTime();
         printDay(new DayOne());
         printDay(new DayTwo());
+        printDay(new DayThree());
         printDay(new DayFour());
+        System.out.println(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 1000000));
     }
 }

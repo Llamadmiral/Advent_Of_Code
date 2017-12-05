@@ -30,14 +30,14 @@ public abstract class SolutionBase {
         final long startTime = System.nanoTime();
         solvePartOne();
         final long endTime = System.nanoTime();
-        System.out.println(String.format(TEMPLATE_SOL, day, 1, solutionOne.toString(), ((endTime - startTime) / 1000000)));
+        System.out.println(String.format(TEMPLATE_SOL, day, 1, solutionOne.toString(), ((endTime - startTime) / 100000)));
     }
 
     public void getPartTwo() {
         final long startTime = System.nanoTime();
         solvePartTwo();
         final long endTime = System.nanoTime();
-        System.out.println(String.format(TEMPLATE_SOL, day, 2, solutionTwo.toString(), ((endTime - startTime) / 1000000)));
+        System.out.println(String.format(TEMPLATE_SOL, day, 2, solutionTwo.toString(), ((endTime - startTime) / 1000)));
     }
 
     protected abstract void solvePartOne();
