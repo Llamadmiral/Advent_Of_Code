@@ -16,8 +16,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        final DayFive five = new DayFive();
-        five.finalSolution();
+        solved();
     }
 
     private static void printDay(final DayBase base) {
@@ -27,12 +26,13 @@ public class Main {
 
     }
 
-    public static void solved() {
+    private static void solved() {
         final long startTime = System.nanoTime();
         printDay(new DayOne());
         printDay(new DayTwo());
         printDay(new DayThree());
         printDay(new DayFour());
-        System.out.println(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 1000000));
+        printDay(new DayFive());
+        System.out.println(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 100000));
     }
 }

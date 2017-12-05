@@ -10,8 +10,9 @@ import java.util.List;
  */
 public class Solution extends SolutionBase {
     private static final List<Integer> OFFSETS = new ArrayList<>();
+    private static final int DELIMITER = 10000;
     private int steps = 0;
-
+    private int position = 0;
 
     protected Solution(final String day) {
         super(day);
@@ -20,22 +21,30 @@ public class Solution extends SolutionBase {
     @Override
     protected void solvePartOne() {
         parseInput();
-        jump(0);
+        jump(false);
         setSolutionOne(steps);
     }
 
     @Override
     protected void solvePartTwo() {
-
+        OFFSETS.clear();
+        steps = 0;
+        position = 0;
+        parseInput();
+        jump(true);
+        setSolutionTwo(steps);
     }
 
-    private void jump(final int currentPosition) {
-        if (currentPosition < OFFSETS.size() && currentPosition >= 0) {
+    private void jump(final boolean partTwo) {
+        while (position < OFFSETS.size() && position >= 0) {
             steps++;
-            final int offset = OFFSETS.get(currentPosition);
-            OFFSETS.set(currentPosition, OFFSETS.get(currentPosition) + 1);
-            final int newPosition = currentPosition + offset;
-            jump(newPosition);
+            final int offset = OFFSETS.get(position);
+            if (partTwo && offset > 2) {
+                OFFSETS.set(position, OFFSETS.get(position) - 1);
+            } else {
+                OFFSETS.set(position, OFFSETS.get(position) + 1);
+            }
+            position += offset;
         }
     }
 
