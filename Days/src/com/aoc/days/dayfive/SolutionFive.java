@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author maczaka.
+ * I'm pretty sure the exercise here wasn't that if you can solve it,
+ * but rather to find a better solution than the base. Well, I couldn't really think of one.
+ *
+ * @author Llamadmiral.
  */
 class SolutionFive extends SolutionBase {
     private static final List<Integer> OFFSETS = new ArrayList<>();

@@ -6,13 +6,12 @@ import com.aoc.util.SolutionHelper;
 import java.util.List;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
-public class SolutionTwo extends SolutionBase {
+class SolutionTwo extends SolutionBase {
 
-    public SolutionTwo(final Object input, final String day) {
+    protected SolutionTwo(String day) {
         super(day);
-        this.input = input;
     }
 
     @Override

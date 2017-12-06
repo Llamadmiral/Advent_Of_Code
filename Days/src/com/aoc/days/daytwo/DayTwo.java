@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public class DayTwo extends DayBase {
 
@@ -23,12 +23,21 @@ public class DayTwo extends DayBase {
     public DayTwo() {
         final List<String> inputs = Reader.readFileIntoList("2.txt");
         dayNr = "Two";
-        solution = new SolutionTwo(inputs, dayNr);
+        solution = new SolutionTwo(dayNr);
+        solution.setInput(inputs);
     }
 
     @Override
     public void tests1() {
-        SolutionTwo test1 = new SolutionTwo(TEST, dayNr);
+        SolutionTwo test1 = new SolutionTwo(dayNr);
+        test1.setInput(TEST);
         test1.getPartOne();
+    }
+
+    @Override
+    public void tests2() {
+        SolutionTwo test = new SolutionTwo(dayNr);
+        test.setInput(TEST);
+        test.getPartTwo();
     }
 }

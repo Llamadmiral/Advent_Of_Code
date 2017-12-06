@@ -10,7 +10,7 @@ import com.aoc.days.daytwo.DayTwo;
 import com.aoc.util.log.Logger;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public class Main {
 

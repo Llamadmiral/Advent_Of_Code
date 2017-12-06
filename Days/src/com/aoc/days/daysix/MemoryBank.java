@@ -1,7 +1,9 @@
 package com.aoc.days.daysix;
 
 /**
- * @author maczaka.
+ * A circular linked-entity implementation. Very simple.
+ *
+ * @author Llamadmiral.
  */
 class MemoryBank {
     private int memory;
@@ -13,7 +15,6 @@ class MemoryBank {
 
 
     int getMemory() {
-
         return memory;
     }
 

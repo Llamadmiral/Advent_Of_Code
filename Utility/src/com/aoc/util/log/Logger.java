@@ -1,7 +1,7 @@
 package com.aoc.util.log;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public class Logger {
     private Class clazz;

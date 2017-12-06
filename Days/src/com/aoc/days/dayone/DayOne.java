@@ -4,7 +4,7 @@ import com.aoc.daybase.DayBase;
 import com.aoc.util.reader.Reader;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public class DayOne extends DayBase {
 

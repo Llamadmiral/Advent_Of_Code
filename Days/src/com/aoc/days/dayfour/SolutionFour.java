@@ -5,9 +5,9 @@ import com.aoc.solutionbase.SolutionBase;
 import java.util.Arrays;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
-public class SolutionFour extends SolutionBase {
+class SolutionFour extends SolutionBase {
 
     SolutionFour(final String day, final String input) {
         super(day);
@@ -20,37 +20,42 @@ public class SolutionFour extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-        final String inp = (String) input;
-        int sum = 0;
-        final String[] rows = inp.split("\n");
-        for (final String row : rows) {
-            final String[] phrases = row.split(" ");
-            if (isValidPassPhraseLowerSecurity(phrases)) {
-                sum++;
-            }
-        }
-        setSolutionOne(sum);
+        solve(false);
     }
 
     @Override
     protected void solvePartTwo() {
+        solve(true);
+    }
+
+    void solve(final boolean partTwo) {
         final String inp = (String) input;
         int sum = 0;
         final String[] rows = inp.split("\n");
         for (final String row : rows) {
             final String[] phrases = row.split(" ");
-            if (isValidPassPhraseHigherSecurity(phrases)) {
-                sum++;
+            if (partTwo) {
+                if (isValidPassPhraseHigherSecurity(phrases)) {
+                    sum++;
+                }
+            } else {
+                if (isValidPassPhraseLowerSecurity(phrases)) {
+                    sum++;
+                }
             }
         }
-        setSolutionTwo(sum);
+        if (partTwo) {
+            setSolutionTwo(sum);
+        } else {
+            setSolutionOne(sum);
+        }
     }
 
     private boolean isValidPassPhraseHigherSecurity(final String[] list) {
         boolean isValid = true;
         for (int i = 0; i < list.length; i++) {
             String key = list[i];
-            for (int j = 0, listLength = list.length; j < listLength; j++) {
+            for (int j = 0; j < list.length; j++) {
                 if (i != j) {
                     String otherKey = list[j];
                     if (isAnagram(key, otherKey)) {
@@ -80,6 +85,7 @@ public class SolutionFour extends SolutionBase {
         return isValid;
     }
 
+    //this is very lazy
     private boolean isAnagram(final String one, final String two) {
         boolean isAnagram = false;
         if (one.length() == two.length()) {

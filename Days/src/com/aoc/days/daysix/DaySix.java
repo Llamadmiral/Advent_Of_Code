@@ -3,7 +3,7 @@ package com.aoc.days.daysix;
 import com.aoc.daybase.DayBase;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public class DaySix extends DayBase {
 

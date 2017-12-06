@@ -7,7 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author maczaka.
+ * If I would use some sort of sorted implementation of the states, searching them through would be much quicker.
+ * However, I am proud of how with my implementation, solving the second issue was no problem.
+ *
+ * @author Llamadmiral.
  */
 public class SolutionSix extends SolutionBase {
 

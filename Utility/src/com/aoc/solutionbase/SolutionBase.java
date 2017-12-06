@@ -3,7 +3,7 @@ package com.aoc.solutionbase;
 import com.aoc.util.log.Logger;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public abstract class SolutionBase {
 

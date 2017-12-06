@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public final class Reader {
 

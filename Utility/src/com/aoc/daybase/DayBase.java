@@ -4,7 +4,7 @@ import com.aoc.solutionbase.SolutionBase;
 import com.aoc.util.log.Logger;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
 public abstract class DayBase {
 

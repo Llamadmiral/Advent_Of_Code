@@ -4,9 +4,9 @@ import com.aoc.solutionbase.SolutionBase;
 import com.aoc.util.SolutionHelper;
 
 /**
- * @author maczaka.
+ * @author Llamadmiral.
  */
-public class SolutionOne extends SolutionBase {
+class SolutionOne extends SolutionBase {
 
     SolutionOne(final String input, final String dayNr) {
         super(dayNr);
@@ -25,7 +25,7 @@ public class SolutionOne extends SolutionBase {
             }
             prevChar = inp.charAt(i);
         }
-        this.setSolutionOne(firstChar.equals(inp.charAt(inp.length() - 1))
+        setSolutionOne(firstChar.equals(inp.charAt(inp.length() - 1))
             ? sums + SolutionHelper.charToInt(firstChar)
             : sums);
     }
