@@ -1,5 +1,7 @@
 package com.aoc.util.reader;
 
+import com.aoc.util.log.Logger;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,6 +12,8 @@ import java.util.List;
  * @author maczaka.
  */
 public final class Reader {
+
+    private static final Logger LOG = new Logger(Reader.class);
 
     private static final String INPUT_DIRECTORY = "input/";
 
@@ -31,7 +35,7 @@ public final class Reader {
                 builder.append(row);
             }
         } catch (final Exception e) {
-            e.printStackTrace();
+            LOG.log(e);
         }
         return builder.toString();
     }
@@ -44,7 +48,7 @@ public final class Reader {
                 rows.add(row);
             }
         } catch (final Exception e) {
-            e.printStackTrace();
+            LOG.log(e);
         }
         return rows;
     }

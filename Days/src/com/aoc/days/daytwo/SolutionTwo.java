@@ -50,14 +50,18 @@ public class SolutionTwo extends SolutionBase {
         int divided = 0;
         for (final Integer one : integers) {
             for (final Integer two : integers) {
+                boolean needBreak = false;
                 if (!one.equals(two)) {
                     if (one % two == 0) {
                         divided = one / two;
-                        break;
+                        needBreak = true;
                     } else if (two % one == 0) {
                         divided = two / one;
-                        break;
+                        needBreak = true;
                     }
+                }
+                if (needBreak) {
+                    break;
                 }
             }
         }

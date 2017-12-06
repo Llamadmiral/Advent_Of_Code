@@ -27,7 +27,7 @@ public class SolutionThree extends SolutionBase {
 
     @Override
     protected void solvePartTwo() {
-
+        //not yet solved
     }
 
     //dont even ask about the default settings
