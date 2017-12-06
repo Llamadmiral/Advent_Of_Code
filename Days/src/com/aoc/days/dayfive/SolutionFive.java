@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * @author maczaka.
  */
-public class SolutionFive extends SolutionBase {
+class SolutionFive extends SolutionBase {
     private static final List<Integer> OFFSETS = new ArrayList<>();
     private int steps = 0;
     private int position = 0;
 
-    protected SolutionFive(final String day) {
+    SolutionFive(final String day) {
         super(day);
     }
 
