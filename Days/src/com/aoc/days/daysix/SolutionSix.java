@@ -12,13 +12,13 @@ import java.util.List;
  *
  * @author Llamadmiral.
  */
-public class SolutionSix extends SolutionBase {
+class SolutionSix extends SolutionBase {
 
     private static final List<Integer[]> STATES = new ArrayList<>();
     private static final List<MemoryBank> BANKS = new ArrayList<>();
     private int sorts = 0;
 
-    protected SolutionSix(final String day) {
+    SolutionSix(final String day) {
         super(day);
     }
 
