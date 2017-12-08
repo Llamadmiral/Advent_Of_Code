@@ -12,6 +12,7 @@ class Program {
     private Program parent;
     private Map<Program, Integer> children = new HashMap<>();
     private Integer weight;
+    private Integer childrenWeight = 0;
 
     Program(final String name) {
         this.name = name;
@@ -46,8 +47,11 @@ class Program {
     }
 
     void setChildrenWeight(final Program childrenProgram, final Integer allChildrenWeight) {
-        this.children.put(childrenProgram, allChildrenWeight);
+        this.children.put(childrenProgram, children.get(childrenProgram) + allChildrenWeight);
+        this.childrenWeight += allChildrenWeight;
     }
 
-
+    public Integer getChildrenWeight() {
+        return childrenWeight;
+    }
 }
