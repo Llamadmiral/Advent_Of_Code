@@ -20,6 +20,11 @@ class SolutionNine extends SolutionBase {
         //no need
     }
 
+    /**
+     * I guess if I made some sort of Class doing the same operationt,
+     * but splitted up into different methods, then I could reduce the cognitive complexity below 15,
+     * but since the code is well-readable, and I just don't think it would worth the time.
+     */
     private void calculateScore(final String dirtyInput) {
         boolean inGarbage = false;
         boolean toSkip = false;

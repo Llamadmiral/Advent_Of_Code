@@ -47,7 +47,7 @@ public abstract class SolutionBase {
         solvePartTwo();
         final long endTime = System.nanoTime();
         if (!NOT_YET_DONE.equals(solutionTwo)) {
-            LOG.log(String.format(TEMPLATE_SOL, day, 2, solutionTwo.toString(), ((endTime - startTime) / 1000)));
+            LOG.log(String.format(TEMPLATE_SOL, day, 2, solutionTwo.toString(), ((endTime - startTime) / 100000)));
         }
     }
 
