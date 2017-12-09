@@ -1,6 +1,7 @@
 package com.aoc.daybase;
 
 import com.aoc.solutionbase.SolutionBase;
+import com.aoc.solutionbase.TestFactory;
 import com.aoc.util.log.Logger;
 
 /**
@@ -18,12 +19,8 @@ public abstract class DayBase {
         LOG.log(NOT_IMPLD);
     }
 
-    public void tests1() {
-        printNotImpl();
-    }
-
-    public void tests2() {
-        printNotImpl();
+    public void test() {
+        TestFactory.createAndRunTests(this, getTestInputs());
     }
 
     public void finalSolution() {
@@ -33,5 +30,11 @@ public abstract class DayBase {
 
     public String getDayNr() {
         return dayNr;
+    }
+
+    public abstract SolutionBase getSolutionForTest();
+
+    public String[] getTestInputs() {
+        return new String[]{};
     }
 }

@@ -3,6 +3,8 @@ package com.aoc.days.daytwo;
 import com.aoc.solutionbase.SolutionBase;
 import com.aoc.util.SolutionHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,14 +12,17 @@ import java.util.List;
  */
 class SolutionTwo extends SolutionBase {
 
-    protected SolutionTwo(String day) {
+    private List<String> formattedInput = new ArrayList<>();
+
+    SolutionTwo(String day) {
         super(day);
     }
 
     @Override
     protected void solvePartOne() {
+        formatInput();
         int sum = 0;
-        List<List<Integer>> matrix = SolutionHelper.createIntegerMatrix((List<String>) input);
+        List<List<Integer>> matrix = SolutionHelper.createIntegerMatrix(formattedInput);
         for (final List<Integer> integers : matrix) {
             int min = integers.get(0);
             int max = integers.get(0);
@@ -38,7 +43,7 @@ class SolutionTwo extends SolutionBase {
     @Override
     protected void solvePartTwo() {
         int sum = 0;
-        List<List<Integer>> matrix = SolutionHelper.createIntegerMatrix((List<String>) input);
+        List<List<Integer>> matrix = SolutionHelper.createIntegerMatrix(formattedInput);
         for (final List<Integer> integers : matrix) {
             sum += getDividedNumber(integers);
         }
@@ -65,5 +70,9 @@ class SolutionTwo extends SolutionBase {
             }
         }
         return divided;
+    }
+
+    private void formatInput() {
+        formattedInput = Arrays.asList(((String) input).split("\n"));
     }
 }

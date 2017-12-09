@@ -7,13 +7,15 @@ import com.aoc.util.log.Logger;
  */
 public abstract class SolutionBase {
 
+    private static final String NOT_YET_DONE = "NOT YET DONE";
+
     private static final Logger LOG = new Logger(SolutionBase.class);
 
-    private static final String TEMPLATE_SOL = "SolutionFive for Day %s, part %s: %s, SolutionFive took %s ms";
+    private static final String TEMPLATE_SOL = "Solution for Day %s, part %s: %s, SolutionFive took %s ms";
     protected Object input;
     private String day;
-    private Object solutionOne = "NOT YET DONE";
-    private Object solutionTwo = "NOT YET DONE";
+    private Object solutionOne = NOT_YET_DONE;
+    private Object solutionTwo = NOT_YET_DONE;
 
     protected SolutionBase(final String day) {
         this.day = day;
@@ -35,14 +37,18 @@ public abstract class SolutionBase {
         final long startTime = System.nanoTime();
         solvePartOne();
         final long endTime = System.nanoTime();
-        LOG.log(String.format(TEMPLATE_SOL, day, 1, solutionOne.toString(), ((endTime - startTime) / 100000)));
+        if (!NOT_YET_DONE.equals(solutionOne)) {
+            LOG.log(String.format(TEMPLATE_SOL, day, 1, solutionOne.toString(), ((endTime - startTime) / 100000)));
+        }
     }
 
     public void getPartTwo() {
         final long startTime = System.nanoTime();
         solvePartTwo();
         final long endTime = System.nanoTime();
-        LOG.log(String.format(TEMPLATE_SOL, day, 2, solutionTwo.toString(), ((endTime - startTime) / 1000)));
+        if (!NOT_YET_DONE.equals(solutionTwo)) {
+            LOG.log(String.format(TEMPLATE_SOL, day, 2, solutionTwo.toString(), ((endTime - startTime) / 1000)));
+        }
     }
 
     protected abstract void solvePartOne();

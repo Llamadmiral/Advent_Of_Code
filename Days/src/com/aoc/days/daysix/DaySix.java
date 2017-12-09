@@ -1,6 +1,7 @@
 package com.aoc.days.daysix;
 
 import com.aoc.daybase.DayBase;
+import com.aoc.solutionbase.SolutionBase;
 
 /**
  * @author Llamadmiral.
@@ -19,9 +20,12 @@ public class DaySix extends DayBase {
     }
 
     @Override
-    public void tests1() {
-        final SolutionSix six = new SolutionSix(DAY_NR);
-        six.setInput(TEST_INPUT);
-        six.getPartOne();
+    public SolutionBase getSolutionForTest() {
+        return new SolutionSix(DAY_NR);
+    }
+
+    @Override
+    public String[] getTestInputs() {
+        return new String[]{TEST_INPUT};
     }
 }

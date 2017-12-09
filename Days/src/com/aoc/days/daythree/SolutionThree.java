@@ -14,7 +14,6 @@ import java.util.*;
 class SolutionThree extends SolutionBase {
     private static final Logger LOG = new Logger(SolutionThree.class);
     private static final Map<Map.Entry<Integer, Integer>, Integer> MAP = new HashMap<>();
-
     //dont even mention it
     private static final List<Integer[]> SURROUNDING_FIELDS = new ArrayList<>();
 
@@ -31,6 +30,7 @@ class SolutionThree extends SolutionBase {
         SURROUNDING_FIELDS.add(new Integer[]{-1, 1});
     }
 
+    private Integer formattedInput;
     private Integer direction = 0;
     private Integer steps = 1;
     private AbstractMap.SimpleEntry<Integer, Integer> position = new AbstractMap.SimpleEntry<>(0, 0);
@@ -43,7 +43,8 @@ class SolutionThree extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-        setSolutionOne(getFullDistance((Integer) input));
+        this.formattedInput = Integer.parseInt((String) input);
+        setSolutionOne(getFullDistance(formattedInput));
     }
 
     @Override
@@ -63,7 +64,7 @@ class SolutionThree extends SolutionBase {
             position = getNextPos();
             if (partTwo) {
                 final Integer newFieldValue = gatherValuesFromSurroundingFields();
-                if (newFieldValue <= (Integer) input) {
+                if (newFieldValue <= formattedInput) {
                     MAP.put(position, newFieldValue);
                 } else {
                     found = true;
@@ -71,7 +72,7 @@ class SolutionThree extends SolutionBase {
                 }
             } else {
                 steps++;
-                if (!steps.equals(input)) {
+                if (!steps.equals(formattedInput)) {
                     MAP.put(position, steps);
                 } else {
                     found = true;

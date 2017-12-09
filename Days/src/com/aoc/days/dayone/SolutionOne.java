@@ -8,9 +8,8 @@ import com.aoc.util.SolutionHelper;
  */
 class SolutionOne extends SolutionBase {
 
-    SolutionOne(final String input, final String dayNr) {
+    SolutionOne(final String dayNr) {
         super(dayNr);
-        this.input = input;
     }
 
     @Override
@@ -26,8 +25,8 @@ class SolutionOne extends SolutionBase {
             prevChar = inp.charAt(i);
         }
         setSolutionOne(firstChar.equals(inp.charAt(inp.length() - 1))
-            ? sums + SolutionHelper.charToInt(firstChar)
-            : sums);
+                ? sums + SolutionHelper.charToInt(firstChar)
+                : sums);
     }
 
     @Override
@@ -36,7 +35,7 @@ class SolutionOne extends SolutionBase {
         final int length = inp.length();
         int sum = 0;
         for (int i = 0; i < length; i++) {
-            Character currentCharacter = inp.charAt(i);
+            final Character currentCharacter = inp.charAt(i);
             if (currentCharacter.equals(inp.charAt(getNextPosition(i, length)))) {
                 sum += SolutionHelper.charToInt(currentCharacter);
             }
