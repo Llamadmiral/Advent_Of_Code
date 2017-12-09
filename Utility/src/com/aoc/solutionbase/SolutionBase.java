@@ -11,7 +11,7 @@ public abstract class SolutionBase {
 
     private static final Logger LOG = new Logger(SolutionBase.class);
 
-    private static final String TEMPLATE_SOL = "Solution for Day %s, part %s: %s, SolutionFive took %s ms";
+    private static final String TEMPLATE_SOL = "Solution for Day %s, part %s: %s, computation took %s ms";
     protected Object input;
     private String day;
     private Object solutionOne = NOT_YET_DONE;
