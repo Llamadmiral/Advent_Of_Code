@@ -23,6 +23,8 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
+        DayTen dayTen = new DayTen();
+        dayTen.test();
         printDay(new DayTen());
     }
 

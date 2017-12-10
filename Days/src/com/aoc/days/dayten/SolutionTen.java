@@ -3,6 +3,7 @@ package com.aoc.days.dayten;
 import com.aoc.solutionbase.SolutionBase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,8 +31,9 @@ class SolutionTen extends SolutionBase {
         final String[] inps = parseInput();
         createList(inps.length);
         for (final String length : inps) {
-            reverseSubList(Integer.parseInt(length) - 1);
+            reverseSubList(Integer.parseInt(length));
         }
+        System.out.println("Final list: " + Arrays.toString(LIST.toArray()));
         setSolutionOne(LIST.get(0) * LIST.get(1));
     }
 
@@ -45,12 +47,10 @@ class SolutionTen extends SolutionBase {
     }
 
     private void reverseSubList(final Integer length) {
-        if (length > 0) {
-            for (int i = 0; i < (length - 1); i++) {
-                switchPositions(currentPosition + i, currentPosition + length - i);
-            }
+        for (int i = 0; i < (length / 2); i++) {
+            switchPositions(currentPosition + i, currentPosition + length - i - 1);
         }
-        currentPosition = getWrappedPosition(currentPosition + length + skipSize + 1);
+        currentPosition = currentPosition + length + skipSize;
         skipSize++;
     }
 
