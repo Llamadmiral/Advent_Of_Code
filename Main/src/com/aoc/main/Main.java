@@ -7,6 +7,7 @@ import com.aoc.days.dayfour.DayFour;
 import com.aoc.days.daynine.DayNine;
 import com.aoc.days.dayone.DayOne;
 import com.aoc.days.daysix.DaySix;
+import com.aoc.days.dayten.DayTen;
 import com.aoc.days.daythree.DayThree;
 import com.aoc.days.daytwo.DayTwo;
 import com.aoc.util.log.Logger;
@@ -22,7 +23,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        solved();
+        printDay(new DayTen());
     }
 
     private static void printDay(final DayBase base) {
