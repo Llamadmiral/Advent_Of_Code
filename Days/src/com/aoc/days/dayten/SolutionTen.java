@@ -11,63 +11,109 @@ import java.util.List;
  */
 class SolutionTen extends SolutionBase {
 
-    private final List<Integer> LIST = new ArrayList<>();
+    private static final Integer[] TRAILING_BYTES = new Integer[]{17, 31, 73, 47, 23};
+    private static final char[] HEX_TABLE = "0123456789abcdef".toCharArray();
+    private final List<Integer> SPARSE_HASH = new ArrayList<>();
+    private final List<Integer> LENGTHS = new ArrayList<>();
+    private final List<Integer> DENSE_HASH = new ArrayList<>();
     private Integer skipSize = 0;
     private Integer currentPosition = 0;
+
 
     SolutionTen(final String day) {
         super(day);
     }
 
-    private void createList(final Integer length) {
-        final Integer size = length == 4 ? 5 : 256; //because of tests :(
-        for (int i = 0; i < size; i++) {
-            LIST.add(i);
+    private void createList() {
+        SPARSE_HASH.clear();
+        for (int i = 0; i < 256; i++) {
+            SPARSE_HASH.add(i);
         }
     }
+
 
     @Override
     protected void solvePartOne() {
-        final String[] inps = parseInput();
-        createList(inps.length);
-        for (final String length : inps) {
+        final String inp = ((String) input);
+        createList();
+        final String[] lengths = inp.contains(",") ? inp.split(",") : new String[]{};
+        for (final String length : lengths) {
             reverseSubList(Integer.parseInt(length));
         }
-        System.out.println("Final list: " + Arrays.toString(LIST.toArray()));
-        setSolutionOne(LIST.get(0) * LIST.get(1));
+        setSolutionOne(SPARSE_HASH.get(0) * SPARSE_HASH.get(1));
     }
 
-    private String[] parseInput() {
-        return ((String) input).split(",");
-    }
 
     @Override
     protected void solvePartTwo() {
+        skipSize = 0;
+        currentPosition = 0;
+        parseInput();
+        createList();
+        for (int i = 0; i < 64; i++) {
+            LENGTHS.forEach(this::reverseSubList);
+        }
+        crushSparseHash();
+        generateKnotHash();
+    }
 
+    private void generateKnotHash() {
+        final StringBuilder builder = new StringBuilder();
+        DENSE_HASH.forEach(hash -> builder.append(getHexValue(hash)));
+        setSolutionTwo(builder.toString());
+    }
+
+    /**
+     * I'm cheating a bit here, since we know that the input is between 0 and 255.
+     */
+    private String getHexValue(final Integer intInput) {
+        return new String(new char[]{
+                HEX_TABLE[intInput / 16], HEX_TABLE[intInput % 16]
+        });
+    }
+
+    private void crushSparseHash() {
+        for (int i = 0; i < 16; i++) {
+            DENSE_HASH.add(getXorValue(SPARSE_HASH.subList(16 * i, 16 * i + 16)));
+        }
+    }
+
+    private Integer getXorValue(final List<Integer> integers) {
+        Integer xorValue = integers.get(0);
+        for (int i = 1; i < 16; i++) {
+            xorValue ^= integers.get(i);
+        }
+        return xorValue;
     }
 
     private void reverseSubList(final Integer length) {
         for (int i = 0; i < (length / 2); i++) {
             switchPositions(currentPosition + i, currentPosition + length - i - 1);
         }
-        currentPosition = currentPosition + length + skipSize;
+        currentPosition = getWrappedPosition(currentPosition + length + skipSize);
         skipSize++;
     }
 
     private Integer getWrappedPosition(final Integer position) {
-        return position % LIST.size();
+        return position % SPARSE_HASH.size();
     }
 
     private void switchPositions(final Integer positionOne, final Integer positionTwo) {
         if (!positionOne.equals(positionTwo)) {
             final Integer wrappedPositionOne = getWrappedPosition(positionOne);
             final Integer wrappedPositionTwo = getWrappedPosition(positionTwo);
-            final Integer valueOne = LIST.get(wrappedPositionOne);
-            final Integer valueTwo = LIST.get(wrappedPositionTwo);
-            LIST.set(wrappedPositionTwo, valueOne);
-            LIST.set(wrappedPositionOne, valueTwo);
+            final Integer valueOne = SPARSE_HASH.get(wrappedPositionOne);
+            final Integer valueTwo = SPARSE_HASH.get(wrappedPositionTwo);
+            SPARSE_HASH.set(wrappedPositionTwo, valueOne);
+            SPARSE_HASH.set(wrappedPositionOne, valueTwo);
         }
     }
 
-
+    private void parseInput() {
+        final String inp = (String) input;
+        for (int i = 0; i < inp.length(); i++) {
+            LENGTHS.add((int) inp.charAt(i));
+        }
+        LENGTHS.addAll(Arrays.asList(TRAILING_BYTES));
+    }
 }

@@ -23,9 +23,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        DayTen dayTen = new DayTen();
-        dayTen.test();
-        printDay(new DayTen());
+        solved();
     }
 
     private static void printDay(final DayBase base) {
@@ -44,6 +42,7 @@ public class Main {
         printDay(new DaySix());
         printDay(new DayEight());
         printDay(new DayNine());
+        printDay(new DayTen());
         LOG.log(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 100000));
     }
 }

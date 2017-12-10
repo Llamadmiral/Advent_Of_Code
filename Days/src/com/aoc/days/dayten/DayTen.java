@@ -19,7 +19,7 @@ public class DayTen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{"3,4,1,5"};
+        return new String[]{"3,4,1,5", "", "AoC 2017", "1,2,3", "1,2,4"};
     }
 
     @Override
