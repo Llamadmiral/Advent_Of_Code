@@ -12,10 +12,9 @@ public class DayTwo extends DayBase {
     private static final String DAY_NR = "Two";
 
     public DayTwo() {
-        final String inputs = Reader.readFromInput("2.txt");
         dayNr = DAY_NR;
         solution = new SolutionTwo(dayNr);
-        solution.setInput(inputs);
+        solution.setInput(Reader.readFromInput("2.txt"));
     }
 
     @Override

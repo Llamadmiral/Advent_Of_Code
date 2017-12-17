@@ -13,9 +13,7 @@ public final class TestFactory {
     private TestFactory() {
     }
 
-    public static void createAndRunTests(final DayBase dayBase,
-                                         final String... inputs
-    ) {
+    public static void createAndRunTests(final DayBase dayBase, final String... inputs) {
         for (final String input : inputs) {
             final SolutionBase solution = dayBase.getSolutionForTest();
             solution.setInput(input);
