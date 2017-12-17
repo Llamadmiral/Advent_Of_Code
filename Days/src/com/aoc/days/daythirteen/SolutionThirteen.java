@@ -60,6 +60,10 @@ class SolutionThirteen extends SolutionBase {
     }
 
 
+    /**
+     * If cycles / length is odd, it means that the scanner is returning to its starting position (0),
+     * else it is going down.
+     */
     private int getPositionOfScanner(final int length, final int cycles) {
         if (cycles == 0) {
             return 0;
