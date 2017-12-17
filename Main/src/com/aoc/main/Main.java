@@ -8,6 +8,7 @@ import com.aoc.days.daynine.DayNine;
 import com.aoc.days.dayone.DayOne;
 import com.aoc.days.daysix.DaySix;
 import com.aoc.days.dayten.DayTen;
+import com.aoc.days.daythirteen.DayThirteen;
 import com.aoc.days.daythree.DayThree;
 import com.aoc.days.daytwelve.DayTwelve;
 import com.aoc.days.daytwo.DayTwo;
@@ -45,6 +46,7 @@ public class Main {
         printDay(new DayNine());
         printDay(new DayTen());
         printDay(new DayTwelve());
+        printDay(new DayThirteen());
         LOG.log(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 100000));
     }
 }
