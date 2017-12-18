@@ -58,15 +58,13 @@ class SolutionTen extends SolutionBase {
 
     @Override
     protected void solvePartTwo() {
-        initKnotHashGeneration();
+        setSolutionTwo(initKnotHashGeneration());
     }
 
     private String generateKnotHash() {
         final StringBuilder builder = new StringBuilder();
         DENSE_HASH.forEach(hash -> builder.append(getHexValue(hash)));
-        final String knotHash = builder.toString();
-        setSolutionTwo(knotHash);
-        return knotHash;
+        return builder.toString();
     }
 
     /**
