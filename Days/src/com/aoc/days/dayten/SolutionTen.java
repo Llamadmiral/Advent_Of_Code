@@ -43,9 +43,7 @@ class SolutionTen extends SolutionBase {
         setSolutionOne(SPARSE_HASH.get(0) * SPARSE_HASH.get(1));
     }
 
-
-    @Override
-    protected void solvePartTwo() {
+    String initKnotHashGeneration() {
         skipSize = 0;
         currentPosition = 0;
         parseInput();
@@ -54,13 +52,21 @@ class SolutionTen extends SolutionBase {
             LENGTHS.forEach(this::reverseSubList);
         }
         crushSparseHash();
-        generateKnotHash();
+        return generateKnotHash();
     }
 
-    private void generateKnotHash() {
+
+    @Override
+    protected void solvePartTwo() {
+        initKnotHashGeneration();
+    }
+
+    private String generateKnotHash() {
         final StringBuilder builder = new StringBuilder();
         DENSE_HASH.forEach(hash -> builder.append(getHexValue(hash)));
-        setSolutionTwo(builder.toString());
+        final String knotHash = builder.toString();
+        setSolutionTwo(knotHash);
+        return knotHash;
     }
 
     /**

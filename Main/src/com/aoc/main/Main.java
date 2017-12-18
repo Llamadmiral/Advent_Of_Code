@@ -4,6 +4,7 @@ import com.aoc.daybase.DayBase;
 import com.aoc.days.dayeight.DayEight;
 import com.aoc.days.dayfive.DayFive;
 import com.aoc.days.dayfour.DayFour;
+import com.aoc.days.dayfourteen.DayFourteen;
 import com.aoc.days.daynine.DayNine;
 import com.aoc.days.dayone.DayOne;
 import com.aoc.days.daysix.DaySix;
@@ -47,6 +48,7 @@ public class Main {
         printDay(new DayTen());
         printDay(new DayTwelve());
         printDay(new DayThirteen());
+        printDay(new DayFourteen());
         LOG.log(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 100000));
     }
 }
