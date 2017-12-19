@@ -3,7 +3,7 @@ package com.aoc.days.daysixteen;
 /**
  * @author maczaka.
  */
-public class Move {
+class Move {
     private char type;
     private int amount;
     private int from;
@@ -11,7 +11,7 @@ public class Move {
     private char who;
     private char with;
 
-    public Move(final String move) {
+    Move(final String move) {
         type = move.charAt(0);
         switch (type) {
             case 's':
@@ -29,51 +29,31 @@ public class Move {
         }
     }
 
-    public int getAmount() {
+    int getAmount() {
         return amount;
     }
 
-    public void setAmount(final int amount) {
-        this.amount = amount;
-    }
-
-    public char getType() {
+    char getType() {
         return type;
     }
 
-    public void setType(final char type) {
-        this.type = type;
-    }
-
-    public int getFrom() {
+    int getFrom() {
         return from;
     }
 
-    public void setFrom(final int from) {
-        this.from = from;
-    }
-
-    public int getTo() {
+    int getTo() {
         return to;
     }
 
-    public void setTo(final int to) {
+    void setTo(final int to) {
         this.to = to;
     }
 
-    public char getWho() {
+    char getWho() {
         return who;
     }
 
-    public void setWho(final char who) {
-        this.who = who;
-    }
-
-    public char getWith() {
+    char getWith() {
         return with;
-    }
-
-    public void setWith(final char with) {
-        this.with = with;
     }
 }
