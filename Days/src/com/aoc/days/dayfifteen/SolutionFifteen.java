@@ -1,6 +1,5 @@
 package com.aoc.days.dayfifteen;
 
-import com.aoc.days.dayfourteen.Generator;
 import com.aoc.solutionbase.SolutionBase;
 
 /**
@@ -33,7 +32,7 @@ class SolutionFifteen extends SolutionBase {
     }
 
     /**
-     * It's not really efficient to re-parse stuff just so we can reset the generatorts, but eh.
+     * It's not really efficient to re-parse stuff just so we can reset the generators, but eh.
      */
     @Override
     protected void solvePartTwo() {

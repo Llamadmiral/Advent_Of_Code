@@ -1,9 +1,9 @@
-package com.aoc.days.dayfourteen;
+package com.aoc.days.dayfifteen;
 
 /**
  * @author maczaka.
  */
-public class Generator {
+class Generator {
 
     private static final int MODULO = Integer.MAX_VALUE;
 
@@ -11,24 +11,24 @@ public class Generator {
     private long factor;
     private int criteria;
 
-    public Generator(final int factor) {
+    Generator(final int factor) {
         this.factor = factor;
     }
 
-    public int nextValue() {
+    int nextValue() {
         previousValue = (previousValue * factor) % MODULO;
         return (int) previousValue;
     }
 
-    public void setPreviousValue(final int previousValue) {
+    void setPreviousValue(final int previousValue) {
         this.previousValue = previousValue;
     }
 
-    public void setCriteria(final int criteria) {
+    void setCriteria(final int criteria) {
         this.criteria = criteria;
     }
 
-    public int nextValueWithCriteria() {
+    int nextValueWithCriteria() {
         int currValue = nextValue();
         while (currValue % criteria != 0) {
             currValue = nextValue();
