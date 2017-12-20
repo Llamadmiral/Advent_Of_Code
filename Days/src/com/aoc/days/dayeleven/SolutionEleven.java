@@ -2,30 +2,20 @@ package com.aoc.days.dayeleven;
 
 import com.aoc.solutionbase.SolutionBase;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author maczaka.
  */
 class SolutionEleven extends SolutionBase {
 
-    private static final List<String> DIRECTIONS = new ArrayList<>();
-    private static final Map<String, Integer> DISTANCE = new HashMap<>();
-    private static final Random rnd = new Random();
-
-    static {
-        DIRECTIONS.add("n");
-        DIRECTIONS.add("ne");
-        DIRECTIONS.add("se");
-        DIRECTIONS.add("s");
-        DIRECTIONS.add("sw");
-        DIRECTIONS.add("nw");
-    }
+    private static final String[] DIRECTION_NAMES = new String[]{"n", "ne", "se", "s", "sw", "nw"};
+    private static final Map<String, Direction> DIRECTIONS = new HashMap<>();
 
     private final List<String> inputDirections = new ArrayList<>();
-    private final Map<String, Integer> directionalDistance = new HashMap<>();
-    private String currentDirection;
-    private Integer distance = 1;
 
     SolutionEleven(final String day) {
         super(day);
@@ -33,10 +23,9 @@ class SolutionEleven extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-        for (int i = 0; i < 100; i++) {
-            System.out.println(getDistanceBetweenDirections(DIRECTIONS.get(rnd.nextInt(6)), DIRECTIONS.get(rnd.nextInt(6))));
-        }
-//        getDistanceBetweenDirections("nw", "sw");
+        init();
+        initInputDirections();
+        setSolutionOne(inputDirections.size());
     }
 
     @Override
@@ -44,33 +33,71 @@ class SolutionEleven extends SolutionBase {
 
     }
 
-    private void getNextDirection(final String newDirection) {
-        final int distanceBetweenDirections =
-                Math.abs(DIRECTIONS.indexOf(currentDirection) - DIRECTIONS.indexOf(newDirection));
-        if (distanceBetweenDirections != 3) {
-            if (distanceBetweenDirections == 2) {
-
+    private void initInputDirections() {
+        final String[] directions = ((String) input).split(",");
+        for (final String direction : directions) {
+            String toRemove = null;
+            String toAdd = null;
+            for (final String savedDirection : inputDirections) {
+                if (!direction.equals(savedDirection)) {
+                    final int distance = getDistanceBetweenTwoDirections(direction, savedDirection);
+                    if (distance == 3) {
+                        toRemove = savedDirection;
+                        break;
+                    } else if (distance == 2) {
+                        toAdd = getBetweenDirection(direction, savedDirection);
+                        toRemove = savedDirection;
+                        break;
+                    }
+                }
+            }
+            if (toRemove != null) {
+                inputDirections.remove(toRemove);
+            }
+            if (toAdd != null) {
+                inputDirections.add(toAdd);
+            }
+            if (toRemove == null && toAdd == null) {
+                inputDirections.add(direction);
             }
         }
     }
 
-    private int getDistanceBetweenDirections(final String startDirection, final String directionToFind) {
-        return Integer.min((DIRECTIONS.indexOf(startDirection) - DIRECTIONS.indexOf(directionToFind)) % 6,
-                (DIRECTIONS.indexOf(directionToFind) - DIRECTIONS.indexOf(startDirection)) % 6);
+    private String getBetweenDirection(final String directionOne, final String directionTwo) {
+        return DIRECTIONS.get(directionOne).getNextDirection().equals(DIRECTIONS.get(directionTwo).getPreviousDirection())
+            ? DIRECTIONS.get(directionOne).getNextDirection().getDirection()
+            : DIRECTIONS.get(directionOne).getPreviousDirection().getDirection();
     }
 
 
-    void init() {
-        inputDirections.addAll(Arrays.asList(((String) input).split(",")));
-        currentDirection = inputDirections.get(0);
+    private int getDistanceBetweenTwoDirections(final String directionOne, final String directionTwo) {
+        int lofasz = 0;
+        try {
+            lofasz = DIRECTIONS.get(directionOne).getDistance(directionTwo);
+        } catch (Exception e) {
+            System.out.println("Fuck you");
+        }
+        return lofasz;
     }
 
-    private void addToDistance(final String direction) {
-        directionalDistance.put(direction, DISTANCE.get(direction) + directionalDistance.get(direction));
-    }
-
-    private void calculateDistance() {
-
+    private void init() {
+        Direction head = null;
+        Direction prevDirection = null;
+        for (int i = 0; i < 6; i++) {
+            if (head == null) {
+                head = new Direction(DIRECTION_NAMES[i]);
+                prevDirection = head;
+                DIRECTIONS.put(DIRECTION_NAMES[i], head);
+            } else {
+                final Direction newDir = new Direction(DIRECTION_NAMES[i]);
+                prevDirection.setNextDirection(newDir);
+                newDir.setPreviousDirection(prevDirection);
+                prevDirection = newDir;
+                DIRECTIONS.put(DIRECTION_NAMES[i], newDir);
+            }
+        }
+        head.setPreviousDirection(prevDirection);
+        prevDirection.setNextDirection(head);
     }
 
 
