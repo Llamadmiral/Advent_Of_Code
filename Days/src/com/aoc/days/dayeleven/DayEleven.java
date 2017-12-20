@@ -24,6 +24,15 @@ public class DayEleven extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{"ne,ne,ne", "ne,ne,sw,sw", "ne,ne,s,s", "se,sw,se,sw,sw"};
+        return new String[]{
+                "ne,ne,ne",
+                "ne,ne,sw,sw",
+                "ne,ne,s,s",
+                "se,sw,se,sw,sw",
+                "s,s,s,se,ne,se,n,n,n",
+                "n,ne"
+        };
     }
+
+    //
 }

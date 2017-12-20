@@ -15,72 +15,7 @@ class SolutionEleven extends SolutionBase {
     private static final String[] DIRECTION_NAMES = new String[]{"n", "ne", "se", "s", "sw", "nw"};
     private static final Map<String, Direction> DIRECTIONS = new HashMap<>();
 
-    private final List<String> inputDirections = new ArrayList<>();
-
-    SolutionEleven(final String day) {
-        super(day);
-    }
-
-    @Override
-    protected void solvePartOne() {
-        init();
-        initInputDirections();
-        setSolutionOne(inputDirections.size());
-    }
-
-    @Override
-    protected void solvePartTwo() {
-
-    }
-
-    private void initInputDirections() {
-        final String[] directions = ((String) input).split(",");
-        for (final String direction : directions) {
-            String toRemove = null;
-            String toAdd = null;
-            for (final String savedDirection : inputDirections) {
-                if (!direction.equals(savedDirection)) {
-                    final int distance = getDistanceBetweenTwoDirections(direction, savedDirection);
-                    if (distance == 3) {
-                        toRemove = savedDirection;
-                        break;
-                    } else if (distance == 2) {
-                        toAdd = getBetweenDirection(direction, savedDirection);
-                        toRemove = savedDirection;
-                        break;
-                    }
-                }
-            }
-            if (toRemove != null) {
-                inputDirections.remove(toRemove);
-            }
-            if (toAdd != null) {
-                inputDirections.add(toAdd);
-            }
-            if (toRemove == null && toAdd == null) {
-                inputDirections.add(direction);
-            }
-        }
-    }
-
-    private String getBetweenDirection(final String directionOne, final String directionTwo) {
-        return DIRECTIONS.get(directionOne).getNextDirection().equals(DIRECTIONS.get(directionTwo).getPreviousDirection())
-            ? DIRECTIONS.get(directionOne).getNextDirection().getDirection()
-            : DIRECTIONS.get(directionOne).getPreviousDirection().getDirection();
-    }
-
-
-    private int getDistanceBetweenTwoDirections(final String directionOne, final String directionTwo) {
-        int lofasz = 0;
-        try {
-            lofasz = DIRECTIONS.get(directionOne).getDistance(directionTwo);
-        } catch (Exception e) {
-            System.out.println("Fuck you");
-        }
-        return lofasz;
-    }
-
-    private void init() {
+    static {
         Direction head = null;
         Direction prevDirection = null;
         for (int i = 0; i < 6; i++) {
@@ -100,5 +35,99 @@ class SolutionEleven extends SolutionBase {
         prevDirection.setNextDirection(head);
     }
 
+    private Integer distance = null;
+    private List<String> inputDirections = new ArrayList<>();
+
+    SolutionEleven(final String day) {
+        super(day);
+    }
+
+    @Override
+    protected void solvePartOne() {
+//        inputDirections.addAll(Arrays.asList(((String) input).split(",")));
+//        boolean needsSimplifying = simplifyDirections();
+//        while (needsSimplifying) {
+//            needsSimplifying = simplifyDirections();
+//        }
+        simplifyListTwo();
+        setSolutionOne(inputDirections.size());
+        // setSolutionOne(inputDirections.size());
+    }
+
+    @Override
+    protected void solvePartTwo() {
+        //setSolutionTwo(distance);
+    }
+
+    private boolean simplifyDirections() {
+        boolean needRestart = false;
+        final List<String> newDirections = new ArrayList<>(inputDirections);
+        int maxDistance = 0;
+        for (int i = 0; i < inputDirections.size(); i++) {
+            maxDistance++;
+            String savedDirection = inputDirections.get(i);
+            for (final String direction : newDirections) {
+                final int distance = getDistanceBetweenTwoDirections(direction, savedDirection);
+                if (distance == 3) {
+                    newDirections.remove(direction);
+                    newDirections.remove(savedDirection);
+                    needRestart = true;
+                    maxDistance--;
+                } else if (distance == 2) {
+                    newDirections.add(getBetweenDirection(direction, savedDirection));
+                    newDirections.remove(direction);
+                    newDirections.remove(savedDirection);
+                    needRestart = true;
+                }
+                if (needRestart) {
+                    break;
+                }
+            }
+            if (needRestart) {
+                inputDirections = newDirections;
+            }
+        }
+        if (distance == null) {
+            distance = maxDistance;
+        }
+        return needRestart;
+    }
+
+    private void simplifyListTwo() {
+        final String[] newDirections = ((String) input).split(",");
+        final List<String> finalPath = new ArrayList<>();
+        for (final String newDirection : newDirections) {
+            boolean foundReplacement = false;
+            for (final String savedDirection : finalPath) {
+                final int distance = getDistanceBetweenTwoDirections(newDirection, savedDirection);
+                if (distance == 3) {
+                    finalPath.remove(savedDirection);
+                    foundReplacement = true;
+                }
+                if (distance == 2) {
+                    finalPath.remove(savedDirection);
+                    finalPath.add(getBetweenDirection(savedDirection, newDirection));
+                    foundReplacement = true;
+                }
+                if (foundReplacement) {
+                    break;
+                }
+            }
+            if (!foundReplacement) {
+                finalPath.add(newDirection);
+            }
+        }
+        inputDirections = finalPath;
+    }
+
+    private String getBetweenDirection(final String dirOne, final String dirTwo) {
+        return DIRECTIONS.get(dirOne).getNextDirection().equals(DIRECTIONS.get(dirTwo).getPreviousDirection())
+                ? DIRECTIONS.get(dirOne).getNextDirection().getDirection()
+                : DIRECTIONS.get(dirOne).getPreviousDirection().getDirection();
+    }
+
+    private int getDistanceBetweenTwoDirections(final String directionOne, final String directionTwo) {
+        return DIRECTIONS.get(directionOne).getDistance(directionTwo);
+    }
 
 }
