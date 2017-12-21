@@ -29,7 +29,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        test(new DayEleven());
+        printDay(new DayEleven());
     }
 
     private static void printDay(final DayBase base) {

@@ -95,35 +95,51 @@ class SolutionEleven extends SolutionBase {
 
     private void simplifyListTwo() {
         final String[] newDirections = ((String) input).split(",");
+        int currentDistance = 0;
+        int maxDistance = 0;
         final List<String> finalPath = new ArrayList<>();
         for (final String newDirection : newDirections) {
             boolean foundReplacement = false;
-            for (final String savedDirection : finalPath) {
-                final int distance = getDistanceBetweenTwoDirections(newDirection, savedDirection);
-                if (distance == 3) {
-                    finalPath.remove(savedDirection);
+            final String direction3Away = getDirectionWithNDistanceAway(finalPath, newDirection, 3);
+            if (direction3Away != null) {
+                finalPath.remove(direction3Away);
+                currentDistance--;
+                foundReplacement = true;
+            } else {
+                final String direction2Away = getDirectionWithNDistanceAway(finalPath, newDirection, 2);
+                if (direction2Away != null) {
+                    finalPath.remove(direction2Away);
+                    finalPath.add(getBetweenDirection(newDirection, direction2Away));
                     foundReplacement = true;
-                }
-                if (distance == 2) {
-                    finalPath.remove(savedDirection);
-                    finalPath.add(getBetweenDirection(savedDirection, newDirection));
-                    foundReplacement = true;
-                }
-                if (foundReplacement) {
-                    break;
                 }
             }
             if (!foundReplacement) {
+                currentDistance++;
+                if (currentDistance > maxDistance) {
+                    maxDistance = currentDistance;
+                }
                 finalPath.add(newDirection);
             }
         }
         inputDirections = finalPath;
+        setSolutionTwo(maxDistance);
+    }
+
+    private String getDirectionWithNDistanceAway(final List<String> directions, final String direction, final int distance) {
+        String directionWithNDistance = null;
+        for (final String savedDirection : directions) {
+            if (getDistanceBetweenTwoDirections(savedDirection, direction) == distance) {
+                directionWithNDistance = savedDirection;
+                break;
+            }
+        }
+        return directionWithNDistance;
     }
 
     private String getBetweenDirection(final String dirOne, final String dirTwo) {
         return DIRECTIONS.get(dirOne).getNextDirection().equals(DIRECTIONS.get(dirTwo).getPreviousDirection())
-                ? DIRECTIONS.get(dirOne).getNextDirection().getDirection()
-                : DIRECTIONS.get(dirOne).getPreviousDirection().getDirection();
+            ? DIRECTIONS.get(dirOne).getNextDirection().getDirection()
+            : DIRECTIONS.get(dirOne).getPreviousDirection().getDirection();
     }
 
     private int getDistanceBetweenTwoDirections(final String directionOne, final String directionTwo) {

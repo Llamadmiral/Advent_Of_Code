@@ -8,6 +8,8 @@ import com.aoc.util.log.Logger;
  */
 public final class TestFactory {
 
+    private static final String DIVIDER = "----------";
+
     private static final Logger LOG = new Logger(TestFactory.class);
 
     private TestFactory() {
@@ -19,6 +21,7 @@ public final class TestFactory {
             solution.setInput(input);
             solution.getPartOne();
             solution.getPartTwo();
+            LOG.log(DIVIDER);
         }
     }
 }
