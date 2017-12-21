@@ -9,6 +9,7 @@ import com.aoc.days.dayfour.DayFour;
 import com.aoc.days.dayfourteen.DayFourteen;
 import com.aoc.days.daynine.DayNine;
 import com.aoc.days.dayone.DayOne;
+import com.aoc.days.dayseventeen.DaySeventeen;
 import com.aoc.days.daysix.DaySix;
 import com.aoc.days.daysixteen.DaySixteen;
 import com.aoc.days.dayten.DayTen;
@@ -29,8 +30,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        printDay(new DayFive());
-       // solved();
+        solved();
     }
 
     private static void printDay(final DayBase base) {
@@ -56,6 +56,7 @@ public class Main {
         printDay(new DayFourteen());
         printDay(new DayFifteen());
         printDay(new DaySixteen());
+        printDay(new DaySeventeen());
         LOG.log(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 100000));
     }
 
