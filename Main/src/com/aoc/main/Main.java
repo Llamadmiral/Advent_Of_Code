@@ -2,13 +2,13 @@ package com.aoc.main;
 
 import com.aoc.daybase.DayBase;
 import com.aoc.days.dayeight.DayEight;
-import com.aoc.days.dayeighteen.DayEighteen;
 import com.aoc.days.dayeleven.DayEleven;
 import com.aoc.days.dayfifteen.DayFifteen;
 import com.aoc.days.dayfive.DayFive;
 import com.aoc.days.dayfour.DayFour;
 import com.aoc.days.dayfourteen.DayFourteen;
 import com.aoc.days.daynine.DayNine;
+import com.aoc.days.daynineteen.DayNineteen;
 import com.aoc.days.dayone.DayOne;
 import com.aoc.days.dayseventeen.DaySeventeen;
 import com.aoc.days.daysix.DaySix;
@@ -31,7 +31,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        printDay(new DayEighteen());
+        printDay(new DayNineteen());
     }
 
     private static void printDay(final DayBase base) {
