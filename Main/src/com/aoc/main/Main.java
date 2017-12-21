@@ -29,7 +29,8 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        printDay(new DayEleven());
+        printDay(new DayFive());
+       // solved();
     }
 
     private static void printDay(final DayBase base) {
@@ -49,6 +50,7 @@ public class Main {
         printDay(new DayEight());
         printDay(new DayNine());
         printDay(new DayTen());
+        printDay(new DayEleven());
         printDay(new DayTwelve());
         printDay(new DayThirteen());
         printDay(new DayFourteen());

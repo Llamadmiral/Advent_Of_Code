@@ -35,8 +35,8 @@ class SolutionEleven extends SolutionBase {
         prevDirection.setNextDirection(head);
     }
 
-    private Integer distance = null;
     private List<String> inputDirections = new ArrayList<>();
+    private int maxDistance = 0;
 
     SolutionEleven(final String day) {
         super(day);
@@ -44,96 +44,56 @@ class SolutionEleven extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-//        inputDirections.addAll(Arrays.asList(((String) input).split(",")));
-//        boolean needsSimplifying = simplifyDirections();
-//        while (needsSimplifying) {
-//            needsSimplifying = simplifyDirections();
-//        }
-        simplifyListTwo();
+        simplifyList();
         setSolutionOne(inputDirections.size());
-        // setSolutionOne(inputDirections.size());
     }
 
     @Override
     protected void solvePartTwo() {
-        //setSolutionTwo(distance);
-    }
-
-    private boolean simplifyDirections() {
-        boolean needRestart = false;
-        final List<String> newDirections = new ArrayList<>(inputDirections);
-        int maxDistance = 0;
-        for (int i = 0; i < inputDirections.size(); i++) {
-            maxDistance++;
-            String savedDirection = inputDirections.get(i);
-            for (final String direction : newDirections) {
-                final int distance = getDistanceBetweenTwoDirections(direction, savedDirection);
-                if (distance == 3) {
-                    newDirections.remove(direction);
-                    newDirections.remove(savedDirection);
-                    needRestart = true;
-                    maxDistance--;
-                } else if (distance == 2) {
-                    newDirections.add(getBetweenDirection(direction, savedDirection));
-                    newDirections.remove(direction);
-                    newDirections.remove(savedDirection);
-                    needRestart = true;
-                }
-                if (needRestart) {
-                    break;
-                }
-            }
-            if (needRestart) {
-                inputDirections = newDirections;
-            }
-        }
-        if (distance == null) {
-            distance = maxDistance;
-        }
-        return needRestart;
-    }
-
-    private void simplifyListTwo() {
-        final String[] newDirections = ((String) input).split(",");
-        int currentDistance = 0;
-        int maxDistance = 0;
-        final List<String> finalPath = new ArrayList<>();
-        for (final String newDirection : newDirections) {
-            boolean foundReplacement = false;
-            final String direction3Away = getDirectionWithNDistanceAway(finalPath, newDirection, 3);
-            if (direction3Away != null) {
-                finalPath.remove(direction3Away);
-                currentDistance--;
-                foundReplacement = true;
-            } else {
-                final String direction2Away = getDirectionWithNDistanceAway(finalPath, newDirection, 2);
-                if (direction2Away != null) {
-                    finalPath.remove(direction2Away);
-                    finalPath.add(getBetweenDirection(newDirection, direction2Away));
-                    foundReplacement = true;
-                }
-            }
-            if (!foundReplacement) {
-                currentDistance++;
-                if (currentDistance > maxDistance) {
-                    maxDistance = currentDistance;
-                }
-                finalPath.add(newDirection);
-            }
-        }
-        inputDirections = finalPath;
         setSolutionTwo(maxDistance);
     }
 
-    private String getDirectionWithNDistanceAway(final List<String> directions, final String direction, final int distance) {
-        String directionWithNDistance = null;
-        for (final String savedDirection : directions) {
-            if (getDistanceBetweenTwoDirections(savedDirection, direction) == distance) {
-                directionWithNDistance = savedDirection;
-                break;
+    /**
+     * We have to prioritize removing the opposite directions.
+     * So if there is a direction which is opposite to the new direction, we ought to remove that first,
+     * then if we cannot find one, replace (to whatever position) the almost-opposite direction.
+     * If none found, just add the new direction.
+     * Since replacing does not increase the current distance, we ought to increment it only if a new element is added,
+     * or decrease it when an opposite direction is discovered.
+     */
+    private void simplifyList() {
+        final String[] newDirections = ((String) input).split(",");
+        int currentDistance = 0;
+        final List<String> finalPath = new ArrayList<>();
+        for (final String newDirection : newDirections) {
+            boolean foundReplacement = false;
+            String dist2Away = null;
+            for (final String savedDirection : finalPath) {
+                final int dist = getDistanceBetweenTwoDirections(newDirection, savedDirection);
+                if (dist == 3) {
+                    finalPath.remove(savedDirection);
+                    currentDistance--;
+                    foundReplacement = true;
+                    break;
+                }
+                if (dist == 2 && dist2Away == null) {
+                    dist2Away = savedDirection;
+                }
+            }
+            if (!foundReplacement) {
+                if (dist2Away != null) {
+                    finalPath.remove(dist2Away);
+                    finalPath.add(getBetweenDirection(newDirection, dist2Away));
+                } else {
+                    currentDistance++;
+                    if (currentDistance > maxDistance) {
+                        maxDistance = currentDistance;
+                    }
+                    finalPath.add(newDirection);
+                }
             }
         }
-        return directionWithNDistance;
+        inputDirections = finalPath;
     }
 
     private String getBetweenDirection(final String dirOne, final String dirTwo) {

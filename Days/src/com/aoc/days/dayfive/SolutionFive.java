@@ -2,9 +2,6 @@ package com.aoc.days.dayfive;
 
 import com.aoc.solutionbase.SolutionBase;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * I'm pretty sure the exercise here wasn't that if you can solve it,
  * but rather to find a better solution than the base. Well, I couldn't really think of one.
@@ -12,9 +9,8 @@ import java.util.List;
  * @author Llamadmiral.
  */
 class SolutionFive extends SolutionBase {
-    private static final List<Integer> OFFSETS = new ArrayList<>();
+    private int[] baseOffsets;
     private int steps = 0;
-    private int position = 0;
 
     SolutionFive(final String day) {
         super(day);
@@ -29,22 +25,20 @@ class SolutionFive extends SolutionBase {
 
     @Override
     protected void solvePartTwo() {
-        OFFSETS.clear();
         steps = 0;
-        position = 0;
-        parseInput();
         jump(true);
         setSolutionTwo(steps);
     }
 
     private void jump(final boolean partTwo) {
-        while (position < OFFSETS.size() && position >= 0) {
+        final int[] offsets = baseOffsets.clone();
+        for (int position = 0; position < offsets.length;) {
             steps++;
-            final int offset = OFFSETS.get(position);
+            final int offset = offsets[position];
             if (partTwo && offset > 2) {
-                OFFSETS.set(position, OFFSETS.get(position) - 1);
+                offsets[position] = offsets[position] - 1;
             } else {
-                OFFSETS.set(position, OFFSETS.get(position) + 1);
+                offsets[position] = offsets[position] + 1;
             }
             position += offset;
         }
@@ -52,10 +46,9 @@ class SolutionFive extends SolutionBase {
 
     private void parseInput() {
         final String[] jumps = ((String) input).split("\n");
-        for (final String jump : jumps) {
-            if (!jump.isEmpty()) {
-                OFFSETS.add(Integer.parseInt(jump));
-            }
+        baseOffsets = new int[jumps.length];
+        for (int i = 0; i < jumps.length; i++) {
+            baseOffsets[i] = (Integer.parseInt(jumps[i]));
         }
     }
 }
