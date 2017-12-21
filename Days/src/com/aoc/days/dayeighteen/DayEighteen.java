@@ -24,15 +24,22 @@ public class DayEighteen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{"set a 1\n"
-            + "add a 2\n"
-            + "mul a a\n"
-            + "mod a 5\n"
-            + "snd a\n"
-            + "set a 0\n"
-            + "rcv a\n"
-            + "jgz a -1\n"
-            + "set a 1\n"
-            + "jgz a -2"};
+        return new String[]{"snd 1\n" +
+                "snd 2\n" +
+                "snd p\n" +
+                "rcv a\n" +
+                "rcv b\n" +
+                "rcv c\n" +
+                "rcv d",
+                "set a 1\n" +
+                "add a 2\n" +
+                "mul a a\n" +
+                "mod a 5\n" +
+                "snd a\n" +
+                "set a 0\n" +
+                "rcv a\n" +
+                "jgz a -1\n" +
+                "set a 1\n" +
+                "jgz a -2"};
     }
 }
