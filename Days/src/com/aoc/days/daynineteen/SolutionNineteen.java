@@ -25,7 +25,7 @@ class SolutionNineteen extends SolutionBase {
     private char[][] maze;
     private char direction = 'd';
     private StringBuilder builder = new StringBuilder();
-    private int steps = 0;
+    private int steps = 1;
 
     SolutionNineteen(String day) {
         super(day);
