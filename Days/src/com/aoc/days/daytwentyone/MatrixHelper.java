@@ -1,8 +1,5 @@
 package com.aoc.days.daytwentyone;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author maczaka
  */
@@ -30,40 +27,7 @@ final class MatrixHelper {
         return count;
     }
 
-//    static int getDeterminantOfMatrix(final int[][] matrix) {
-//        int determinant = 0;
-//        if (matrix.length == 2) {
-//            determinant = matrix[0][0] * matrix[1][1] - (matrix[0][1] * matrix[1][0]);
-//        } else {
-//            for (int i = 0; i < matrix.length; i++) {
-//                final int[][] subMatrix = createSubMatrixForDeterminant(matrix, 0, i);
-//                determinant += (i % 2 == 0 ? 1 : -1) * matrix[0][i] * getDeterminantOfMatrix(subMatrix);
-//            }
-//        }
-//        return determinant;
-//    }
-
-    private static int[][] createSubMatrixForDeterminant(final int[][] inputMatrix, final int skipX, final int skipY) {
-        final int size = inputMatrix.length;
-        final int[][] subMatrix = new int[size - 1][size - 1];
-        int k = 0;
-        int l = 0;
-        for (int i = 0; i < size; i++) {
-            if (skipX != i) {
-                for (int j = 0; j < size; j++) {
-                    if (skipY != j) {
-                        subMatrix[k][l] = inputMatrix[i][j];
-                        l++;
-                    }
-                }
-                k++;
-            }
-            l = 0;
-        }
-        return subMatrix;
-    }
-
-    static int getDeterminantOfMatrix(int[][] matrix) {
+    static int getDeterminantOfMatrix(final int[][] matrix) {
         int temporary[][];
         int result = 0;
 
