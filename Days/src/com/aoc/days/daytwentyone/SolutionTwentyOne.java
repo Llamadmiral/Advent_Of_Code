@@ -45,12 +45,12 @@ class SolutionTwentyOne extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-        System.out.println(getDeterminantOfMatrix(DETERMINANT_TEST));
-        //parseInput();
+//        System.out.println(getDeterminantOfMatrix(DETERMINANT_TEST));
+        parseInput();
         art = new Pattern(STARTING_POSITION);
-//        for (int i = 0; i < 5; i++) {
-//            enhance(art);
-//        }
+        for (int i = 0; i < 5; i++) {
+            enhance(art);
+        }
         setSolutionOne(art.getCount());
     }
 
