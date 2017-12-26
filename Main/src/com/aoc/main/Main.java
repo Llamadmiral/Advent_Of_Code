@@ -19,6 +19,7 @@ import com.aoc.days.daythirteen.DayThirteen;
 import com.aoc.days.daythree.DayThree;
 import com.aoc.days.daytwelve.DayTwelve;
 import com.aoc.days.daytwenty.DayTwenty;
+import com.aoc.days.daytwentyfour.DayTwentyFour;
 import com.aoc.days.daytwentytwo.DayTwentyTwo;
 import com.aoc.days.daytwo.DayTwo;
 import com.aoc.util.log.Logger;
@@ -65,6 +66,7 @@ public class Main {
         printDay(new DayNineteen());
         printDay(new DayTwenty());
         printDay(new DayTwentyTwo());
+        printDay(new DayTwentyFour());
         LOG.log(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 100000));
     }
 
