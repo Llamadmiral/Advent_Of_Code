@@ -26,6 +26,8 @@ class Move {
                 who = move.charAt(1);
                 with = move.charAt(3);
                 break;
+            default:
+                break;
         }
     }
 

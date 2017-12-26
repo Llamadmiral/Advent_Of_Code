@@ -14,10 +14,14 @@ class TapeValue {
         return mostLeftValue;
     }
 
+    private static void setMostLeftValue(final TapeValue tapeValue) {
+        mostLeftValue = tapeValue;
+    }
+
     TapeValue getPreviousValue() {
         if (this.previousValue == null) {
             previousValue = new TapeValue();
-            mostLeftValue = previousValue;
+            setMostLeftValue(previousValue);
             previousValue.nextValue = this;
 
         }

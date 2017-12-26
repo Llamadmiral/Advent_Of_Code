@@ -13,9 +13,9 @@ class SolutionTen extends SolutionBase {
 
     private static final Integer[] TRAILING_BYTES = new Integer[]{17, 31, 73, 47, 23};
     private static final char[] HEX_TABLE = "0123456789abcdef".toCharArray();
-    private final List<Integer> SPARSE_HASH = new ArrayList<>();
-    private final List<Integer> LENGTHS = new ArrayList<>();
-    private final List<Integer> DENSE_HASH = new ArrayList<>();
+    private final List<Integer> sparseHash = new ArrayList<>();
+    private final List<Integer> lengths = new ArrayList<>();
+    private final List<Integer> denseHash = new ArrayList<>();
     private Integer skipSize = 0;
     private Integer currentPosition = 0;
 
@@ -25,9 +25,9 @@ class SolutionTen extends SolutionBase {
     }
 
     private void createList() {
-        SPARSE_HASH.clear();
+        sparseHash.clear();
         for (int i = 0; i < 256; i++) {
-            SPARSE_HASH.add(i);
+            sparseHash.add(i);
         }
     }
 
@@ -40,7 +40,7 @@ class SolutionTen extends SolutionBase {
         for (final String length : lengths) {
             reverseSubList(Integer.parseInt(length));
         }
-        setSolutionOne(SPARSE_HASH.get(0) * SPARSE_HASH.get(1));
+        setSolutionOne(sparseHash.get(0) * sparseHash.get(1));
     }
 
     String initKnotHashGeneration() {
@@ -49,7 +49,7 @@ class SolutionTen extends SolutionBase {
         parseInput();
         createList();
         for (int i = 0; i < 64; i++) {
-            LENGTHS.forEach(this::reverseSubList);
+            lengths.forEach(this::reverseSubList);
         }
         crushSparseHash();
         return generateKnotHash();
@@ -63,7 +63,7 @@ class SolutionTen extends SolutionBase {
 
     private String generateKnotHash() {
         final StringBuilder builder = new StringBuilder();
-        DENSE_HASH.forEach(hash -> builder.append(getHexValue(hash)));
+        denseHash.forEach(hash -> builder.append(getHexValue(hash)));
         return builder.toString();
     }
 
@@ -78,7 +78,7 @@ class SolutionTen extends SolutionBase {
 
     private void crushSparseHash() {
         for (int i = 0; i < 16; i++) {
-            DENSE_HASH.add(getXorValue(SPARSE_HASH.subList(16 * i, 16 * i + 16)));
+            denseHash.add(getXorValue(sparseHash.subList(16 * i, 16 * i + 16)));
         }
     }
 
@@ -99,25 +99,25 @@ class SolutionTen extends SolutionBase {
     }
 
     private Integer getWrappedPosition(final Integer position) {
-        return position % SPARSE_HASH.size();
+        return position % sparseHash.size();
     }
 
     private void switchPositions(final Integer positionOne, final Integer positionTwo) {
         if (!positionOne.equals(positionTwo)) {
             final Integer wrappedPositionOne = getWrappedPosition(positionOne);
             final Integer wrappedPositionTwo = getWrappedPosition(positionTwo);
-            final Integer valueOne = SPARSE_HASH.get(wrappedPositionOne);
-            final Integer valueTwo = SPARSE_HASH.get(wrappedPositionTwo);
-            SPARSE_HASH.set(wrappedPositionTwo, valueOne);
-            SPARSE_HASH.set(wrappedPositionOne, valueTwo);
+            final Integer valueOne = sparseHash.get(wrappedPositionOne);
+            final Integer valueTwo = sparseHash.get(wrappedPositionTwo);
+            sparseHash.set(wrappedPositionTwo, valueOne);
+            sparseHash.set(wrappedPositionOne, valueTwo);
         }
     }
 
     private void parseInput() {
         final String inp = (String) input;
         for (int i = 0; i < inp.length(); i++) {
-            LENGTHS.add((int) inp.charAt(i));
+            lengths.add((int) inp.charAt(i));
         }
-        LENGTHS.addAll(Arrays.asList(TRAILING_BYTES));
+        lengths.addAll(Arrays.asList(TRAILING_BYTES));
     }
 }

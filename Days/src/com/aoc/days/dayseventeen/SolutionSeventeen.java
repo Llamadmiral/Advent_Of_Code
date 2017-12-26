@@ -12,7 +12,7 @@ import java.util.List;
  */
 class SolutionSeventeen extends SolutionBase {
 
-    private static final int spinAmount = 2017;
+    private static final int SPIN_AMOUNT = 2017;
 
     private static final int FIFTY_MILLION = 50000000;
 
@@ -26,7 +26,7 @@ class SolutionSeventeen extends SolutionBase {
         int currentPosition = 0;
         final List<Integer> buffer = new ArrayList<>();
         buffer.add(0);
-        for (int i = 1; i < spinAmount + 1; i++) {
+        for (int i = 1; i < SPIN_AMOUNT + 1; i++) {
             currentPosition = (currentPosition + jumpAmount) % buffer.size();
             buffer.add(currentPosition, i);
             currentPosition++;

@@ -6,6 +6,11 @@ package com.aoc.days.dayten;
  * @author maczaka
  */
 public class KnotHashGenerator {
+
+    private KnotHashGenerator() {
+        //nope
+    }
+
     public static String getKnotHashForInput(final String input) {
         final SolutionTen ten = new SolutionTen("TEN");
         ten.setInput(input);

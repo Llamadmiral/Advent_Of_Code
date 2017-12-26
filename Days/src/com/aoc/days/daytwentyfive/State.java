@@ -9,6 +9,7 @@ class State {
     private int[] nextDirection = new int[2];
     private boolean currentValue;
 
+    //h means it was the word "right", so direction is +1.
     State(final String[] input) {
         nextValue[0] = input[2].charAt(input[2].length() - 2) == '1';
         nextValue[1] = input[6].charAt(input[6].length() - 2) == '1';

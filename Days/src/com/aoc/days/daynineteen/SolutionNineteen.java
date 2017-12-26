@@ -68,12 +68,10 @@ class SolutionNineteen extends SolutionBase {
         if (!setNewCoordinates(direction)) {
             for (int i = 0; i < 4; i++) {
                 final char newDirection = DIRECTIONS[i];
-                if (!isOpposite(newDirection)) {
-                    if (setNewCoordinates(newDirection)) {
-                        couldSetNewDirection = true;
-                        direction = newDirection;
-                        break;
-                    }
+                if (!isOpposite(newDirection) && setNewCoordinates(newDirection)) {
+                    couldSetNewDirection = true;
+                    direction = newDirection;
+                    break;
                 }
             }
         } else {

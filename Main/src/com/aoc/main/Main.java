@@ -11,6 +11,7 @@ import com.aoc.days.dayfourteen.DayFourteen;
 import com.aoc.days.daynine.DayNine;
 import com.aoc.days.daynineteen.DayNineteen;
 import com.aoc.days.dayone.DayOne;
+import com.aoc.days.dayseven.DaySeven;
 import com.aoc.days.dayseventeen.DaySeventeen;
 import com.aoc.days.daysix.DaySix;
 import com.aoc.days.daysixteen.DaySixteen;
@@ -36,7 +37,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        printDay(new DayTwentyFive());
+        printDay(new DaySeven());
     }
 
     private static void printDay(final DayBase base) {
@@ -68,6 +69,7 @@ public class Main {
         printDay(new DayTwenty());
         printDay(new DayTwentyTwo());
         printDay(new DayTwentyFour());
+        printDay(new DayTwentyFive());
         LOG.log(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 100000));
     }
 

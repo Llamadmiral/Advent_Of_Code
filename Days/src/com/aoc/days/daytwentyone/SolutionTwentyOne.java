@@ -56,7 +56,7 @@ class SolutionTwentyOne extends SolutionBase {
 
     @Override
     protected void solvePartTwo() {
-
+        //not yet done
     }
 
 

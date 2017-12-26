@@ -14,7 +14,7 @@ public class DaySeven extends DayBase {
     public DaySeven() {
         this.dayNr = DAY_NR;
         this.solution = new SolutionSeven(DAY_NR);
-        this.solution.setInput(Reader.readFileIntoList("7.txt"));
+        this.solution.setInput(Reader.readFromInput("7.txt"));
     }
 
     @Override
@@ -25,17 +25,17 @@ public class DaySeven extends DayBase {
     @Override
     public String[] getTestInputs() {
         return new String[]{"pbga (66)\n" +
-                "xhth (57)\n" +
-                "ebii (61)\n" +
-                "havc (66)\n" +
-                "ktlj (57)\n" +
-                "fwft (72) -> ktlj, cntj, xhth\n" +
-                "qoyq (66)\n" +
-                "padx (45) -> pbga, havc, qoyq\n" +
-                "tknk (41) -> ugml, padx, fwft\n" +
-                "jptl (61)\n" +
-                "ugml (68) -> gyxo, ebii, jptl\n" +
-                "gyxo (61)\n" +
-                "cntj (57)"};
+            "xhth (57)\n" +
+            "ebii (61)\n" +
+            "havc (66)\n" +
+            "ktlj (57)\n" +
+            "fwft (72) -> ktlj, cntj, xhth\n" +
+            "qoyq (66)\n" +
+            "padx (45) -> pbga, havc, qoyq\n" +
+            "tknk (41) -> ugml, padx, fwft\n" +
+            "jptl (61)\n" +
+            "ugml (68) -> gyxo, ebii, jptl\n" +
+            "gyxo (61)\n" +
+            "cntj (57)"};
     }
 }

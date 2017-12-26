@@ -70,6 +70,8 @@ class SolutionSixteen extends SolutionBase {
             case 'p':
                 partner(programList, move.getWho(), move.getWith());
                 break;
+            default:
+                break;
         }
     }
 

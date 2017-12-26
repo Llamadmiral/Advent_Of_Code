@@ -1,57 +1,64 @@
 package com.aoc.days.dayseven;
 
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author maczaka.
  */
 class Program {
     private String name;
-    private Program parent;
-    private Map<Program, Integer> children = new HashMap<>();
-    private Integer weight;
-    private Integer childrenWeight = 0;
+    private int ownWeight;
+    private List<Program> childrenPrograms = new ArrayList<>();
+    private Program parentProgram;
+    private int childrenWeight = -1;
 
     Program(final String name) {
         this.name = name;
+    }
+
+    int getSubTowerWeight() {
+        if (childrenWeight == -1) {
+            childrenWeight = ownWeight;
+            for (final Program childrenProgram : childrenPrograms) {
+                childrenWeight += childrenProgram.getSubTowerWeight();
+            }
+        }
+        return childrenWeight;
+    }
+
+    void setOwnWeight(final String weight) {
+        this.ownWeight = Integer.parseInt(weight.substring(1, weight.length() - 1));
+    }
+
+    void addToChildren(final Program program) {
+        program.setParentProgram(this);
+        this.childrenPrograms.add(program);
+    }
+
+    Program getParentProgram() {
+        return parentProgram;
+    }
+
+    void setParentProgram(final Program parentProgram) {
+        this.parentProgram = parentProgram;
     }
 
     String getName() {
         return name;
     }
 
-    Program getParent() {
-        return parent;
+    List<Program> getChildrenPrograms() {
+        return childrenPrograms;
     }
 
-    void setParent(final Program parent) {
-        this.parent = parent;
+    @Override
+    public String toString() {
+        return name + ":" + childrenPrograms.size();
     }
 
-    Integer getWeight() {
-        return weight;
-    }
-
-    void setWeight(final Integer weight) {
-        this.weight = weight;
-    }
-
-    Map<Program, Integer> getChildren() {
-        return children;
-    }
-
-    void addChildren(final Program childrenProgram) {
-        this.children.put(childrenProgram, 0);
-    }
-
-    void setChildrenWeight(final Program childrenProgram, final Integer allChildrenWeight) {
-        this.children.put(childrenProgram, children.get(childrenProgram) + allChildrenWeight);
-        this.childrenWeight += allChildrenWeight;
-    }
-
-    public Integer getChildrenWeight() {
-        return childrenWeight;
+    public int getOwnWeight() {
+        return ownWeight;
     }
 }

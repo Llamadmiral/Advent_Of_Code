@@ -3,7 +3,11 @@ package com.aoc.days.daythree;
 import com.aoc.solutionbase.SolutionBase;
 import com.aoc.util.log.Logger;
 
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Since solving part one takes a gazillion amount of seconds because the length of the map,
@@ -121,6 +125,7 @@ class SolutionThree extends SolutionBase {
                 break;
             default:
                 LOG.log("Don't know where to go! " + direction);
+                break;
         }
         return nextPos;
     }
@@ -129,8 +134,8 @@ class SolutionThree extends SolutionBase {
         Integer sumOfFields = 0;
         for (final Integer[] fieldCoords : SURROUNDING_FIELDS) {
             sumOfFields += getValueFromMap(new Integer[]{
-                    fieldCoords[0] + position.getKey(),
-                    fieldCoords[1] + position.getValue()
+                fieldCoords[0] + position.getKey(),
+                fieldCoords[1] + position.getValue()
             });
         }
         return sumOfFields;
