@@ -19,6 +19,7 @@ import com.aoc.days.daythirteen.DayThirteen;
 import com.aoc.days.daythree.DayThree;
 import com.aoc.days.daytwelve.DayTwelve;
 import com.aoc.days.daytwenty.DayTwenty;
+import com.aoc.days.daytwentyfive.DayTwentyFive;
 import com.aoc.days.daytwentyfour.DayTwentyFour;
 import com.aoc.days.daytwentytwo.DayTwentyTwo;
 import com.aoc.days.daytwo.DayTwo;
@@ -35,7 +36,7 @@ public class Main {
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        solved();
+        printDay(new DayTwentyFive());
     }
 
     private static void printDay(final DayBase base) {
