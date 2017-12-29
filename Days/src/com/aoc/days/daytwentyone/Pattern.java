@@ -1,5 +1,6 @@
 package com.aoc.days.daytwentyone;
 
+import static com.aoc.days.daytwentyone.MatrixHelper.convertPatternToMatrix;
 import static com.aoc.days.daytwentyone.MatrixHelper.getCountOfMatrix;
 
 /**
@@ -11,22 +12,16 @@ class Pattern {
     private int count = 0;
 
     Pattern(final String input) {
-        final String[] rows = input.split("/");
-        matrix = new int[rows.length][rows.length];
-        for (int i = 0; i < rows.length; i++) {
-            for (int j = 0; j < rows[i].length(); j++) {
-                final int element = rows[i].charAt(j) == '#' ? 1 : 0;
-                matrix[i][j] = element;
-                count += element;
-            }
-        }
+        matrix = convertPatternToMatrix(input);
+        count = getCountOfMatrix(matrix);
         size = matrix.length;
     }
 
 
     boolean matrixEqualsWith(final int[][] other) {
         return other.length == this.size
-                && getCountOfMatrix(other) == this.count && MatrixHelper.ruleMatchesWith(other, matrix);
+                && getCountOfMatrix(other) == this.count
+                && MatrixHelper.ruleMatchesWith(other, matrix);
     }
 
 

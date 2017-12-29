@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.aoc.days.daytwentyone.MatrixHelper.copyMatrixBlocks;
-import static com.aoc.days.daytwentyone.MatrixHelper.printMatrix;
+import static com.aoc.days.daytwentyone.MatrixHelper.*;
 
 /**
  * @author maczaka
@@ -20,7 +19,7 @@ class SolutionTwentyOne extends SolutionBase {
             "###";
 
     private final Map<Pattern, Pattern> ruleBook = new HashMap<>();
-    private Pattern art;
+    private int[][] art;
 
 
     SolutionTwentyOne(String day) {
@@ -30,11 +29,11 @@ class SolutionTwentyOne extends SolutionBase {
     @Override
     protected void solvePartOne() {
         parseInput();
-        art = new Pattern(STARTING_POSITION);
+        art = convertPatternToMatrix(STARTING_POSITION);
         for (int i = 0; i < 5; i++) {
             enhance(art);
         }
-        setSolutionOne(art.getCount());
+        setSolutionOne(getCountOfMatrix(art));
     }
 
     @Override
@@ -42,37 +41,28 @@ class SolutionTwentyOne extends SolutionBase {
         for (int i = 0; i < 13; i++) {
             enhance(art);
         }
-        setSolutionTwo(art.getCount());
+        setSolutionTwo(getCountOfMatrix(art));
     }
 
-
-    private void enhance(final Pattern matrix) {
-        List<int[][]> splittedMatrices = splitMatrix(matrix.getMatrix());
+    private void enhance(final int[][] matrix) {
+        List<int[][]> splittedMatrices = splitMatrix(matrix);
         List<int[][]> newMatrixSplitted = new ArrayList<>();
         for (final int[][] splitMatrix : splittedMatrices) {
-            boolean found = false;
             for (final Map.Entry<Pattern, Pattern> rulePage : ruleBook.entrySet()) {
                 if (rulePage.getKey().matrixEqualsWith(splitMatrix)) {
                     newMatrixSplitted.add(rulePage.getValue().getMatrix());
-                    found = true;
                     break;
                 }
             }
-            if (!found) {
-                System.out.println("Could find rule for: ");
-                printMatrix(splitMatrix);
-            }
         }
-        this.art.setMatrix(glueMatrixesTogether(newMatrixSplitted));
+        this.art = glueMatrixesTogether(newMatrixSplitted);
     }
 
     private int[][] glueMatrixesTogether(final List<int[][]> matrices) {
         int[][] newMatrix;
         if (matrices.size() != 1) {
             final int size = matrices.get(0).length;
-            final int limit = size - 1;
-            final int newRowSize = (int) Math.sqrt(matrices.size());
-            final int newSize = newRowSize * size;
+            final int newSize = (int) Math.sqrt(matrices.size()) * size;
             newMatrix = new int[newSize][newSize];
             for (int i = 0; i < matrices.size(); i++) {
                 final int[][] subMatrix = matrices.get(i);
@@ -100,7 +90,6 @@ class SolutionTwentyOne extends SolutionBase {
         return splittedMatrix;
     }
 
-
     private void parseInput() {
         final String[] rules = ((String) input).split("\n");
         for (final String rule : rules) {
@@ -108,4 +97,5 @@ class SolutionTwentyOne extends SolutionBase {
             ruleBook.put(new Pattern(ruleParts[0]), new Pattern(ruleParts[1]));
         }
     }
+
 }

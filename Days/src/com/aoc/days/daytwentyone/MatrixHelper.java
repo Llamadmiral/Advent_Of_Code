@@ -97,15 +97,17 @@ final class MatrixHelper {
         return equals;
     }
 
-    static void printMatrix(final int[][] matrix) {
-        final StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                builder.append(" ").append(matrix[i][j]).append(" ");
+    static int[][] convertPatternToMatrix(final String input) {
+        final String[] rows = input.split("/");
+        final int size = rows.length;
+        final int[][] matrix = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < rows[i].length(); j++) {
+                final int element = rows[i].charAt(j) == '#' ? 1 : 0;
+                matrix[i][j] = element;
             }
-            builder.append("\n");
         }
-        System.out.println(builder.toString());
+        return matrix;
     }
 
 }
