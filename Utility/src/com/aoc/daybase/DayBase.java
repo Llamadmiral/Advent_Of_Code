@@ -7,7 +7,7 @@ import com.aoc.solutionbase.TestFactory;
  * @author Llamadmiral.
  */
 public abstract class DayBase {
-    
+
     protected SolutionBase solution;
     protected String dayNr;
 

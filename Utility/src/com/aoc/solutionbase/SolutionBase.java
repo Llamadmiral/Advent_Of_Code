@@ -9,8 +9,8 @@ public abstract class SolutionBase {
 
     private static final Logger LOG = new Logger();
 
-    private static final String TEMPLATE_SOL = "Solution for Day %s, part %s: %s, computation took %s ms";
-    protected Object input;
+    private static final String TEMPLATE_SOL = "\tSolution for Day %s, part %s: %s, computation took %s ms";
+    protected String input;
     private String day;
     private Object solutionOne = null;
     private Object solutionTwo = null;
@@ -19,7 +19,7 @@ public abstract class SolutionBase {
         this.day = day;
     }
 
-    public void setInput(final Object input) {
+    public void setInput(final String input) {
         this.input = input;
     }
 
