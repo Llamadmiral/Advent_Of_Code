@@ -12,10 +12,11 @@ import java.util.Map;
  */
 class SolutionTwentyThree extends SolutionBase {
 
-    private static final Map<Character, Long> REGISTRY = new HashMap<>();
+    private final Map<Character, Long> registry = new HashMap<>();
     private final List<Operation> operations = new ArrayList<>();
     private int pointer;
     private int mulCalled = 0;
+    private boolean partTwo = false;
 
     SolutionTwentyThree(String day) {
         super(day);
@@ -32,9 +33,10 @@ class SolutionTwentyThree extends SolutionBase {
     @Override
     protected void solvePartTwo() {
         initRegister();
-        REGISTRY.put('a', 1L);
+        registry.put('a', 1L);
+        partTwo = true;
         doOperations();
-        setSolutionTwo(REGISTRY.get('h'));
+        setSolutionTwo(registry.get('h'));
     }
 
     private void doOperations() {
@@ -55,21 +57,32 @@ class SolutionTwentyThree extends SolutionBase {
     private void doOperation(final Operation operation) {
         switch (operation.type) {
             case "set":
-                REGISTRY.put(operation.x, getY(operation));
+                registry.put(operation.x, getY(operation));
                 pointer++;
                 break;
             case "sub":
-                REGISTRY.put(operation.x, REGISTRY.get(operation.x) - getY(operation));
+                registry.put(operation.x, registry.get(operation.x) - getY(operation));
                 pointer++;
                 break;
             case "mul":
-                REGISTRY.put(operation.x, REGISTRY.get(operation.x) * getY(operation));
+                registry.put(operation.x, registry.get(operation.x) * getY(operation));
                 pointer++;
                 mulCalled++;
                 break;
             case "jnz":
                 if (getX(operation) != 0L) {
-                    pointer += getY(operation);
+                    final long yValue = getY(operation);
+                    if (!partTwo) {
+                        pointer += getY(operation);
+                    } else {
+                        if (yValue == -8L) {
+                            jnzMinusEight();
+                        } else if (yValue == -13L) {
+                            jnzMinusThirteen();
+                        } else {
+                            pointer += getY(operation);
+                        }
+                    }
                 } else {
                     pointer++;
                 }
@@ -77,10 +90,46 @@ class SolutionTwentyThree extends SolutionBase {
         }
     }
 
+    private void jnzMinusEight() {
+        final long b = registry.get('b');
+        final long d = registry.get('d');
+        for (long e = 2; e < b; e++) {
+            if (d * e == b) {
+                registry.put('f', 0L);
+                break;
+            }
+        }
+        registry.put('e', registry.get('b'));
+        registry.put('g', 0L);
+        pointer++;
+    }
+
+    private void jnzMinusThirteen() {
+        setF();
+        registry.put('e', registry.get('b'));
+        registry.put('g', 0L);
+        registry.put('d', registry.get('b'));
+        pointer++;
+    }
+
+    /**
+     * While iterating through the jump -13 part, we are looking if
+     * between d and (b / d) there is a value where d * e = b. (e = 2, e -> b) If there is such value, we set f to 0.
+     */
+    private void setF() {
+        final long b = registry.get('b');
+        for (long d = registry.get('d'); d < b / d; d++) {
+            if (b % d == 0) {
+                registry.put('f', 0L);
+                break;
+            }
+        }
+    }
+
     private void initRegister() {
         final String registerNames = "abcdefgh";
         for (int i = 0; i < registerNames.length(); i++) {
-            REGISTRY.put(registerNames.charAt(i), 0L);
+            registry.put(registerNames.charAt(i), 0L);
         }
     }
 
@@ -90,7 +139,7 @@ class SolutionTwentyThree extends SolutionBase {
         if (operation.xIsDigit) {
             valueX = operation.valX;
         } else {
-            valueX = REGISTRY.get(operation.x);
+            valueX = registry.get(operation.x);
         }
         return valueX;
     }
@@ -100,7 +149,7 @@ class SolutionTwentyThree extends SolutionBase {
         if (operation.yIsDigit) {
             valueY = operation.valY;
         } else {
-            valueY = REGISTRY.get(operation.y);
+            valueY = registry.get(operation.y);
         }
         return valueY;
     }
@@ -129,6 +178,11 @@ class SolutionTwentyThree extends SolutionBase {
                 valY = Integer.parseInt(data[2]);
                 yIsDigit = true;
             }
+        }
+
+        @Override
+        public String toString() {
+            return type + " " + (xIsDigit ? valX : Character.toString(x)) + " " + (yIsDigit ? valY : Character.toString(y));
         }
     }
 
