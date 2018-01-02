@@ -1,7 +1,6 @@
 package com.aoc.days.daythree;
 
 import com.aoc.solutionbase.SolutionBase;
-import com.aoc.util.log.Logger;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ import java.util.Map;
  * @author Llamadmiral.
  */
 class SolutionThree extends SolutionBase {
-    private static final Logger LOG = new Logger(SolutionThree.class);
     private static final Map<Map.Entry<Integer, Integer>, Integer> MAP = new HashMap<>();
     //dont even mention it
     private static final List<Integer[]> SURROUNDING_FIELDS = new ArrayList<>();
@@ -103,13 +101,13 @@ class SolutionThree extends SolutionBase {
                 checkCoord = new AbstractMap.SimpleEntry<>(position.getKey(), position.getValue() - 1);
                 break;
             default:
-                LOG.log("Don't know where to go: " + direction);
+                break;
         }
         return !MAP.containsKey(checkCoord);
     }
 
     private AbstractMap.SimpleEntry<Integer, Integer> getNextPos() {
-        AbstractMap.SimpleEntry<Integer, Integer> nextPos = null;
+        AbstractMap.SimpleEntry<Integer, Integer> nextPos = new AbstractMap.SimpleEntry<>(0, 0);
         switch (direction) {
             case 0:
                 nextPos = new AbstractMap.SimpleEntry<>(position.getKey(), position.getValue() - 1);
@@ -124,7 +122,6 @@ class SolutionThree extends SolutionBase {
                 nextPos = new AbstractMap.SimpleEntry<>(position.getKey() - 1, position.getValue());
                 break;
             default:
-                LOG.log("Don't know where to go! " + direction);
                 break;
         }
         return nextPos;

@@ -32,7 +32,8 @@ class SolutionFive extends SolutionBase {
 
     private void jump(final boolean partTwo) {
         final int[] offsets = baseOffsets.clone();
-        for (int position = 0; position < offsets.length;) {
+        int position = 0;
+        while (position < offsets.length) {
             steps++;
             final int offset = offsets[position];
             if (partTwo && offset > 2) {

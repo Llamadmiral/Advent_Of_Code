@@ -87,6 +87,8 @@ class SolutionTwentyThree extends SolutionBase {
                     pointer++;
                 }
                 break;
+            default:
+                break;
         }
     }
 

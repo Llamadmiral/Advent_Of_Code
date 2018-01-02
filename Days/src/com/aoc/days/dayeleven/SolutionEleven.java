@@ -98,8 +98,8 @@ class SolutionEleven extends SolutionBase {
 
     private String getBetweenDirection(final String dirOne, final String dirTwo) {
         return DIRECTIONS.get(dirOne).getNextDirection().equals(DIRECTIONS.get(dirTwo).getPreviousDirection())
-            ? DIRECTIONS.get(dirOne).getNextDirection().getDirection()
-            : DIRECTIONS.get(dirOne).getPreviousDirection().getDirection();
+            ? DIRECTIONS.get(dirOne).getNextDirection().getDirectionName()
+            : DIRECTIONS.get(dirOne).getPreviousDirection().getDirectionName();
     }
 
     private int getDistanceBetweenTwoDirections(final String directionOne, final String directionTwo) {

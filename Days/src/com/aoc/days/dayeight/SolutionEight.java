@@ -11,7 +11,7 @@ import java.util.Map;
  */
 class SolutionEight extends SolutionBase {
 
-    private static final Logger LOG = new Logger(SolutionEight.class);
+    private static final Logger LOG = new Logger();
 
     private static final Map<String, Integer> REGISTER = new HashMap<>();
 

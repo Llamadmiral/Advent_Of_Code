@@ -10,7 +10,7 @@ public final class TestFactory {
 
     private static final String DIVIDER = "----------";
 
-    private static final Logger LOG = new Logger(TestFactory.class);
+    private static final Logger LOG = new Logger();
 
     private TestFactory() {
     }

@@ -33,14 +33,13 @@ import com.aoc.util.log.Logger;
  */
 public class Main {
 
-    private static final Logger LOG = new Logger(Main.class);
+    private static final Logger LOG = new Logger();
 
     private static final String START_LINE = "---------- Day %s ----------";
     private static final String END_LINE = "-----------------------------";
 
     public static void main(String[] args) {
-        printDay(new DayTwentyThree());
-        //solved();
+        solved();
     }
 
     private static void solved() {
@@ -67,6 +66,7 @@ public class Main {
         printDay(new DayTwenty());
         printDay(new DayTwentyOne());
         printDay(new DayTwentyTwo());
+        printDay(new DayTwentyThree());
         printDay(new DayTwentyFour());
         printDay(new DayTwentyFive());
         LOG.log(String.format("The whole computation took %s ms", (System.nanoTime() - startTime) / 1000000));
@@ -76,9 +76,5 @@ public class Main {
         LOG.log(String.format(START_LINE, base.getDayNr()));
         base.finalSolution();
         LOG.log(END_LINE);
-    }
-
-    private static void test(final DayBase day) {
-        day.test();
     }
 }

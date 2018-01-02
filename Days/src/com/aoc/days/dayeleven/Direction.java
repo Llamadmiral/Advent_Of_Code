@@ -8,14 +8,14 @@ package com.aoc.days.dayeleven;
 class Direction {
     private Direction previousDirection;
     private Direction nextDirection;
-    private String direction;
+    private String directionName;
 
-    Direction(final String direction) {
-        this.direction = direction;
+    Direction(final String directionName) {
+        this.directionName = directionName;
     }
 
-    String getDirection() {
-        return direction;
+    String getDirectionName() {
+        return directionName;
     }
 
     Direction getPreviousDirection() {
@@ -36,11 +36,11 @@ class Direction {
 
     int getDistance(final String directionName) {
         int distance = 0;
-        if (!directionName.equals(this.direction)) {
+        if (!directionName.equals(this.directionName)) {
             distance++;
             Direction prevDir = this.previousDirection;
             Direction nextDir = this.nextDirection;
-            while (!prevDir.getDirection().equals(directionName) && !nextDir.getDirection().equals(directionName)) {
+            while (!prevDir.getDirectionName().equals(directionName) && !nextDir.getDirectionName().equals(directionName)) {
                 distance++;
                 prevDir = prevDir.getPreviousDirection();
                 nextDir = nextDir.getNextDirection();

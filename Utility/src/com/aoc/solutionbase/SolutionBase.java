@@ -7,7 +7,7 @@ import com.aoc.util.log.Logger;
  */
 public abstract class SolutionBase {
 
-    private static final Logger LOG = new Logger(SolutionBase.class);
+    private static final Logger LOG = new Logger();
 
     private static final String TEMPLATE_SOL = "Solution for Day %s, part %s: %s, computation took %s ms";
     protected Object input;

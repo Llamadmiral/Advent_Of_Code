@@ -36,8 +36,8 @@ class SolutionTen extends SolutionBase {
     protected void solvePartOne() {
         final String inp = ((String) input);
         createList();
-        final String[] lengths = inp.contains(",") ? inp.split(",") : new String[]{};
-        for (final String length : lengths) {
+        final String[] inputLengths = inp.contains(",") ? inp.split(",") : new String[]{};
+        for (final String length : inputLengths) {
             reverseSubList(Integer.parseInt(length));
         }
         setSolutionOne(sparseHash.get(0) * sparseHash.get(1));

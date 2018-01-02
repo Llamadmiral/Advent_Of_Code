@@ -13,7 +13,7 @@ import java.util.List;
  */
 public final class Reader {
 
-    private static final Logger LOG = new Logger(Reader.class);
+    private static final Logger LOG = new Logger();
 
     private static final String INPUT_DIRECTORY = "input/";
 
