@@ -22,8 +22,12 @@ public abstract class YearBase {
         LOG.log("\t" + new String(new char[START_LINE_LENGTH + dayNr.length()]).replaceAll("\0", "-"));
     }
 
-    protected static void testDay(final DayBase base) {
+    public static void testDay(final DayBase base) {
         base.test();
+    }
+
+    public void testDay() {
+        //no test
     }
 
     public void printYear() {

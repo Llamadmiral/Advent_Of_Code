@@ -52,4 +52,8 @@ public abstract class SolutionBase {
     protected abstract void solvePartOne();
 
     protected abstract void solvePartTwo();
+
+    public void init() {
+        //default implementation
+    }
 }

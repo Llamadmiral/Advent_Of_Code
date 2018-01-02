@@ -12,7 +12,7 @@ public class ModuleFactory {
 
     private static final Map<Integer, String> DAYNAME_MAP = new HashMap<>();
     private static final String BASE_PACKAGE = "/src/com/aoc";
-    private static final String DAYS_PACKAGE = BASE_PACKAGE + "/days";
+    private static final String DAYS_PACKAGE = BASE_PACKAGE + "/days2017";
 
     static {
         DAYNAME_MAP.put(1, "One");
@@ -52,29 +52,33 @@ public class ModuleFactory {
         createNewDirectory(String.format("Year%s/src/com/aoc", year));
         createNewDirectory(fullPath);
         for (int i = 1; i < 26; i++) {
-            createDayPackage(fullPath, i);
+            createDayPackage(fullPath, i, year);
         }
-        createNewFileAndWriteToIt("Year" + year + BASE_PACKAGE + "/", String.format(FileTemplate.YEAR_BASE_TEMPLATE, year, year, year));
+        createNewFileAndWriteToIt("Year" + year + BASE_PACKAGE + "/Year" + year + ".java",
+                String.format(FileTemplate.YEAR_BASE_TEMPLATE, year, year, year)
+        );
     }
 
-    private static void createDayPackage(final String basePkg, final int dayNum) throws ModuleException {
+    private static void createDayPackage(final String basePkg, final int dayNum, final int year) throws ModuleException {
         final String packageName = "day" + (dayNum > 9 ? "" : 0) + dayNum;
         createNewDirectory(basePkg + "/" + packageName);
         final String dayName = DAYNAME_MAP.get(dayNum);
         createNewFileAndWriteToIt(basePkg + "/" + packageName + "/Solution" + dayName + ".java",
-            String.format(FileTemplate.SOLUTION_BASE_TEMPLATE,
-                packageName,
-                dayName,
-                dayName)
+                String.format(FileTemplate.SOLUTION_BASE_TEMPLATE,
+                        packageName,
+                        dayName,
+                        dayName)
         );
-        createNewFileAndWriteToIt(basePkg + "/" + packageName + "/Solution" + dayName + ".java",
-            String.format(FileTemplate.DAY_BASE_TEMPLATE,
-                packageName,
-                dayName,
-                dayName,
-                dayName,
-                dayNum,
-                dayName)
+        createNewFileAndWriteToIt(basePkg + "/" + packageName + "/Day" + dayName + ".java",
+                String.format(FileTemplate.DAY_BASE_TEMPLATE,
+                        packageName,
+                        dayName,
+                        dayName,
+                        dayName,
+                        dayName,
+                        year,
+                        dayNum,
+                        dayName)
         );
     }
 

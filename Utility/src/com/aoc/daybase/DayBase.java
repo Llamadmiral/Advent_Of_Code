@@ -12,10 +12,11 @@ public abstract class DayBase {
     protected String dayNr;
 
     public void test() {
-        TestFactory.createAndRunTests(this, getTestInputs());
+        TestFactory.createAndRunTests(this, this.getTestInputs());
     }
 
     public void finalSolution() {
+        solution.init();
         solution.getPartOne();
         solution.getPartTwo();
     }
