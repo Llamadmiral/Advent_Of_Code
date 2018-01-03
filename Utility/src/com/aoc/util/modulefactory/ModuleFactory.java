@@ -12,7 +12,7 @@ public class ModuleFactory {
 
     private static final Map<Integer, String> DAYNAME_MAP = new HashMap<>();
     private static final String BASE_PACKAGE = "/src/com/aoc";
-    private static final String DAYS_PACKAGE = BASE_PACKAGE + "/days2017";
+    private static final String DAYS_PACKAGE = BASE_PACKAGE + "/days";
 
     static {
         DAYNAME_MAP.put(1, "One");
@@ -47,7 +47,7 @@ public class ModuleFactory {
         if (!module.exists()) {
             throw new ModuleException("Module is not yet created!");
         }
-        final String fullPath = "Year" + year + DAYS_PACKAGE;
+        final String fullPath = "Year" + year + DAYS_PACKAGE + year;
         createNewDirectory(String.format("Year%s/src/com/", year));
         createNewDirectory(String.format("Year%s/src/com/aoc", year));
         createNewDirectory(fullPath);
