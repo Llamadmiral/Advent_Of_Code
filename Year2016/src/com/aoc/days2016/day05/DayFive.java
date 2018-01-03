@@ -13,7 +13,6 @@ public class DayFive extends DayBase {
     public DayFive() {
         dayNr = DAY_NR;
         solution = new SolutionFive(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2016/5.txt"));
     }
 
     @Override

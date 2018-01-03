@@ -15,7 +15,7 @@ class Room {
     private char[] checksum = new char[5];
 
     Room(final String input) {
-        final String sectorAndCheck[] = (input.substring(input.lastIndexOf('-') + 1, input.length() - 1)).split("\\[");
+        final String[] sectorAndCheck = (input.substring(input.lastIndexOf('-') + 1, input.length() - 1)).split("\\[");
         sectorId = Integer.parseInt(sectorAndCheck[0]);
         for (int i = 0; i < 5; i++) {
             checksum[i] = sectorAndCheck[1].charAt(i);
@@ -43,10 +43,7 @@ class Room {
                 final int value = entry.getValue();
                 final char c = entry.getKey();
                 if (!orderedName.contains(c)) {
-                    if (maxAmount == 0) {
-                        maxChar = c;
-                        maxAmount = value;
-                    } else if (maxAmount < value) {
+                    if (maxAmount == 0 || maxAmount < value) {
                         maxChar = c;
                         maxAmount = value;
                     } else if (maxAmount == value && maxChar > c) {
