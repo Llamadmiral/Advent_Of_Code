@@ -2,6 +2,7 @@ package com.aoc.days2016.day08;
 
 import com.aoc.daybase.DayBase;
 import com.aoc.solutionbase.SolutionBase;
+import com.aoc.util.reader.Reader;
 
 /**
  * @author Llamadmiral.
@@ -13,7 +14,7 @@ public class DayEight extends DayBase {
     public DayEight() {
         dayNr = DAY_NR;
         solution = new SolutionEight(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2016/8.txt"));
+        solution.setInput(Reader.readFromInput("2016/8.txt"));
     }
 
     @Override
