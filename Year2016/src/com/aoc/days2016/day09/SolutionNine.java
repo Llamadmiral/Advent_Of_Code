@@ -14,37 +14,24 @@ class SolutionNine extends SolutionBase {
     protected void solvePartOne() {
         final int size = input.length();
         final char[] compressed = input.toCharArray();
-        int fullSize = 0;
+        long fullSize = 0L;
         int i = 0;
         while (i < size) {
-            final char c = compressed[i];
-            if (c == '(') {
-                int compressStart = i + 1;
-                char x = compressed[compressStart];
-                while (x != 'x') {
-                    compressStart++;
-                    x = compressed[compressStart];
+            final char currentChar = compressed[i];
+            if (currentChar == '(') {
+                int j = i + 1;
+                while (compressed[j] != 'x') {
+                    j++;
                 }
-                int nextNChar = Integer.parseInt(input.substring(i + 1, compressStart));
-                int compressEnd = compressStart + 1;
-                while (x != ')') {
-                    compressEnd++;
-                    x = compressed[compressEnd];
+                final int charsToRepeat = Integer.parseInt(input.substring(i + 1, j));
+                final int sliceStart = j + 1;
+                j++;
+                while (compressed[j] != ')') {
+                    j++;
                 }
-                int timesN = Integer.parseInt(input.substring(compressStart + 1, compressEnd));
-                if (compressed[compressEnd + 1] != '(') {
-                    i = compressEnd + nextNChar;
-                    fullSize += (nextNChar * timesN) - nextNChar;
-                } else {
-                    int toSkip = compressEnd;
-                    boolean toBreak = false;
-                    while (!toBreak) {
-                        final char c2 = compressed[toSkip];
-                        toBreak = c2 != 'x' && Character.isAlphabetic(c2);
-                        toSkip++;
-                    }
-                    i = toSkip;
-                }
+                final int repeatAmount = Integer.parseInt(input.substring(sliceStart, j));
+                fullSize += charsToRepeat * repeatAmount;
+                i = j + charsToRepeat + 1;
             } else {
                 i++;
                 fullSize++;
@@ -55,6 +42,32 @@ class SolutionNine extends SolutionBase {
 
     @Override
     protected void solvePartTwo() {
-        //not yet solved
+        setSolutionTwo(getLengthOfSubString(input.toCharArray(), 0, input.length()));
+    }
+
+    private long getLengthOfSubString(final char[] compressed, int start, int end) {
+        long length = 0L;
+        int i = start;
+        while (i < end) {
+            if (compressed[i] == '(') {
+                int j = i + 1;
+                while (compressed[j] != 'x') {
+                    j++;
+                }
+                final int charsToRepeat = Integer.parseInt(input.substring(i + 1, j));
+                final int sliceStart = j + 1;
+                j++;
+                while (compressed[j] != ')') {
+                    j++;
+                }
+                final int repeatAmount = Integer.parseInt(input.substring(sliceStart, j));
+                length += getLengthOfSubString(compressed, j + 1, j + 1 + charsToRepeat) * repeatAmount;
+                i = j + charsToRepeat + 1;
+            } else {
+                length++;
+                i++;
+            }
+        }
+        return length;
     }
 }
