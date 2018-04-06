@@ -8,12 +8,12 @@ import com.aoc.solutionbase.SolutionBase;
  */
 public class DayEleven extends DayBase {
 
-    private static final String DAY_NR = "Eleven";
+    private static final String DAY_NR = "Twelve";
 
     public DayEleven() {
         dayNr = DAY_NR;
         solution = new SolutionEleven(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2016/11.txt"));
+        //solution.setInput(Reader.readFromInput("2016/12.txt"));
     }
 
     @Override
