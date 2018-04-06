@@ -13,7 +13,7 @@ public class DayThirteen extends DayBase {
     public DayThirteen() {
         dayNr = DAY_NR;
         solution = new SolutionThirteen(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2016/13.txt"));
+        solution.setInput("1362x31,39");
     }
 
     @Override
@@ -23,6 +23,6 @@ public class DayThirteen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"10x7,4"};
     }
 }
