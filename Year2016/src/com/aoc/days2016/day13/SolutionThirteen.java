@@ -17,7 +17,6 @@ import java.util.List;
  */
 class SolutionThirteen extends SolutionBase {
 
-    private final MazeTile[][] maze = new MazeTile[50][50];
     private static final int[][] DIRECTIONS = new int[][]{
         new int[]{-1, 0}, //0: north
         new int[]{1, 0}, //1: south
@@ -25,7 +24,9 @@ class SolutionThirteen extends SolutionBase {
         new int[]{0, 1} //3: east
     };
     private static final Logger LOG = new Logger();
+    private final MazeTile[][] maze = new MazeTile[50][50];
     private final List<int[]> path = new ArrayList<>();
+    private final List<int[]> reachablePlaces = new ArrayList<>();
     private int inp;
     private int goalX;
     private int goalY;
@@ -44,12 +45,56 @@ class SolutionThirteen extends SolutionBase {
         goalX = Integer.parseInt(goals[0]);
         goalY = Integer.parseInt(goals[1]);
         generateMaze();
-        step();
+        boolean atGoal = false;
+        maze[1][1] = MazeTile.WAS_THERE;
+        path.add(new int[]{1, 1});
+        boolean fallingBack = false;
+        while (!atGoal) {
+            fallingBack = move(fallingBack);
+            atGoal = positionX == goalX && positionY == goalY;
+        }
+        reducePath();
+        this.setSolutionOne(path.size());
     }
 
     @Override
     protected void solvePartTwo() {
-        //not yet solved
+        generateMaze();
+        path.clear();
+        positionX = 0;
+        positionY = 0;
+        maze[1][1] = MazeTile.WAS_THERE;
+        path.add(new int[]{1, 1});
+        boolean fallingBack = false;
+        while (path.size() > 0 || getNextDirection() != null) {
+            fallingBack = move(fallingBack);
+            final int[] currentPos = new int[]{positionY, positionX};
+            reachablePlaces.add(currentPos);
+            if (path.size() > 50) {
+                reducePath();
+                fallingBack = path.size() > 50;
+            }
+        }
+        reduceReachablePlaces(reachablePlaces);
+        setSolutionTwo(reachablePlaces.size());
+        for(final int[] row: reachablePlaces){
+            System.out.println(row[0] + "," + row[1]);
+        }
+    }
+
+    private void reduceReachablePlaces(final List<int[]> aReachablePlaces) {
+        final List<int[]> uniquePlaces = new ArrayList<>();
+        for (final int[] place : aReachablePlaces) {
+            boolean contains = false;
+            for (final int[] uniquePlace : uniquePlaces) {
+                contains = uniquePlace[0] == place[0] && uniquePlace[1] == place[1];
+            }
+            if (!contains) {
+                uniquePlaces.add(place);
+            }
+        }
+        aReachablePlaces.clear();
+        aReachablePlaces.addAll(uniquePlaces);
     }
 
     private void generateMaze() {
@@ -72,36 +117,30 @@ class SolutionThirteen extends SolutionBase {
         return sumOfIndividualBits % 2 == 0 ? MazeTile.SPACE : MazeTile.WALL;
     }
 
-    private void step() {
-        boolean atGoal = false;
-        maze[1][1] = MazeTile.WAS_THERE;
-        path.add(new int[]{1, 1});
-        boolean fallingBack = false;
-        while (!atGoal) {
-            final Integer nextDirection = getNextDirection();
-            if (nextDirection != null) {
-                if (fallingBack) {
-                    path.add(new int[]{positionY, positionX});
-                    fallingBack = false;
-                }
-                positionX += DIRECTIONS[nextDirection][1];
-                positionY += DIRECTIONS[nextDirection][0];
-                maze[positionY][positionX] = MazeTile.WAS_THERE;
+    private boolean move(final boolean fallingBack) {
+        boolean couldProgress = fallingBack;
+        final Integer nextDirection = getNextDirection();
+        if (nextDirection != null) {
+            if (fallingBack) {
                 path.add(new int[]{positionY, positionX});
-            } else {
-                fallingBack = true;
-                final int[] lastPlace = path.remove(path.size() - 1);
-                positionX = lastPlace[1];
-                positionY = lastPlace[0];
+                couldProgress = false;
             }
-            atGoal = positionX == goalX && positionY == goalY;
+            positionX += DIRECTIONS[nextDirection][1];
+            positionY += DIRECTIONS[nextDirection][0];
+            maze[positionY][positionX] = MazeTile.WAS_THERE;
+            path.add(new int[]{positionY, positionX});
+        } else {
+            couldProgress = true;
+            final int[] lastPlace = path.remove(path.size() - 1);
+            positionX = lastPlace[1];
+            positionY = lastPlace[0];
         }
-        reducePath();
+        return couldProgress;
     }
 
     private void reducePath() {
         final List<int[]> reducedPath = new ArrayList<>();
-        for (int i = 0; i < path.size() - 2; i++) {
+        for (int i = 0; i < path.size() - 1; i++) {
             final int[] currentPlace = path.get(i);
             for (int j = path.size() - 1; j >= i + 2; j--) {
                 final int[] nextPlace = path.get(j);
@@ -112,7 +151,8 @@ class SolutionThirteen extends SolutionBase {
             }
             reducedPath.add(currentPlace);
         }
-        this.setSolutionOne(reducedPath.size() + 1);
+        path.clear();
+        path.addAll(reducedPath);
     }
 
     private Integer getNextDirection() {
