@@ -18,10 +18,10 @@ import java.util.List;
 class SolutionThirteen extends SolutionBase {
 
     private static final int[][] DIRECTIONS = new int[][]{
-        new int[]{-1, 0}, //0: north
-        new int[]{1, 0}, //1: south
-        new int[]{0, -1}, //2: west
-        new int[]{0, 1} //3: east
+            new int[]{-1, 0}, //0: north
+            new int[]{1, 0}, //1: south
+            new int[]{0, -1}, //2: west
+            new int[]{0, 1} //3: east
     };
     private static final Logger LOG = new Logger();
     private final MazeTile[][] maze = new MazeTile[50][50];
@@ -69,15 +69,20 @@ class SolutionThirteen extends SolutionBase {
         while (path.size() > 0 || getNextDirection() != null) {
             fallingBack = move(fallingBack);
             final int[] currentPos = new int[]{positionY, positionX};
-            reachablePlaces.add(currentPos);
             if (path.size() > 50) {
                 reducePath();
-                fallingBack = path.size() > 50;
+                if (path.size() > 50) {
+                    fallingBack = true;
+                } else {
+                    reachablePlaces.add(currentPos);
+                }
+            } else {
+                reachablePlaces.add(currentPos);
             }
         }
         reduceReachablePlaces(reachablePlaces);
         setSolutionTwo(reachablePlaces.size());
-        for(final int[] row: reachablePlaces){
+        for (final int[] row : reachablePlaces) {
             System.out.println(row[0] + "," + row[1]);
         }
     }
