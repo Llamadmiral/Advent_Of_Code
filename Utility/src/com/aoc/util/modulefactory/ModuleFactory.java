@@ -55,8 +55,23 @@ public class ModuleFactory {
             createDayPackage(fullPath, i, year);
         }
         createNewFileAndWriteToIt("Year" + year + BASE_PACKAGE + "/Year" + year + ".java",
-                String.format(FileTemplate.YEAR_BASE_TEMPLATE, year, year, year)
+                String.format(FileTemplate.YEAR_BASE_TEMPLATE, getPackageImports(year), year, year, year)
         );
+    }
+
+    private static String getPackageImports(final int year) {
+        final StringBuilder builder = new StringBuilder("\n");
+        for (Map.Entry<Integer, String> entry : DAYNAME_MAP.entrySet()) {
+            final String dayNum = (entry.getKey() <= 9) ? "0" + entry.getKey() : entry.getKey().toString();
+            builder.append("import com.aoc.days")
+                    .append(year)
+                    .append(".day")
+                    .append(dayNum)
+                    .append(".Day")
+                    .append(entry.getValue())
+                    .append(";\n");
+        }
+        return builder.toString();
     }
 
     private static void createDayPackage(final String basePkg, final int dayNum, final int year) throws ModuleException {
@@ -65,12 +80,14 @@ public class ModuleFactory {
         final String dayName = DAYNAME_MAP.get(dayNum);
         createNewFileAndWriteToIt(basePkg + "/" + packageName + "/Solution" + dayName + ".java",
                 String.format(FileTemplate.SOLUTION_BASE_TEMPLATE,
+                        year,
                         packageName,
                         dayName,
                         dayName)
         );
         createNewFileAndWriteToIt(basePkg + "/" + packageName + "/Day" + dayName + ".java",
                 String.format(FileTemplate.DAY_BASE_TEMPLATE,
+                        year,
                         packageName,
                         dayName,
                         dayName,
