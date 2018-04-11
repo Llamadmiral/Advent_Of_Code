@@ -4,6 +4,9 @@ package com.aoc.main;
 import com.aoc.Year2016;
 import com.aoc.Year2017;
 import com.aoc.util.log.Logger;
+import com.aoc.util.modulefactory.ModuleException;
+
+import static com.aoc.util.modulefactory.ModuleFactory.createModuleForYear;
 
 /**
  * @author Llamadmiral.
@@ -12,9 +15,8 @@ public class Main {
 
     private static final Logger LOG = new Logger();
 
-    public static void main(String[] args) {
-        final Year2016 year2016 = new Year2016();
-        year2016.testDay();
+    public static void main(String[] args) throws ModuleException {
+        createModuleForYear(2015);
     }
 
     public static void solvedYear() {
