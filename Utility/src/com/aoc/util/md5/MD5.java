@@ -3,6 +3,7 @@ package com.aoc.util.md5;
 import com.aoc.util.log.Logger;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -23,5 +24,11 @@ public class MD5 {
             LOG.log(e);
         }
         return result;
+    }
+
+    public static String getMD5AsHexString(final String input) {
+        final byte[] bytes = md5(input);
+        BigInteger bi = new BigInteger(1, bytes);
+        return String.format("%0" + (bytes.length << 1) + "X", bi);
     }
 }

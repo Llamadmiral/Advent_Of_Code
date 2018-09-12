@@ -14,7 +14,7 @@ public class DayOne extends DayBase {
     public DayOne() {
         dayNr = DAY_NR;
         solution = new SolutionOne(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2015/1.txt"));
+        solution.setInput(Reader.readFromInput("2015/1.txt"));
     }
 
     @Override

@@ -14,7 +14,7 @@ public class DaySix extends DayBase {
     public DaySix() {
         dayNr = DAY_NR;
         solution = new SolutionSix(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2015/6.txt"));
+        solution.setInput(Reader.readFromInput("2015/6.txt"));
     }
 
     @Override
@@ -24,6 +24,8 @@ public class DaySix extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"turn on 0,0 through 999,999",
+                "toggle 0,0 through 999,0",
+                "turn on 499,499 through 500,500"};
     }
 }
