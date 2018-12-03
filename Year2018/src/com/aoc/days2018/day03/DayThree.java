@@ -14,7 +14,7 @@ public class DayThree extends DayBase {
     public DayThree() {
         dayNr = DAY_NR;
         solution = new SolutionThree(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2018/3.txt"));
+        solution.setInput(Reader.readFromInput("2018/3.txt"));
     }
 
     @Override
@@ -24,6 +24,8 @@ public class DayThree extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"#1 @ 1,3: 4x4\n"
+            + "#2 @ 3,1: 4x4\n"
+            + "#3 @ 5,5: 2x2"};
     }
 }

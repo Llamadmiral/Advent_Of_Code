@@ -1,15 +1,10 @@
 package com.aoc.main;
 
 
-import com.aoc.Year2015;
-import com.aoc.Year2016;
 import com.aoc.Year2017;
 import com.aoc.Year2018;
 import com.aoc.util.log.Logger;
 import com.aoc.util.modulefactory.ModuleException;
-import com.aoc.util.modulefactory.ModuleFactory;
-
-import static com.aoc.util.modulefactory.ModuleFactory.createModuleForYear;
 
 /**
  * @author Llamadmiral.
