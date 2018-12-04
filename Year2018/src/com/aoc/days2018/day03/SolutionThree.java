@@ -19,7 +19,6 @@ class SolutionThree extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-        System.out.println(doOverlap(1, 3, 5, 7, 3, 1, 7, 5));
         prepareInput();
         doOverlap();
         countOverlaps();
