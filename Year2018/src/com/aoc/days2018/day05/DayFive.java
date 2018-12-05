@@ -14,7 +14,7 @@ public class DayFive extends DayBase {
     public DayFive() {
         dayNr = DAY_NR;
         solution = new SolutionFive(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2018/5.txt"));
+        solution.setInput(Reader.readFromInput("2018/5.txt"));
     }
 
     @Override
@@ -24,6 +24,6 @@ public class DayFive extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"aA", "abBA", "abAB", "aabAAB", "dabAcCaCBAcCcaDA"};
     }
 }
