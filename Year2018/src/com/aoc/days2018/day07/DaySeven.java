@@ -14,7 +14,7 @@ public class DaySeven extends DayBase {
     public DaySeven() {
         dayNr = DAY_NR;
         solution = new SolutionSeven(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2018/7.txt"));
+        solution.setInput(Reader.readFromInput("2018/7.txt"));
     }
 
     @Override
@@ -24,6 +24,12 @@ public class DaySeven extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"Step C must be finished before step A can begin.\n"
+            + "Step C must be finished before step F can begin.\n"
+            + "Step A must be finished before step B can begin.\n"
+            + "Step A must be finished before step D can begin.\n"
+            + "Step B must be finished before step E can begin.\n"
+            + "Step D must be finished before step E can begin.\n"
+            + "Step F must be finished before step E can begin."};
     }
 }

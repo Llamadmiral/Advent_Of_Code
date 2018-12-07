@@ -138,13 +138,4 @@ class SolutionSix extends SolutionBase {
             coordinates.add(new int[]{Integer.parseInt(coords[1]), Integer.parseInt(coords[0])});
         }
     }
-
-    private void printMap() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                System.out.print(map[i][j] == -1 ? "." : ABC.charAt(map[i][j]));
-            }
-            System.out.println();
-        }
-    }
 }
