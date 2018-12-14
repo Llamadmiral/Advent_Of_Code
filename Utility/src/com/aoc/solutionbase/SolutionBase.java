@@ -19,19 +19,19 @@ public abstract class SolutionBase {
         this.day = day;
     }
 
-    public void setInput(final String input) {
+    public final void setInput(final String input) {
         this.input = input;
     }
 
-    protected void setSolutionOne(final Object solutionOne) {
+    protected final void setSolutionOne(final Object solutionOne) {
         this.solutionOne = solutionOne;
     }
 
-    protected void setSolutionTwo(final Object solutionTwo) {
+    protected final void setSolutionTwo(final Object solutionTwo) {
         this.solutionTwo = solutionTwo;
     }
 
-    public void getPartOne() {
+    public final void getPartOne() {
         final long startTime = System.nanoTime();
         solvePartOne();
         final long endTime = System.nanoTime();
@@ -40,7 +40,7 @@ public abstract class SolutionBase {
         }
     }
 
-    public void getPartTwo() {
+    public final void getPartTwo() {
         final long startTime = System.nanoTime();
         solvePartTwo();
         final long endTime = System.nanoTime();
