@@ -14,7 +14,7 @@ public class DayNine extends DayBase {
     public DayNine() {
         dayNr = DAY_NR;
         solution = new SolutionNine(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2018/9.txt"));
+        solution.setInput(Reader.readFromInput("2018/9.txt"));
     }
 
     @Override
@@ -24,6 +24,13 @@ public class DayNine extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{
+            "9 players; last marble is worth 25 points",
+            "10 players; last marble is worth 1618 points",
+            "13 players; last marble is worth 7999 points",
+            "17 players; last marble is worth 1104 points",
+            "21 players; last marble is worth 6111 points",
+            "30 players; last marble is worth 5807 points"
+        };
     }
 }
