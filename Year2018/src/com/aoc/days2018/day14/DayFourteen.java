@@ -2,7 +2,6 @@ package com.aoc.days2018.day14;
 
 import com.aoc.daybase.DayBase;
 import com.aoc.solutionbase.SolutionBase;
-import com.aoc.util.reader.Reader;
 
 /**
  * @author Llamadmiral.
@@ -14,7 +13,7 @@ public class DayFourteen extends DayBase {
     public DayFourteen() {
         dayNr = DAY_NR;
         solution = new SolutionFourteen(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2018/14.txt"));
+        solution.setInput("637061");
     }
 
     @Override
@@ -24,6 +23,6 @@ public class DayFourteen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"51589", "01245", "92510", "59414"};
     }
 }
