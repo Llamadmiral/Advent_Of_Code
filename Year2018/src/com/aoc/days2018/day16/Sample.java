@@ -1,9 +1,9 @@
-package com.aoc.days2018.day15;
+package com.aoc.days2018.day16;
 
 /**
  * @author maczaka.
  */
-public class Sample {
+class Sample {
     private int[] before;
     private int[] operation;
     private int[] after;
@@ -31,15 +31,15 @@ public class Sample {
         };
     }
 
-    public int[] getBefore() {
+    int[] getBefore() {
         return before;
     }
 
-    public int[] getOperation() {
+    int[] getOperation() {
         return operation;
     }
 
-    public int[] getAfter() {
+    int[] getAfter() {
         return after;
     }
 }
