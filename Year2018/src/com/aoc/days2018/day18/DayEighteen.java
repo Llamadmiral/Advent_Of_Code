@@ -14,7 +14,7 @@ public class DayEighteen extends DayBase {
     public DayEighteen() {
         dayNr = DAY_NR;
         solution = new SolutionEighteen(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2018/18.txt"));
+        solution.setInput(Reader.readFromInput("2018/18.txt"));
     }
 
     @Override
@@ -24,6 +24,15 @@ public class DayEighteen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{".#.#...|#.\n"
+            + ".....#|##|\n"
+            + ".|..|...#.\n"
+            + "..|#.....#\n"
+            + "#.#|||#|#|\n"
+            + "...#.||...\n"
+            + ".|....|...\n"
+            + "||...#|.#|\n"
+            + "|.||||..|.\n"
+            + "...#.|..|."};
     }
 }
