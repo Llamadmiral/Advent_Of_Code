@@ -30,7 +30,7 @@ class SolutionEighteen extends SolutionBase {
         new int[]{1, 0},
         new int[]{1, -1},
     };
-    private final Map<Integer, Set<SavedMap>> simulatedFields = new HashMap<>();
+    private final Map<Integer, Set<char[][]>> simulatedFields = new HashMap<>();
     private char[][] map;
     private char[][] originalMap;
 
@@ -66,7 +66,7 @@ class SolutionEighteen extends SolutionBase {
         map = originalMap;
         boolean inLoop = false;
         boolean loopFinished = false;
-        final List<SavedMap> savedMaps = new ArrayList<>();
+        final List<char[][]> savedMaps = new ArrayList<>();
         int i = 0;
         while (!loopFinished) {
             simulate();
@@ -74,28 +74,28 @@ class SolutionEighteen extends SolutionBase {
                 final int score = countScore();
                 if (checkEquality(score)) {
                     inLoop = true;
-                    savedMaps.add(new SavedMap(map));
+                    savedMaps.add(map);
                 } else {
                     saveMap(score);
                 }
             } else {
-                loopFinished = !savedMaps.isEmpty() && checkMapEquality(savedMaps.get(0).getMap());
+                loopFinished = !savedMaps.isEmpty() && checkMapEquality(savedMaps.get(0));
                 if (!loopFinished) {
-                    savedMaps.add(new SavedMap(map));
+                    savedMaps.add(map);
                 }
             }
             i++;
         }
-        map = savedMaps.get((ONE_BILLION - i) % savedMaps.size()).getMap();
+        map = savedMaps.get((ONE_BILLION - i) % savedMaps.size());
         setSolutionTwo(countScore());
     }
 
     private void saveMap(final int score) {
         if (simulatedFields.containsKey(score)) {
-            simulatedFields.get(score).add(new SavedMap(map));
+            simulatedFields.get(score).add(map);
         } else {
-            final Set<SavedMap> savedMaps = new HashSet<>();
-            savedMaps.add(new SavedMap(map));
+            final Set<char[][]> savedMaps = new HashSet<>();
+            savedMaps.add(map);
             simulatedFields.put(score, savedMaps);
         }
     }
@@ -103,8 +103,8 @@ class SolutionEighteen extends SolutionBase {
     private boolean checkEquality(final int score) {
         boolean equals = false;
         if (simulatedFields.containsKey(score)) {
-            for (final SavedMap otherMap : simulatedFields.get(score)) {
-                equals = checkMapEquality(otherMap.getMap());
+            for (final char[][] otherMap : simulatedFields.get(score)) {
+                equals = checkMapEquality(otherMap);
                 if (equals) {
                     break;
                 }
