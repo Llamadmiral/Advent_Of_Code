@@ -45,10 +45,9 @@ class SolutionNineteen extends SolutionBase {
     }
 
     private void innerLoop() {
-        registry[0] = registry[2] + 1;
-        registry[3] = registry[2];
+        registry[1] = (registry[2] / registry[3]) + 1;
         registry[4] = 1;
-        registry[1]++;
+        registry[0] += registry[3];
         registry[boundedRegistry] = 11;
     }
 
