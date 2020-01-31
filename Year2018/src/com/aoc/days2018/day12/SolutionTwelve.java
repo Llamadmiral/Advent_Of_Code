@@ -10,9 +10,16 @@ import java.util.List;
  */
 class SolutionTwelve extends SolutionBase {
 
-    final private List<boolean[]> conversationRules = new ArrayList<>();
-    private boolean[] currentState = null;
-    private int centerPlant = 0;
+    private static final int NUMBER_OF_GEN = 20;
+    private static final long NUMBER_OF_LONG_GEN = 50000000000L;
+
+    private List<boolean[]> rules = new ArrayList<>();
+    private List<boolean[]> pastGenerations = new ArrayList<>();
+    private boolean[] currentState;
+    private long startIndex;
+    private int currentGenIndex = 1;
+
+    private boolean[] startingState;
 
     SolutionTwelve(final String day) {
         super(day);
@@ -20,139 +27,150 @@ class SolutionTwelve extends SolutionBase {
 
     @Override
     public void init() {
-        final String[] split = input.split("\n");
-        currentState = convertToState(split[0].substring(15));
-        for (int i = 2; i < split.length; i++) {
-            conversationRules.add(convertToRule(split[i]));
+        final String[] data = input.split("\n");
+        final String initState = data[0].split(" ")[2];
+        currentState = new boolean[initState.length() + 4];
+        for (int i = 0; i < initState.length(); i++) {
+            currentState[i + 2] = initState.charAt(i) == '#';
         }
+        startIndex = 2;
+
+        for (int i = 2; i < data.length; i++) {
+            final boolean[] rule = new boolean[6];
+            for (int j = 0; j < 5; j++) {
+                rule[j] = data[i].charAt(j) == '#';
+            }
+            rule[5] = data[i].charAt(9) == '#';
+            rules.add(rule);
+        }
+
+        startingState = currentState;
     }
 
     @Override
     protected void solvePartOne() {
-        printState();
-        for (int i = 0; i < 20; i++) {
-            doNextGeneration();
-            printState();
+        /*for (int i = 0; i < NUMBER_OF_GEN; i++) {
+            doGeneration();
         }
-        final int score = countScore(centerPlant);
-        setSolutionOne(score);
+        setSolutionOne(getScore());*/
     }
+
+    private long getScore() {
+        long score = 0;
+        for (int i = 0; i < currentState.length; i++) {
+            score += (currentState[i] ? 1 : 0) * (i - startIndex);
+        }
+        return score;
+    }
+
+    private void doGeneration() {
+        final boolean[] appendedState = new boolean[currentState.length + 4];
+        System.arraycopy(currentState, 0, appendedState, 2, currentState.length);
+        final boolean[] newState = new boolean[appendedState.length];
+        for (int i = 2; i < appendedState.length - 2; i++) {
+            newState[i] = findAndApplyRule(i, appendedState);
+        }
+        int firstTrue = findFirstPotWithPlant(newState);
+        currentState = trimState(newState);
+        int afterTrimFirstTrue = findFirstPotWithPlant(currentState);
+        startIndex += afterTrimFirstTrue - firstTrue + 2;
+        System.out.println(startIndex);
+        printState();
+    }
+
+    private int findFirstPotWithPlant(final boolean[] newState) {
+        int i = 0;
+        while (!newState[i]) {
+            i++;
+        }
+        return i;
+    }
+
+    private boolean[] trimState(final boolean[] newState) {
+        int start = 0;
+        int end = newState.length;
+        for (int i = 0; i < newState.length; i++) {
+            if (newState[i]) {
+                start = i - 2;
+                break;
+            }
+        }
+        for (int i = newState.length - 1; i > 0; i--) {
+            if (newState[i]) {
+                end = i + 3;
+                break;
+            }
+        }
+        final boolean[] result = new boolean[end - start];
+        System.arraycopy(newState, start, result, 0, end - start);
+        return result;
+    }
+
+    private boolean findAndApplyRule(final int from, final boolean[] newState) {
+        boolean result = false;
+        for (final boolean[] rule : rules) {
+            result = rule[0] == newState[from - 2];
+            result &= rule[1] == newState[from - 1];
+            result &= rule[2] == newState[from];
+            result &= rule[3] == newState[from + 1];
+            result &= rule[4] == newState[from + 2];
+            if (result) {
+                result = rule[5];
+                break;
+            }
+        }
+        return result;
+    }
+
 
     @Override
     protected void solvePartTwo() {
-        //not yet solved
+        boolean foundRepeat = false;
+        currentState = startingState;
+        while (!foundRepeat) {
+            pastGenerations.add(currentState);
+            doGeneration();
+            foundRepeat = checkRepeat();
+            currentGenIndex++;
+        }
+        printState();
+
+        final long scoreOne = getScore();
+        doGeneration();
+        final long scoreTwo = getScore();
+        final long diff = scoreTwo - scoreOne;
+        currentGenIndex += 2;
+        final long generationsRemaining = NUMBER_OF_LONG_GEN - currentGenIndex;
+        final long finalScore = scoreTwo + (diff * generationsRemaining);
+
+        setSolutionTwo(finalScore);
     }
 
-    private void doNextGeneration() {
-        final boolean[] nextGen = new boolean[currentState.length + 4];
-        for (int i = 2; i < nextGen.length - 2; i++) {
-            nextGen[i] = genPlantGrowth(i - 2);
-        }
-        currentState = cutOff(nextGen);
-        if (genPlantGrowth(0) || genPlantGrowth(1)) {
-            centerPlant++;
-        }
-    }
-
-    private boolean[] cutOff(final boolean[] nextGen) {
-        int start;
-        int end;
-        int i = 0;
-        while (true) {
-            if (nextGen[i]) {
-                start = i;
-                break;
+    private boolean checkRepeat() {
+        boolean hasMatch = false;
+        for (boolean[] pastGen : pastGenerations) {
+            boolean matching = true;
+            for (int i = 0; i < currentState.length; i++) {
+                if (currentState[i] != pastGen[i]) {
+                    matching = false;
+                    break;
+                }
             }
-            i++;
-        }
-        i = nextGen.length - 1;
-        while (true) {
-            if (nextGen[i]) {
-                end = i + 1;
-                break;
-            }
-            i--;
-        }
-        final int newLength = end - start;
-        final boolean[] cutoff = new boolean[newLength + 4];
-        System.arraycopy(nextGen, start, cutoff, 2, newLength);
-        return cutoff;
-    }
-
-    private boolean genPlantGrowth(final int index) {
-        boolean plant = false;
-        for (final boolean[] rule : conversationRules) {
-            boolean matches;
-            if (index == 0) {
-                matches = !rule[0]
-                    && !rule[1]
-                    && rule[2] == currentState[0]
-                    && rule[3] == currentState[1]
-                    && rule[4] == currentState[2];
-            } else if (index == 1) {
-                matches = !rule[0]
-                    && rule[1] == currentState[0]
-                    && rule[2] == currentState[1]
-                    && rule[3] == currentState[2]
-                    && rule[4] == currentState[3];
-            } else if (index == currentState.length - 2) {
-                matches = rule[0] == currentState[index - 2]
-                    && rule[1] == currentState[index - 1]
-                    && rule[2] == currentState[index]
-                    && rule[3] == currentState[index + 1]
-                    && !rule[4];
-            } else if (index == currentState.length - 1) {
-                matches = rule[0] == currentState[index - 2]
-                    && rule[1] == currentState[index - 1]
-                    && rule[2] == currentState[index]
-                    && !rule[3]
-                    && !rule[4];
-            } else {
-                matches = rule[0] == currentState[index - 2]
-                    && rule[1] == currentState[index - 1]
-                    && rule[2] == currentState[index]
-                    && rule[3] == currentState[index + 1]
-                    && rule[4] == currentState[index + 2];
-            }
-            if (matches) {
-                plant = rule[5];
+            if (matching) {
+                hasMatch = true;
                 break;
             }
         }
-        return plant;
-    }
-
-    private int countScore(final int offset) {
-        int sum = 0;
-        for (int i = 0; i < currentState.length; i++) {
-            if (currentState[i]) {
-                sum += i - offset;
-            }
-        }
-        return sum;
-    }
-
-    private boolean[] convertToState(final String inputState) {
-        final boolean[] state = new boolean[inputState.length()];
-        char[] charArray = inputState.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            state[i] = charArray[i] == '#';
-        }
-        return state;
-    }
-
-    private boolean[] convertToRule(final String inputRule) {
-        final String[] data = inputRule.split(" => ");
-        return convertToState(data[0] + data[1]);
+        return hasMatch;
     }
 
     private void printState() {
-        final StringBuilder builder = new StringBuilder();
-        for (boolean pot : currentState) {
-            builder.append(pot ? '#' : '.');
+        System.out.printf("Length: " + currentState.length + " : ");
+        for (boolean b : currentState) {
+            System.out.printf(b ? "#" : ".");
         }
-        String result = builder.toString();
-        System.out.println(result);
+        System.out.println();
     }
+
 
 }

@@ -4,30 +4,27 @@ package com.aoc.days2018.day12;
  * @author maczaka.
  */
 public class Pot {
+    public static final Pot EMPTY_POT = new Pot();
+    
     private boolean plant = false;
-    private int id;
     private Pot next;
     private Pot previous;
 
-    public Pot(final char plant, final int id) {
+    public Pot(final char plant) {
         this.plant = plant == '#';
-        this.id = id;
+    }
+    
+    private Pot(){
+        this.next = this;
+        this.previous = this;
     }
 
-    private Pot(final int id) {
-        this.id = id;
-    }
-
-    public boolean hasPlant() {
+    public boolean isPlant() {
         return plant;
     }
 
-    public void setPlant(final boolean hasPlant) {
-        this.plant = hasPlant;
-    }
-
-    public int getId() {
-        return id;
+    public void setPlant(final boolean plant) {
+        this.plant = plant;
     }
 
     public Pot getNext() {
@@ -38,13 +35,6 @@ public class Pot {
         this.next = next;
     }
 
-    public Pot getOrCreateNext() {
-        if (this.next == null) {
-            createNext();
-        }
-        return next;
-    }
-
     public Pot getPrevious() {
         return previous;
     }
@@ -52,39 +42,4 @@ public class Pot {
     public void setPrevious(final Pot previous) {
         this.previous = previous;
     }
-
-    public Pot getOrCreatePrevious() {
-        if (this.previous == null) {
-            createPrevious();
-        }
-        return previous;
-    }
-
-    public void createPrevious() {
-        this.setPrevious(new Pot(this.id - 1));
-    }
-
-    public void createNext() {
-        this.setNext(new Pot(this.id + 1));
-    }
-
-    public boolean matchesRule(final boolean[] rule, final int index) {
-        return this.hasPlant() == rule[2]
-            && this.getOrCreatePrevious().hasPlant() == rule[1] && this.getOrCreatePrevious().getOrCreatePrevious().hasPlant() == rule[0]
-            && this.getOrCreateNext().hasPlant() == rule[3] && this.getOrCreateNext().getOrCreateNext().hasPlant() == rule[4];
-    }
-
-    public int getCount() {
-        return getLeftCount() + getRightCount() + 1;
-    }
-
-    private int getRightCount() {
-        return 1 + (next == null ? 0 : next.getRightCount());
-    }
-
-    private int getLeftCount() {
-        return 1 + (previous == null ? 0 : previous.getLeftCount());
-    }
-
-
 }
