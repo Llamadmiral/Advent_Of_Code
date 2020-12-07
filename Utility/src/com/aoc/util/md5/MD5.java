@@ -4,6 +4,7 @@ import com.aoc.util.log.Logger;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -19,8 +20,8 @@ public class MD5 {
         byte[] result = null;
         try {
             final MessageDigest digest = MessageDigest.getInstance("md5");
-            result = digest.digest(input.getBytes("UTF-8"));
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            result = digest.digest(input.getBytes(StandardCharsets.UTF_8));
+        } catch (NoSuchAlgorithmException e) {
             LOG.log(e);
         }
         return result;
