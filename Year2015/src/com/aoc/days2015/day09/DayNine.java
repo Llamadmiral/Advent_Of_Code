@@ -14,7 +14,7 @@ public class DayNine extends DayBase {
     public DayNine() {
         dayNr = DAY_NR;
         solution = new SolutionNine(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2015/9.txt"));
+        solution.setInput(Reader.readFromInput("2015/9.txt"));
     }
 
     @Override
@@ -24,6 +24,8 @@ public class DayNine extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"London to Dublin = 464\n"
+            + "London to Belfast = 518\n"
+            + "Dublin to Belfast = 141"};
     }
 }
