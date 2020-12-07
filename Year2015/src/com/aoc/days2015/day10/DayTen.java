@@ -2,7 +2,6 @@ package com.aoc.days2015.day10;
 
 import com.aoc.daybase.DayBase;
 import com.aoc.solutionbase.SolutionBase;
-import com.aoc.util.reader.Reader;
 
 /**
  * @author Llamadmiral.
@@ -14,7 +13,7 @@ public class DayTen extends DayBase {
     public DayTen() {
         dayNr = DAY_NR;
         solution = new SolutionTen(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2015/10.txt"));
+        solution.setInput("1113122113");
     }
 
     @Override
@@ -24,6 +23,6 @@ public class DayTen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"1"};
     }
 }
