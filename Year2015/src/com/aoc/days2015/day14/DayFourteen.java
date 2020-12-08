@@ -14,7 +14,7 @@ public class DayFourteen extends DayBase {
     public DayFourteen() {
         dayNr = DAY_NR;
         solution = new SolutionFourteen(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2015/14.txt"));
+        solution.setInput(Reader.readFromInput("2015/14.txt"));
     }
 
     @Override
@@ -24,6 +24,7 @@ public class DayFourteen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.\n"
+            + "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."};
     }
 }

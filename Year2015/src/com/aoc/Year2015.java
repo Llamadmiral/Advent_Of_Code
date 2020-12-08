@@ -38,12 +38,12 @@ public class Year2015 extends YearBase {
     }
 
     public void printDay() {
-        printDay(new DayFourteen());
+        printDay(new DayFifteen());
     }
 
     @Override
     public void testDay() {
-        testDay(new DayFourteen());
+        testDay(new DayFifteen());
     }
 
     @Override
