@@ -47,7 +47,7 @@ class SolutionNine extends SolutionBase {
     protected void solvePartOne() {
         final String[] cityArray = cityNames.toArray(new String[0]);
         final List<String[]> result = new ArrayList<>();
-        SolutionHelper.doPermutations(result, cityArray, new String[0]);
+        SolutionHelper.doPermutations(result, cityArray, new String[0], String.class);
         int min = generateDistance(result.get(0));
         int max = 0;
         for (int i = 1; i < result.size(); i++) {

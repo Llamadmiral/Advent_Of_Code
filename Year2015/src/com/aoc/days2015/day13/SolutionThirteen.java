@@ -47,7 +47,7 @@ class SolutionThirteen extends SolutionBase {
     protected void solvePartOne() {
         final List<String[]> permutations = new ArrayList<>();
         final String[] startingArray = names.toArray(new String[]{});
-        SolutionHelper.doPermutations(permutations, startingArray, new String[0]);
+        SolutionHelper.doPermutations(permutations, startingArray, new String[0], String.class);
         int maxHappiness = calculateTotalHappiness(permutations);
         setSolutionOne(maxHappiness);
     }
@@ -65,7 +65,7 @@ class SolutionThirteen extends SolutionBase {
         }
         names.add(ADAM);
         final String[] startingArray = names.toArray(new String[]{});
-        SolutionHelper.doPermutations(permutations, startingArray, new String[0]);
+        SolutionHelper.doPermutations(permutations, startingArray, new String[0], String.class);
         int maxHappiness = calculateTotalHappiness(permutations);
         setSolutionTwo(maxHappiness);
     }
