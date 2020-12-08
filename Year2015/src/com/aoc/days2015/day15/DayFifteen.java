@@ -14,7 +14,7 @@ public class DayFifteen extends DayBase {
     public DayFifteen() {
         dayNr = DAY_NR;
         solution = new SolutionFifteen(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2015/15.txt"));
+        solution.setInput(Reader.readFromInput("2015/15.txt"));
     }
 
     @Override
@@ -24,6 +24,7 @@ public class DayFifteen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8\n"
+            + "Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3"};
     }
 }
