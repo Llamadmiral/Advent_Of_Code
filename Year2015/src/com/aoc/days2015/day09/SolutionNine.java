@@ -1,6 +1,7 @@
 package com.aoc.days2015.day09;
 
 import com.aoc.solutionbase.SolutionBase;
+import com.aoc.util.SolutionHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ class SolutionNine extends SolutionBase {
     protected void solvePartOne() {
         final String[] cityArray = cityNames.toArray(new String[0]);
         final List<String[]> result = new ArrayList<>();
-        doPermutations(result, cityArray, new String[0]);
+        SolutionHelper.doPermutations(result, cityArray, new String[0]);
         int min = generateDistance(result.get(0));
         int max = 0;
         for (int i = 1; i < result.size(); i++) {
@@ -87,25 +88,5 @@ class SolutionNine extends SolutionBase {
             }
         }
         return distance;
-    }
-
-    private void doPermutations(final List<String[]> finalResult, final String[] starting, final String[] subResult) {
-        if (starting.length == 0) {
-            finalResult.add(subResult);
-        } else {
-            for (int i = 0; i < starting.length; i++) {
-                final String[] newStarting = new String[starting.length - 1];
-                final String[] newSubResult = new String[subResult.length + 1];
-                int k = 0;
-                for (int j = 0; j < starting.length; j++) {
-                    if (j != i) {
-                        newStarting[k++] = starting[j];
-                    }
-                }
-                System.arraycopy(subResult, 0, newSubResult, 0, subResult.length);
-                newSubResult[newSubResult.length - 1] = starting[i];
-                doPermutations(finalResult, newStarting, newSubResult);
-            }
-        }
     }
 }

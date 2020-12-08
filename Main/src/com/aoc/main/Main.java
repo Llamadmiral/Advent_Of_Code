@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         final Year2015 year2015 = new Year2015();
-        year2015.printDay();
+        year2015.testDay();
 
     }
 

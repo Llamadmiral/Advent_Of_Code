@@ -40,4 +40,24 @@ public final class SolutionHelper {
         return integers;
     }
 
+    public static void doPermutations(final List<String[]> finalResult, final String[] starting, final String[] subResult) {
+        if (starting.length == 0) {
+            finalResult.add(subResult);
+        } else {
+            for (int i = 0; i < starting.length; i++) {
+                final String[] newStarting = new String[starting.length - 1];
+                final String[] newSubResult = new String[subResult.length + 1];
+                int k = 0;
+                for (int j = 0; j < starting.length; j++) {
+                    if (j != i) {
+                        newStarting[k++] = starting[j];
+                    }
+                }
+                System.arraycopy(subResult, 0, newSubResult, 0, subResult.length);
+                newSubResult[newSubResult.length - 1] = starting[i];
+                doPermutations(finalResult, newStarting, newSubResult);
+            }
+        }
+    }
+
 }
