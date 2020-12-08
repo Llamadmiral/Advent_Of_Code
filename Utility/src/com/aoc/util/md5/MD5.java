@@ -2,7 +2,6 @@ package com.aoc.util.md5;
 
 import com.aoc.util.log.Logger;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -15,16 +14,19 @@ public class MD5 {
 
     private static final Logger LOG = new Logger();
 
+    private static MessageDigest digest;
 
-    public static byte[] md5(final String input) {
-        byte[] result = null;
+    static {
         try {
-            final MessageDigest digest = MessageDigest.getInstance("md5");
-            result = digest.digest(input.getBytes(StandardCharsets.UTF_8));
-        } catch (NoSuchAlgorithmException e) {
+            digest = MessageDigest.getInstance("md5");
+        } catch (final NoSuchAlgorithmException e) {
             LOG.log(e);
         }
-        return result;
+    }
+
+
+    public static byte[] md5(final String input) {
+        return digest.digest(input.getBytes(StandardCharsets.UTF_8));
     }
 
     public static String getMD5AsHexString(final String input) {
