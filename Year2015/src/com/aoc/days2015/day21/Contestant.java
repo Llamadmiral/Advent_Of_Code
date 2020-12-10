@@ -20,39 +20,19 @@ class Contestant {
         this.damage = damage;
     }
 
-    public int getDamage() {
+    private int getDamage() {
         return damage;
     }
 
-    public void setDamage(final int damage) {
-        this.damage = damage;
-    }
-
-    public int getArmour() {
-        return armour;
-    }
-
-    public void setArmour(final int armour) {
-        this.armour = armour;
-    }
-
-    public int getHealthPoint() {
+    int getHealthPoint() {
         return healthPoint;
     }
 
-    public void setHealthPoint(final int healthPoint) {
-        this.healthPoint = healthPoint;
-    }
-
-    void getAttackedBy(final Contestant enemy) {
+    void attackedBy(final Contestant enemy) {
         final int initialDamage = enemy.getDamage() - this.armour;
         final int actualDamage = (initialDamage > 0 ? initialDamage : 1);
         this.healthPoint -= actualDamage;
         //System.out.println(enemy.getName() + " deals " + enemy.getDamage() + "-" + this.armour + " = " + actualDamage + " damage; " + this.name + " goes down to " + this.healthPoint + " hit points.");
-    }
-
-    private String getName() {
-        return this.name;
     }
 
     void reset() {

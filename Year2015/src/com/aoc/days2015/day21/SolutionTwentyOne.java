@@ -123,9 +123,9 @@ class SolutionTwentyOne extends SolutionBase {
         boolean playerRound = true;
         while (hero.getHealthPoint() > 0 && boss.getHealthPoint() > 0) {
             if (playerRound) {
-                boss.getAttackedBy(hero);
+                boss.attackedBy(hero);
             } else {
-                hero.getAttackedBy(boss);
+                hero.attackedBy(boss);
             }
             playerRound = !playerRound;
         }
