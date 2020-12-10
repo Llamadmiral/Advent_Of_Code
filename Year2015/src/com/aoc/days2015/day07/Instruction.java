@@ -2,7 +2,7 @@ package com.aoc.days2015.day07;
 
 import java.util.Map;
 
-public class Instruction {
+class Instruction {
 
     private String sourceOne;
     private String sourceTwo;
@@ -13,70 +13,62 @@ public class Instruction {
     private Integer shiftValue;
     private boolean done;
 
-    public Instruction() {
-    }
 
-    public Integer getShiftValue() {
+    Integer getShiftValue() {
         return shiftValue;
     }
 
-    public void setShiftValue(final Integer shiftValue) {
+    void setShiftValue(final Integer shiftValue) {
         this.shiftValue = shiftValue;
     }
 
-    public String getSourceOne() {
-        return sourceOne;
-    }
 
-    public void setSourceOne(final String sourceOne) {
+    void setSourceOne(final String sourceOne) {
         this.sourceOne = sourceOne;
     }
 
-    public String getSourceTwo() {
-        return sourceTwo;
-    }
 
-    public void setSourceTwo(final String sourceTwo) {
+    void setSourceTwo(final String sourceTwo) {
         this.sourceTwo = sourceTwo;
     }
 
-    public String getTarget() {
+    String getTarget() {
         return target;
     }
 
-    public void setTarget(final String target) {
+    void setTarget(final String target) {
         this.target = target;
     }
 
-    public String getType() {
+    String getType() {
         return type;
     }
 
-    public void setType(final String type) {
+    void setType(final String type) {
         this.type = type;
     }
 
-    public boolean getDone() {
+    boolean getDone() {
         return done;
     }
 
-    public void setDone(final boolean done) {
+    void setDone(final boolean done) {
         this.done = done;
     }
 
-    public Signal getSignalOne(final Map<String, Signal> wires) {
+    Signal getSignalOne(final Map<String, Signal> wires) {
         return this.signalOne == null ? wires.get(this.sourceOne) : signalOne;
     }
 
-    public void setSignalOne(final Signal signalOne) {
+    void setSignalOne(final Signal signalOne) {
         this.signalOne = signalOne;
     }
 
-    public Signal getSignaltwo(final Map<String, Signal> wires) {
+    Signal getSignaltwo(final Map<String, Signal> wires) {
         return this.signaltwo == null ? wires.get(this.sourceTwo) : signaltwo;
     }
 
-    public void setSignaltwo(final Signal signaltwo) {
+    void setSignaltwo(final Signal signaltwo) {
         this.signaltwo = signaltwo;
     }
 }
