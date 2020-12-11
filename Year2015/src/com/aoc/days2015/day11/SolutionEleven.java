@@ -21,7 +21,6 @@ class SolutionEleven extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-        System.out.println(isPasswordValid(toPassword("heqaabcc")));
         final int[] password = toPassword(input);
         boolean passwordValid = false;
         while (!passwordValid) {

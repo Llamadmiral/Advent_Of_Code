@@ -25,7 +25,7 @@ class SolutionOne extends SolutionBase {
         parseInput();
         for (final String direction : directions) {
             setNewDirection(direction.charAt(0));
-            final int distance = Integer.parseInt((direction.substring(1, direction.length())));
+            final int distance = Integer.parseInt((direction.substring(1)));
             move(distance);
         }
         setSolutionOne(Math.abs(currentLocation[0]) + Math.abs(currentLocation[1]));

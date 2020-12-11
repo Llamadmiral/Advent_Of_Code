@@ -89,7 +89,7 @@ class SolutionTwentyOne extends SolutionBase {
     }
 
     private void parseInput() {
-        final String[] rules = ((String) input).split("\n");
+        final String[] rules = input.split("\n");
         for (final String rule : rules) {
             final String[] ruleParts = rule.split(" => ");
             ruleBook.put(new Pattern(ruleParts[0]), new Pattern(ruleParts[1]));

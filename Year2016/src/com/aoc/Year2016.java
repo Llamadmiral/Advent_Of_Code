@@ -10,8 +10,8 @@ import com.aoc.days2016.day07.DaySeven;
 import com.aoc.days2016.day08.DayEight;
 import com.aoc.days2016.day09.DayNine;
 import com.aoc.days2016.day10.DayTen;
-import com.aoc.days2016.day12.DayTwelve;
 import com.aoc.days2016.day11.DayEleven;
+import com.aoc.days2016.day12.DayTwelve;
 import com.aoc.days2016.day13.DayThirteen;
 import com.aoc.days2016.day14.DayFourteen;
 import com.aoc.days2016.day15.DayFifteen;
@@ -68,5 +68,9 @@ public class Year2016 extends YearBase {
         printDay(new DayTwentyThree());
         printDay(new DayTwentyFour());
         printDay(new DayTwentyFive());
+    }
+
+    public void printDay() {
+        printDay(new DayFive());
     }
 }

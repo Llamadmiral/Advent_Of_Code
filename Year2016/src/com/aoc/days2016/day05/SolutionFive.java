@@ -1,7 +1,7 @@
 package com.aoc.days2016.day05;
 
 import com.aoc.solutionbase.SolutionBase;
-import com.aoc.util.md5.MD5;
+import com.aoc.util.md5.MD5Helper;
 
 /**
  * This is really bad.
@@ -23,7 +23,7 @@ class SolutionFive extends SolutionBase {
         int k = 0;
         int i = 0;
         while (k < 8) {
-            final byte[] bytes = MD5.md5(CODE + i);
+            final byte[] bytes = MD5Helper.md5(CODE + i);
             if (bytes[0] == 0 && bytes[1] == 0 && (bytes[2] & 0xFF) >>> 4 == 0) {
                 builder[k] = hexArray[(bytes[2] & 0xFF) & 0x0F];
                 if (startFrom == null) {
@@ -42,7 +42,7 @@ class SolutionFive extends SolutionBase {
         int k = 0;
         int i = startFrom;
         while (k < 8) {
-            final byte[] bytes = MD5.md5(CODE + i);
+            final byte[] bytes = MD5Helper.md5(CODE + i);
             if (bytes[0] == 0 && bytes[1] == 0 && (bytes[2] & 0xFF) >>> 4 == 0) {
                 final char c = hexArray[(bytes[2] & 0xFF) & 0x0F];
                 if (c >= '0' && c <= '7' && builder[c - 48] == '\0') {

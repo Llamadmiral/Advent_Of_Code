@@ -1,7 +1,7 @@
 package com.aoc.days2015.day04;
 
 import com.aoc.solutionbase.SolutionBase;
-import com.aoc.util.md5.MD5;
+import com.aoc.util.md5.MD5Helper;
 
 /**
  * @author Llamadmiral.
@@ -21,7 +21,7 @@ class SolutionFour extends SolutionBase {
         boolean found = false;
         while (!found) {
             index++;
-            final String md5AsHexString = MD5.getMD5AsHexString(SECRET_KEY + index);
+            final String md5AsHexString = MD5Helper.getMD5AsHexString(SECRET_KEY + index);
             found = md5AsHexString.startsWith("00000");
         }
         startingPos = index;
@@ -34,7 +34,7 @@ class SolutionFour extends SolutionBase {
         boolean found = false;
         while (!found) {
             index++;
-            final String md5AsHexString = MD5.getMD5AsHexString(SECRET_KEY + index);
+            final String md5AsHexString = MD5Helper.getMD5AsHexString(SECRET_KEY + index);
             found = md5AsHexString.startsWith("000000");
         }
         setSolutionTwo(index);

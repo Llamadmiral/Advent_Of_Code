@@ -47,7 +47,8 @@ class SolutionTwentyTwo extends SolutionBase {
 
     @Override
     protected void solvePartTwo() {
-        setSolutionTwo(getSmallestCostOfWin(true));
+        //setSolutionTwo(getSmallestCostOfWin(true));
+        setSolutionTwo("NOT YET SOLVED!");
     }
 
     private int getSmallestCostOfWin(final boolean partTwo) {
