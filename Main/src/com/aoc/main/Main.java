@@ -4,8 +4,10 @@ package com.aoc.main;
 import com.aoc.Year2015;
 import com.aoc.Year2016;
 import com.aoc.Year2017;
+import com.aoc.Year2018;
 import com.aoc.days2016.day05.DayFive;
 import com.aoc.util.log.Logger;
+import com.aoc.yearbase.YearBase;
 
 /**
  * @author Llamadmiral.
@@ -15,8 +17,8 @@ public class Main {
     private static final Logger LOG = new Logger();
 
     public static void main(String[] args) {
-        final Year2016 year2016 = new Year2016();
-        year2016.printDay();
+        final YearBase year2018 = new Year2018();
+        year2018.printDay();
     }
 
     public static void solvedYear() {

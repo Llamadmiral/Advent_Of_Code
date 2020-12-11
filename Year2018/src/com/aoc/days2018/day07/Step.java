@@ -6,34 +6,34 @@ import java.util.Set;
 /**
  * @author maczaka.
  */
-public class Step {
+class Step {
     private char letter;
     private Set<Step> prequisites = new HashSet<>();
     private boolean done = false;
     private boolean preqFilled = false;
     private boolean assigned = false;
 
-    public Step(final char letter) {
+    Step(final char letter) {
         this.letter = letter;
     }
 
-    public boolean isAssigned() {
+    boolean isAssigned() {
         return assigned;
     }
 
-    public void setAssigned(final boolean assigned) {
+    void setAssigned(final boolean assigned) {
         this.assigned = assigned;
     }
 
-    public void addToPrequisites(final Step step) {
+    void addToPrequisites(final Step step) {
         this.prequisites.add(step);
     }
 
-    public char getLetter() {
+    char getLetter() {
         return letter;
     }
 
-    public boolean prequisitesFulfilled() {
+    boolean prequisitesFulfilled() {
         boolean allDone = true;
         if (!preqFilled) {
             for (final Step step : prequisites) {
@@ -50,11 +50,11 @@ public class Step {
         return allDone;
     }
 
-    public boolean isDone() {
+    boolean isDone() {
         return done;
     }
 
-    public void setDone(final boolean done) {
+    void setDone(final boolean done) {
         this.done = done;
     }
 
@@ -65,7 +65,7 @@ public class Step {
             '}';
     }
 
-    public void setPreqFilled(final boolean preqFilled) {
-        this.preqFilled = preqFilled;
+    void setPreqFilled() {
+        this.preqFilled = false;
     }
 }

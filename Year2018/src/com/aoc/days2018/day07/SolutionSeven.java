@@ -145,7 +145,7 @@ class SolutionSeven extends SolutionBase {
     private void reset() {
         for (final Step step : steps.values()) {
             step.setDone(false);
-            step.setPreqFilled(false);
+            step.setPreqFilled();
         }
     }
 

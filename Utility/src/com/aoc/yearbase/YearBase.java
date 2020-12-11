@@ -12,8 +12,8 @@ public abstract class YearBase {
     private static final String START_LINE = "\t---------- Day %s ----------";
     private static final int START_LINE_LENGTH = START_LINE.length() - 3;
     private static final Logger LOG = new Logger();
-
     protected int year;
+    protected DayBase currentDay;
 
     protected static void printDay(final DayBase base) {
         final String dayNr = base.getDayNr();
@@ -27,7 +27,9 @@ public abstract class YearBase {
     }
 
     public void testDay() {
-        //no test
+        if (this.currentDay != null) {
+            testDay(this.currentDay);
+        }
     }
 
     public void printYear() {
@@ -39,4 +41,10 @@ public abstract class YearBase {
     }
 
     protected abstract void printDays();
+
+    public void printDay() {
+        if (this.currentDay != null) {
+            printDay(this.currentDay);
+        }
+    }
 }

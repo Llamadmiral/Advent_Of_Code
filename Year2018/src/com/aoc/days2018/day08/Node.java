@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author maczaka.
  */
-public class Node {
+class Node {
     private static final char[] ABC = "ABCDEFGHIJKLM".toCharArray();
     private static int count = 0;
     private int[] entries;
@@ -16,12 +16,12 @@ public class Node {
     //to be removed
     private int id;
 
-    public Node() {
+    Node() {
         id = count;
         count++;
     }
 
-    public static int getSumOfArray(int[] entires) {
+    private static int getSumOfArray(int[] entires) {
         int sum = 0;
         for (int entire : entires) {
             sum += entire;
@@ -29,39 +29,35 @@ public class Node {
         return sum;
     }
 
-    public int[] getEntries() {
+    private int[] getEntries() {
         return entries;
     }
 
-    public void setEntries(final int[] entries) {
+    void setEntries(final int[] entries) {
         this.entries = entries;
     }
 
-    public List<Node> getChildren() {
-        return children;
-    }
-
-    public void addChild(final Node node) {
+    void addChild(final Node node) {
         this.children.add(node);
     }
 
-    public int getNumberOfEntires() {
+    private int getNumberOfEntires() {
         return numberOfEntires;
     }
 
-    public void setNumberOfEntires(final int numberOfEntires) {
+    void setNumberOfEntires(final int numberOfEntires) {
         this.numberOfEntires = numberOfEntires;
     }
 
-    public int getNumberOfChilds() {
+    private int getNumberOfChilds() {
         return numberOfChilds;
     }
 
-    public void setNumberOfChilds(final int numberOfChilds) {
+    void setNumberOfChilds(final int numberOfChilds) {
         this.numberOfChilds = numberOfChilds;
     }
 
-    public int getSumOfAllEntries() {
+    int getSumOfAllEntries() {
         int sum = getSumOfArray(this.getEntries());
         for (final Node node : children) {
             sum += node.getSumOfAllEntries();
@@ -69,7 +65,7 @@ public class Node {
         return sum;
     }
 
-    public int getValue() {
+    int getValue() {
         int value = 0;
         if (this.getNumberOfChilds() == 0) {
             value = this.getSumOfAllEntries();

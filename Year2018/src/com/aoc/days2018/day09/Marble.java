@@ -3,18 +3,18 @@ package com.aoc.days2018.day09;
 /**
  * @author maczaka.
  */
-public class Marble {
+class Marble {
 
     private Marble previous;
     private Marble next;
     private int score;
 
-    public Marble(final int score) {
+    Marble(final int score) {
         this.score = score;
     }
 
 
-    public Marble addMarble(final int score) {
+    Marble addMarble(final int score) {
         final Marble newMarble = new Marble(score);
         final Marble firstClockwise = this.getNext();
         final Marble secondClockwise = firstClockwise.getNext();
@@ -37,23 +37,23 @@ public class Marble {
         return toRemove;
     }
 
-    public Marble getPrevious() {
+    private Marble getPrevious() {
         return previous;
     }
 
-    public void setPrevious(final Marble previous) {
+    void setPrevious(final Marble previous) {
         this.previous = previous;
     }
 
-    public Marble getNext() {
+    Marble getNext() {
         return next;
     }
 
-    public void setNext(final Marble next) {
+    void setNext(final Marble next) {
         this.next = next;
     }
 
-    public int getScore() {
+    int getScore() {
         return score;
     }
 }

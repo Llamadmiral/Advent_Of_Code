@@ -16,7 +16,6 @@ class SolutionSix extends SolutionBase {
 
     private static final int SIZE = 400;
     private static final int THRESHOLD = 10000;
-    private static final String ABC = "abcdefghijklmn";
 
     private int[][] map = new int[SIZE][SIZE];
     private int[][] distanceMap = new int[SIZE][SIZE];

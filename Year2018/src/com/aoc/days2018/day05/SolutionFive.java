@@ -26,7 +26,7 @@ class SolutionFive extends SolutionBase {
     private void prepareInput() {
         for (int i = 0; i < input.length(); i++) {
             final char c = input.charAt(i);
-            if (c > 'Z' && !characters.contains(c)) {
+            if (c > 'Z') {
                 characters.add(c);
             }
         }

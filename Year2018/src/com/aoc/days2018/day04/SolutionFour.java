@@ -14,19 +14,10 @@ import java.util.TreeSet;
  */
 class SolutionFour extends SolutionBase {
 
-    private static final Comparator<Entry> ENTRY_COMPARATOR = (o1, o2) -> {
-        int result = Integer.compare(o1.getMonth(), o2.getMonth());
-        if (result == 0) {
-            result = Integer.compare(o1.getDay(), o2.getDay());
-        }
-        if (result == 0) {
-            result = Integer.compare(o1.getHour(), o2.getHour());
-        }
-        if (result == 0) {
-            result = Integer.compare(o1.getMinute(), o2.getMinute());
-        }
-        return result;
-    };
+    private static final Comparator<Entry> ENTRY_COMPARATOR = Comparator.comparingInt(Entry::getMonth)
+        .thenComparingInt(Entry::getDay)
+        .thenComparingInt(Entry::getHour)
+        .thenComparingInt(Entry::getMinute);
 
     private Map<Integer, int[]> sleepSchedules = new HashMap<>();
 
@@ -110,11 +101,7 @@ class SolutionFour extends SolutionBase {
     }
 
     private void fillSleepSchedule(final Entry start, final Entry end, final int currentGuard) {
-        int[] sleepSchedule = sleepSchedules.get(currentGuard);
-        if (sleepSchedule == null) {
-            sleepSchedule = new int[64];
-            sleepSchedules.put(currentGuard, sleepSchedule);
-        }
+        int[] sleepSchedule = sleepSchedules.computeIfAbsent(currentGuard, k -> new int[64]);
         for (int i = start.getMinute(); i < end.getMinute(); i++) {
             sleepSchedule[i]++;
         }

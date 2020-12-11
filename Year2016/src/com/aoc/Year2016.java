@@ -37,11 +37,6 @@ public class Year2016 extends YearBase {
     }
 
     @Override
-    public void testDay() {
-        printDay(new DayThirteen());
-    }
-
-    @Override
     protected void printDays() {
         printDay(new DayOne());
         printDay(new DayTwo());
@@ -70,7 +65,4 @@ public class Year2016 extends YearBase {
         printDay(new DayTwentyFive());
     }
 
-    public void printDay() {
-        printDay(new DayFive());
-    }
 }

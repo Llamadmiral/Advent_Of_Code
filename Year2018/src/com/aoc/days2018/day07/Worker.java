@@ -3,14 +3,13 @@ package com.aoc.days2018.day07;
 /**
  * @author maczaka.
  */
-public class Worker {
-    private static int BASE_COMPLETION_TIME = 60;
+class Worker {
 
     private Step currentStep;
     private int remainingTime;
     private boolean free = true;
 
-    public void update() {
+    void update() {
         remainingTime--;
         if (remainingTime == 0) {
             this.setFree(true);
@@ -18,16 +17,17 @@ public class Worker {
         }
     }
 
-    public void setCurrentStep(final Step currentStep) {
+    void setCurrentStep(final Step currentStep) {
         this.currentStep = currentStep;
+        final int BASE_COMPLETION_TIME = 60;
         this.remainingTime = currentStep.getLetter() - 64 + BASE_COMPLETION_TIME;
     }
 
-    public boolean isFree() {
+    boolean isFree() {
         return free;
     }
 
-    public void setFree(final boolean free) {
+    void setFree(final boolean free) {
         this.free = free;
     }
 }

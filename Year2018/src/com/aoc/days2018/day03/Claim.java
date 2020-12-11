@@ -3,14 +3,14 @@ package com.aoc.days2018.day03;
 /**
  * @author maczaka.
  */
-public class Claim {
+class Claim {
     private int id;
     private int x;
     private int y;
     private int width;
     private int height;
 
-    public Claim(final int id, final int x, final int y, final int width, final int height) {
+    private Claim(final int id, final int x, final int y, final int width, final int height) {
         this.id = id;
         this.x = x;
         this.y = y;
@@ -18,7 +18,7 @@ public class Claim {
         this.height = height;
     }
 
-    public static Claim make(final String row) {
+    static Claim make(final String row) {
         final String[] data = row.split(" ");
         final String[] coords = data[2].split(",");
         final String[] dimension = data[3].split("x");
@@ -31,44 +31,32 @@ public class Claim {
         );
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
-
-    public int getX() {
+    int getX() {
         return x;
     }
 
-    public void setX(final int x) {
+    void setX(final int x) {
         this.x = x;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 
-    public void setY(final int y) {
+    void setY(final int y) {
         this.y = y;
     }
 
-    public int getWidth() {
+    int getWidth() {
         return width;
     }
 
-    public void setWidth(final int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
+    int getHeight() {
         return height;
-    }
-
-    public void setHeight(final int height) {
-        this.height = height;
     }
 
     @Override

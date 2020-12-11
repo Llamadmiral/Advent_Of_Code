@@ -3,7 +3,7 @@ package com.aoc.days2018.day04;
 /**
  * @author maczaka.
  */
-public class Entry {
+class Entry {
     private int month;
     private int day;
     private int hour;
@@ -11,7 +11,7 @@ public class Entry {
     private int guardId;
     private Event event;
 
-    public Entry(final int month, final int day, final int hour, final int minute, final int guardId, final Event event) {
+    private Entry(final int month, final int day, final int hour, final int minute, final int guardId, final Event event) {
         this.month = month;
         this.day = day;
         this.hour = hour;
@@ -20,7 +20,7 @@ public class Entry {
         this.event = event;
     }
 
-    public static Entry make(final String row) {
+    static Entry make(final String row) {
         final int guardId = (row.contains("#")) ? Integer.parseInt(row.substring(row.indexOf('#') + 1, row.indexOf("begins") - 1)) : -1;
         final Event newEvent;
         if (row.contains("Guard")) {
@@ -40,27 +40,27 @@ public class Entry {
         );
     }
 
-    public int getMonth() {
+    int getMonth() {
         return month;
     }
 
-    public int getDay() {
+    int getDay() {
         return day;
     }
 
-    public int getHour() {
+    int getHour() {
         return hour;
     }
 
-    public int getMinute() {
+    int getMinute() {
         return minute;
     }
 
-    public int getGuardId() {
+    int getGuardId() {
         return guardId;
     }
 
-    public Event getEvent() {
+    Event getEvent() {
         return event;
     }
 
