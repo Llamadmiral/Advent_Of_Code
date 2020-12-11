@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
         final YearBase year2018 = new Year2018();
-        year2018.printDay();
+        year2018.testDay();
     }
 
     public static void solvedYear() {

@@ -23,6 +23,14 @@ public class DayFifteen extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"#########\n"
+            + "#G..G..G#\n"
+            + "#.......#\n"
+            + "#.......#\n"
+            + "#G..E..G#\n"
+            + "#.......#\n"
+            + "#.......#\n"
+            + "#G..G..G#\n"
+            + "#########"};
     }
 }
