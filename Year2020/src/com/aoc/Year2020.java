@@ -35,6 +35,7 @@ public class Year2020 extends YearBase {
 
     public Year2020() {
         this.year = 2020;
+        this.currentDay = new DayOne();
     }
 
     @Override
