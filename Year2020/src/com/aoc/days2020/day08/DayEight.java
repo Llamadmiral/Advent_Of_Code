@@ -14,7 +14,7 @@ public class DayEight extends DayBase {
     public DayEight() {
         dayNr = DAY_NR;
         solution = new SolutionEight(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2020/8.txt"));
+        solution.setInput(Reader.readFromInput("2020/8.txt"));
     }
 
     @Override
@@ -24,6 +24,14 @@ public class DayEight extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"nop +0\n"
+            + "acc +1\n"
+            + "jmp +4\n"
+            + "acc +3\n"
+            + "jmp -3\n"
+            + "acc -99\n"
+            + "acc +1\n"
+            + "jmp -4\n"
+            + "acc +6"};
     }
 }
