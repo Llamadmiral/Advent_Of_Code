@@ -25,23 +25,25 @@ class SolutionTwelve extends SolutionBase {
 
     @Override
     protected void solvePartOne() {
-        final Ship ship = new Ship();
-        for (final Instruction instruction : instructions) {
-            ship.move(instruction, true);
-        }
-        setSolutionOne(manhattanDistance(0, ship.getX(), 0, ship.getY()));
+        final Ship ship = moveShip(true);
+        setSolutionOne(manhattanDistance(ship.getX(), ship.getY()));
     }
 
     @Override
     protected void solvePartTwo() {
-        final Ship ship = new Ship();
-        for (final Instruction instruction : instructions) {
-            ship.move(instruction, false);
-        }
-        setSolutionTwo(manhattanDistance(0, ship.getX(), 0, ship.getY()));
+        final Ship ship = moveShip(false);
+        setSolutionTwo(manhattanDistance(ship.getX(), ship.getY()));
     }
 
-    private int manhattanDistance(final int x1, final int x2, final int y1, final int y2) {
-        return Math.abs(x2 - x1) + Math.abs(y2 - y1);
+    private Ship moveShip(final boolean partOne) {
+        final Ship ship = new Ship();
+        for (final Instruction instruction : instructions) {
+            ship.move(instruction, partOne);
+        }
+        return ship;
+    }
+
+    private int manhattanDistance(final int x, final int y) {
+        return Math.abs(x) + Math.abs(y);
     }
 }
