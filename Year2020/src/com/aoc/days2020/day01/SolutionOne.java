@@ -1,6 +1,7 @@
 package com.aoc.days2020.day01;
 
 import com.aoc.solutionbase.SolutionBase;
+import com.aoc.util.SolutionHelper;
 
 /**
  * @author Llamadmiral.
@@ -17,11 +18,7 @@ class SolutionOne extends SolutionBase {
 
     @Override
     public void init() {
-        final String[] rows = input.split("\n");
-        expenses = new int[rows.length];
-        for (int i = 0; i < rows.length; i++) {
-            expenses[i] = Integer.parseInt(rows[i]);
-        }
+        expenses = SolutionHelper.inputToIntArray(input, "\n");
     }
 
     @Override

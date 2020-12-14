@@ -61,4 +61,13 @@ public final class SolutionHelper {
         }
     }
 
+    public static int[] inputToIntArray(final String input, final String c) {
+        final String[] split = input.split(c);
+        final int[] result = new int[split.length];
+        for (int i = 0; i < split.length; i++) {
+            result[i] = Integer.parseInt(split[i]);
+        }
+        return result;
+    }
+
 }

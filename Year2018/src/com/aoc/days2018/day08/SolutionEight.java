@@ -1,6 +1,7 @@
 package com.aoc.days2018.day08;
 
 import com.aoc.solutionbase.SolutionBase;
+import com.aoc.util.SolutionHelper;
 
 /**
  * @author Llamadmiral.
@@ -27,11 +28,7 @@ class SolutionEight extends SolutionBase {
     }
 
     private void prepareInput() {
-        final String[] split = input.split(" ");
-        final int[] numbers = new int[split.length];
-        for (int i = 0; i < split.length; i++) {
-            numbers[i] = Integer.parseInt(split[i]);
-        }
+        final int[] numbers = SolutionHelper.inputToIntArray(input, " ");
         firstNode = createNodes(numbers);
     }
 
