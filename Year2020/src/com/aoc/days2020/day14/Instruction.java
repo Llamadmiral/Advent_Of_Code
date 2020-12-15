@@ -18,9 +18,6 @@ class Instruction {
         for (int i = 35; i >= 0; i--) {
             result[i] = ((r % 2) == 1) ? '1' : '0';
             r = r / 2;
-            if (r == 0) {
-                break;
-            }
         }
         return result;
     }

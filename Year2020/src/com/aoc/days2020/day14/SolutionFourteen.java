@@ -58,7 +58,7 @@ class SolutionFourteen extends SolutionBase {
             for (int i = 0; i < instruction.size(); i++) {
                 final char[] maskedAddress = maskAddress(instruction.getMask(), instruction.getAddress(i));
                 final Set<char[]> addresses = new HashSet<>();
-                buildAllAddresses(maskedAddress, "", 0, addresses);
+                buildAllAddresses(maskedAddress, new char[maskedAddress.length], 0, addresses);
                 for (final char[] address : addresses) {
                     final long l = fromBits(address);
                     memory.put(l, instruction.getValue(i));
@@ -91,16 +91,25 @@ class SolutionFourteen extends SolutionBase {
         return result;
     }
 
-    private void buildAllAddresses(final char[] bits, final String currentBits, final int index, final Set<char[]> addresses) {
+    private void buildAllAddresses(final char[] bits, final char[] currentBits, final int index, final Set<char[]> addresses) {
         if (index == bits.length) {
-            addresses.add(currentBits.toCharArray());
+            addresses.add(currentBits);
         } else {
             final char currentBit = bits[index];
             if (currentBit == 'X') {
-                buildAllAddresses(bits, currentBits + '0', index + 1, addresses);
-                buildAllAddresses(bits, currentBits + '1', index + 1, addresses);
+                final char[] zeroBits = new char[bits.length];
+                final char[] oneBits = new char[bits.length];
+                System.arraycopy(currentBits, 0, zeroBits, 0, index);
+                System.arraycopy(currentBits, 0, oneBits, 0, index);
+                zeroBits[index] = '0';
+                oneBits[index] = '1';
+                buildAllAddresses(bits, zeroBits, index + 1, addresses);
+                buildAllAddresses(bits, oneBits, index + 1, addresses);
             } else {
-                buildAllAddresses(bits, currentBits + currentBit, index + 1, addresses);
+                final char[] newBits = new char[bits.length];
+                System.arraycopy(currentBits, 0, newBits, 0, index);
+                newBits[index] = currentBit;
+                buildAllAddresses(bits, newBits, index + 1, addresses);
             }
         }
     }
