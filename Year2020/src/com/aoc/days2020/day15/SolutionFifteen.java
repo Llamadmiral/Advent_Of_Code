@@ -2,19 +2,10 @@ package com.aoc.days2020.day15;
 
 import com.aoc.solutionbase.SolutionBase;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author Llamadmiral.
  */
 class SolutionFifteen extends SolutionBase {
-
-    private static final int GAME_END_TURN = 2020;
-    private final Map<Integer, SpokenNumber> memory = new HashMap<>();
-    private int lastSpokenNumber;
-
-    private int index = 0;
 
     SolutionFifteen(final String day) {
         super(day);
@@ -32,39 +23,33 @@ class SolutionFifteen extends SolutionBase {
         setSolutionTwo(lastNumber);
     }
 
-    private void setupMemory() {
+
+    private int getLastSpokenNumber(final int turns) {
+        final int[] memory = new int[turns];
+        for (int i = 0; i < memory.length; i++) {
+            memory[i] = -1;
+        }
+        int lastSpokenNumber = 0;
+        int index = 0;
         final String[] numbers = input.split(",");
         for (final String number : numbers) {
             final int value = Integer.parseInt(number);
-            memory.put(value, new SpokenNumber(index));
+            memory[value] = index;
             lastSpokenNumber = value;
             index++;
         }
-    }
-
-    private int getLastSpokenNumber(final int turns) {
-        index = 0;
-        memory.clear();
-        setupMemory();
+        int nextNumber = index - 1;
         for (int i = index; i < turns; i++) {
-            lastSpokenNumber = sayNumber(lastSpokenNumber, i);
+            lastSpokenNumber = (i - 1) - nextNumber;
+            nextNumber = put(memory, lastSpokenNumber, i);
         }
         return lastSpokenNumber;
     }
 
-    private int sayNumber(final int number, final int position) {
-        int nextNumber = 0;
-        final SpokenNumber spokenNumber = memory.get(number);
-        if (spokenNumber.getAlreadySaid()) {
-            nextNumber = spokenNumber.getCurrentPosition() - spokenNumber.getLastPosition();
-        }
-        final SpokenNumber saidNumber = memory.get(nextNumber);
-        if (saidNumber == null) {
-            memory.put(nextNumber, new SpokenNumber(position));
-        } else {
-            saidNumber.say(position);
-        }
-        return nextNumber;
+    private int put(final int[] memory, final int key, final int value) {
+        final int returnValue = memory[key];
+        memory[key] = value;
+        return returnValue == -1 ? value : returnValue;
     }
 
 
