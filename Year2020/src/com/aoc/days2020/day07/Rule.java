@@ -3,7 +3,7 @@ package com.aoc.days2020.day07;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Rule {
+class Rule {
 
     private String bag;
     private Map<String, Integer> holdingRule = new HashMap<>();
@@ -49,7 +49,7 @@ public class Rule {
         return bag;
     }
 
-    public Map<String, Integer> getHoldingRule() {
+    Map<String, Integer> getHoldingRule() {
         return holdingRule;
     }
 }
