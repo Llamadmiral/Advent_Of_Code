@@ -7,28 +7,26 @@ import com.aoc.solutionbase.SolutionBase;
  */
 class SolutionSeventeen extends SolutionBase {
 
-    //TODO: Rework this with a single solution.
-
     SolutionSeventeen(final String day) {
         super(day);
     }
 
     @Override
     protected void solvePartOne() {
-        final ThreeDimensionalEnergy threeDimensionalEnergy = new ThreeDimensionalEnergy(input);
+        final DimensionalEnergy DimensionalEnergy = new DimensionalEnergy(input, 3);
         for (int i = 0; i < 6; i++) {
-            threeDimensionalEnergy.simulate();
+            DimensionalEnergy.simulate();
         }
-        setSolutionOne(threeDimensionalEnergy.countActiveCubes());
+        setSolutionOne(DimensionalEnergy.countActiveCubes());
     }
 
     @Override
     protected void solvePartTwo() {
-        final FourDimensionalEnergy fourDimensionalEnergy = new FourDimensionalEnergy(input);
+        final DimensionalEnergy dimensionalEnergy = new DimensionalEnergy(input, 4);
         for (int i = 0; i < 6; i++) {
-            fourDimensionalEnergy.simulate();
+            dimensionalEnergy.simulate();
         }
-        setSolutionTwo(fourDimensionalEnergy.countActiveCubes());
+        setSolutionTwo(dimensionalEnergy.countActiveCubes());
     }
 
 
