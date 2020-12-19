@@ -1,5 +1,5 @@
 Begin in state A.
-Perform a diagnostic checksum after 12134527 steps.
+Perform a diagnostic checksum next 12134527 steps.
 
 In state A:
   If the current value is 0:

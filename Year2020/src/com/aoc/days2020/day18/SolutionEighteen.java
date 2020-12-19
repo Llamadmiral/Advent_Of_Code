@@ -6,17 +6,30 @@ import com.aoc.solutionbase.SolutionBase;
  * @author Llamadmiral.
  */
 class SolutionEighteen extends SolutionBase {
+
     SolutionEighteen(final String day) {
         super(day);
     }
 
     @Override
     protected void solvePartOne() {
-        //not yet solved
+        long sum = 0;
+        for (final String row : input.split("\n")) {
+            final Expression expression = new Expression(row);
+            expression.evaluate();
+            sum += expression.getResult();
+        }
+        setSolutionOne(sum);
     }
 
     @Override
     protected void solvePartTwo() {
-        //not yet solved
+        long sum = 0;
+        for (final String row : input.split("\n")) {
+            final Expression expression = new Expression(row);
+            expression.evaluatePartTwo();
+            sum += expression.getResult();
+        }
+        setSolutionTwo(sum);
     }
 }
