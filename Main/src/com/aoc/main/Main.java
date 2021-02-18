@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         final Year2020 year2020 = new Year2020();
-        year2020.printDay();
+        year2020.testDay();
     }
 
     public static void solvedYear() {
