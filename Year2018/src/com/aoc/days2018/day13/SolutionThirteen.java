@@ -1,6 +1,7 @@
 package com.aoc.days2018.day13;
 
 import com.aoc.solutionbase.SolutionBase;
+import com.aoc.util.stringutil.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -165,14 +166,7 @@ class SolutionThirteen extends SolutionBase {
                 map[cart.getY()][cart.getX()] = DIR[cart.getCurrentDir()];
             }
         }
-        final StringBuilder builder = new StringBuilder();
-        for (final char[] row : map) {
-            for (final char c : row) {
-                builder.append(c);
-            }
-            builder.append("\n");
-        }
-        System.out.println(builder.toString());
+        System.out.println(StringUtils.charMatrixToArray(map));
     }
 
     @Override

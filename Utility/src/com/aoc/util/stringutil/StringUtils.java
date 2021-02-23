@@ -14,4 +14,15 @@ public class StringUtils {
         }
         return builder.toString();
     }
+
+    public static String charMatrixToArray(final char[][] matrix) {
+        final StringBuilder builder = new StringBuilder();
+        for (final char[] row : matrix) {
+            for (final char cactus : row) {
+                builder.append(cactus);
+            }
+            builder.append("\n");
+        }
+        return builder.toString();
+    }
 }
