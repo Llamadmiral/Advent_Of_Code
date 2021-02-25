@@ -14,7 +14,7 @@ public class DayTwentyOne extends DayBase {
     public DayTwentyOne() {
         dayNr = DAY_NR;
         solution = new SolutionTwentyOne(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2020/21.txt"));
+        solution.setInput(Reader.readFromInput("2020/21.txt"));
     }
 
     @Override
@@ -24,6 +24,9 @@ public class DayTwentyOne extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"mxmxvkd kfcds sqjhc nhms (contains dairy, fish)\n"
+            + "trh fvjkl sbzzf mxmxvkd (contains dairy)\n"
+            + "sqjhc fvjkl (contains soy)\n"
+            + "sqjhc mxmxvkd sbzzf (contains fish)"};
     }
 }
