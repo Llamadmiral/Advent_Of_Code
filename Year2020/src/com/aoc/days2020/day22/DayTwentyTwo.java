@@ -14,7 +14,7 @@ public class DayTwentyTwo extends DayBase {
     public DayTwentyTwo() {
         dayNr = DAY_NR;
         solution = new SolutionTwentyTwo(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2020/22.txt"));
+        solution.setInput(Reader.readFromInput("2020/22.txt"));
     }
 
     @Override
@@ -24,6 +24,18 @@ public class DayTwentyTwo extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"Player 1:\n"
+            + "9\n"
+            + "2\n"
+            + "6\n"
+            + "3\n"
+            + "1\n"
+            + "\n"
+            + "Player 2:\n"
+            + "5\n"
+            + "8\n"
+            + "4\n"
+            + "7\n"
+            + "10"};
     }
 }

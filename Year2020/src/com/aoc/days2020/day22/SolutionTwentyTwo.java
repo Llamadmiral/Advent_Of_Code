@@ -6,17 +6,33 @@ import com.aoc.solutionbase.SolutionBase;
  * @author Llamadmiral.
  */
 class SolutionTwentyTwo extends SolutionBase {
+
+
     SolutionTwentyTwo(final String day) {
         super(day);
     }
 
     @Override
+    public void init() {
+    }
+
+    @Override
     protected void solvePartOne() {
-        //not yet solved
+        final String[] players = input.split("\n\n");
+        final Game game = new Game(players[0], players[1]);
+        game.simulateSimpleBattle();
+        final int winningPoint = game.countPoints();
+        setSolutionOne(winningPoint);
     }
 
     @Override
     protected void solvePartTwo() {
-        //not yet solved
+        final String[] players = input.split("\n\n");
+        final Game game = new Game(players[0], players[1]);
+        game.simulateRecursiveCombat();
+        final int winningPoint = game.countPoints();
+        setSolutionTwo(winningPoint);
     }
+
+
 }
