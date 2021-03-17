@@ -35,7 +35,7 @@ class Game {
     }
 
     private int simulateBattle(final boolean recursiveCombat) {
-        log("=== Game " + this.id + " ===\n");
+        //log("=== Game " + this.id + " ===\n");
         while (!first.hasLost() && !second.hasLost()) {
             if (!recursiveCombat) {
                 simpleBattle();
@@ -45,25 +45,25 @@ class Game {
             this.roundCounter++;
         }
         boolean firstWon = !first.hasLost();
-        log("The winner of Game " + this.id + " is player " + (firstWon ? 1 : 2) + "!\n");
+        //log("The winner of Game " + this.id + " is player " + (firstWon ? 1 : 2) + "!\n");
         return firstWon ? 1 : 2;
     }
 
     private void recursiveCombat() {
-        log("-- Round " + this.roundCounter + " (Game " + this.id + ") --");
+        //log("-- Round " + this.roundCounter + " (Game " + this.id + ") --");
         final boolean infiniteLoop = checkInfiniteLoop();
         if (infiniteLoop) {
             second.lost();
-            log("Player 1 won due to being stuck in an infinite loop!");
+            //log("Player 1 won due to being stuck in an infinite loop!");
         } else {
-            log(first);
-            log(second);
+            //log(first);
+            //log(second);
             final Integer firstCard = first.pop();
             final Integer secondCard = second.pop();
-            log("Player 1 plays: " + firstCard);
-            log("Player 2 plays: " + secondCard);
+            //log("Player 1 plays: " + firstCard);
+            //log("Player 2 plays: " + secondCard);
             if (first.getDeck().size() >= firstCard && second.getDeck().size() >= secondCard) {
-                log("Playing a sub-game to determine the winner...");
+                //log("Playing a sub-game to determine the winner...");
                 final Game game = new Game(first.getDeck(), firstCard, second.getDeck(), secondCard);
                 final int wonPlayer = game.simulateRecursiveCombat();
                 if (wonPlayer == 1) {
@@ -71,13 +71,13 @@ class Game {
                 } else {
                     second.add(secondCard, firstCard);
                 }
-                log("...anyway, back to game " + this.id + ".");
+                //log("...anyway, back to game " + this.id + ".");
             } else {
                 if (firstCard > secondCard) {
                     first.add(firstCard, secondCard);
-                    log("Player 1 wins round " + this.roundCounter + " of Game " + this.id + "!\n");
+                    //log("Player 1 wins round " + this.roundCounter + " of Game " + this.id + "!\n");
                 } else {
-                    log("Player 2 wins round " + this.roundCounter + " of Game " + this.id + "!\n");
+                    //log("Player 2 wins round " + this.roundCounter + " of Game " + this.id + "!\n");
                     second.add(secondCard, firstCard);
                 }
             }
@@ -89,18 +89,18 @@ class Game {
     }
 
     private void simpleBattle() {
-        log("-- Round " + this.roundCounter + " --");
-        log(first);
-        log(second);
+        //log("-- Round " + this.roundCounter + " --");
+        //log(first);
+        //log(second);
         final Integer firstCard = first.pop();
         final Integer secondCard = second.pop();
-        log("Player 1 plays: " + firstCard);
-        log("Player 2 plays: " + secondCard);
+        //log("Player 1 plays: " + firstCard);
+        //log("Player 2 plays: " + secondCard);
         if (firstCard > secondCard) {
             first.add(firstCard, secondCard);
-            log("Player 1 wins the round!\n");
+            //log("Player 1 wins the round!\n");
         } else {
-            log("Player 2 wins the round!\n");
+            //log("Player 2 wins the round!\n");
             second.add(secondCard, firstCard);
         }
     }

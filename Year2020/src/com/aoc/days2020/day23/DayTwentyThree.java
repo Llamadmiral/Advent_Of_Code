@@ -2,7 +2,6 @@ package com.aoc.days2020.day23;
 
 import com.aoc.daybase.DayBase;
 import com.aoc.solutionbase.SolutionBase;
-import com.aoc.util.reader.Reader;
 
 /**
  * @author Llamadmiral.
@@ -14,7 +13,7 @@ public class DayTwentyThree extends DayBase {
     public DayTwentyThree() {
         dayNr = DAY_NR;
         solution = new SolutionTwentyThree(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2020/23.txt"));
+        solution.setInput("318946572");
     }
 
     @Override
@@ -24,6 +23,6 @@ public class DayTwentyThree extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"389125467"};
     }
 }
