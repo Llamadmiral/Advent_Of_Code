@@ -14,7 +14,7 @@ public class DayTwentyFour extends DayBase {
     public DayTwentyFour() {
         dayNr = DAY_NR;
         solution = new SolutionTwentyFour(DAY_NR);
-        //solution.setInput(Reader.readFromInput("2020/24.txt"));
+        solution.setInput(Reader.readFromInput("2020/24.txt"));
     }
 
     @Override
@@ -24,6 +24,25 @@ public class DayTwentyFour extends DayBase {
 
     @Override
     public String[] getTestInputs() {
-        return new String[]{};
+        return new String[]{"sesenwnenenewseeswwswswwnenewsewsw\n"
+            + "neeenesenwnwwswnenewnwwsewnenwseswesw\n"
+            + "seswneswswsenwwnwse\n"
+            + "nwnwneseeswswnenewneswwnewseswneseene\n"
+            + "swweswneswnenwsewnwneneseenw\n"
+            + "eesenwseswswnenwswnwnwsewwnwsene\n"
+            + "sewnenenenesenwsewnenwwwse\n"
+            + "wenwwweseeeweswwwnwwe\n"
+            + "wsweesenenewnwwnwsenewsenwwsesesenwne\n"
+            + "neeswseenwwswnwswswnw\n"
+            + "nenwswwsewswnenenewsenwsenwnesesenew\n"
+            + "enewnwewneswsewnwswenweswnenwsenwsw\n"
+            + "sweneswneswneneenwnewenewwneswswnese\n"
+            + "swwesenesewenwneswnwwneseswwne\n"
+            + "enesenwswwswneneswsenwnewswseenwsese\n"
+            + "wnwnesenesenenwwnenwsewesewsesesew\n"
+            + "nenewswnwewswnenesenwnesewesw\n"
+            + "eneswnwswnwsenenwnwnwwseeswneewsenese\n"
+            + "neswnwewnwnwseenwseesewsenwsweewe\n"
+            + "wseweeenwnesenwwwswnew"};
     }
 }
