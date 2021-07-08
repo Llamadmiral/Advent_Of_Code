@@ -2,8 +2,8 @@ package com.aoc.main;
 
 
 import com.aoc.Year2015;
+import com.aoc.Year2016;
 import com.aoc.Year2017;
-import com.aoc.Year2020;
 import com.aoc.util.log.Logger;
 
 /**
@@ -14,8 +14,10 @@ public class Main {
     private static final Logger LOG = new Logger();
 
     public static void main(String[] args) {
-        final Year2020 year2020 = new Year2020();
-        year2020.printDay();
+        /*final Year2020 year2020 = new Year2020();
+        year2020.printDay();*/
+        final Year2016 year2016 = new Year2016();
+        year2016.printDay();
     }
 
     public static void solvedYear() {

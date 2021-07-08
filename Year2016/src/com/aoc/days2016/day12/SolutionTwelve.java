@@ -1,6 +1,7 @@
 package com.aoc.days2016.day12;
 
 import com.aoc.solutionbase.SolutionBase;
+import com.aoc.util.assembunny.Instruction;
 import com.aoc.util.log.Logger;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ class SolutionTwelve extends SolutionBase {
         super(day);
     }
 
-    void doLogic(final Instruction instruction) {
+    private void doLogic(final Instruction instruction) {
         switch (instruction.getType()) {
             case "cpy":
                 registry.put(instruction.getPointerB(),
-                    instruction.isaIsPointer()
+                    instruction.isAIsPointer()
                         ? registry.get(instruction.getPointerA())
                         : instruction.getValueA()
                 );
@@ -42,7 +43,7 @@ class SolutionTwelve extends SolutionBase {
                 break;
             case "jnz":
                 int valueA;
-                if (instruction.isaIsPointer()) {
+                if (instruction.isAIsPointer()) {
                     valueA = registry.get(instruction.getPointerA());
                 } else {
                     valueA = instruction.getValueA();
@@ -96,63 +97,5 @@ class SolutionTwelve extends SolutionBase {
         registry.put('d', 0);
     }
 
-    private static class Instruction {
-        private String type;
-        private char pointerA;
-        private char pointerB;
-        private int valueA;
-        private int valueB;
-        private boolean aIsPointer = false;
-        private boolean bIsPointer = false;
-
-        Instruction(final String row) {
-            final String[] data = row.split(" ");
-            this.type = data[0];
-            final String columnA = data[1];
-            if (columnA.length() == 1 && Character.isAlphabetic(columnA.charAt(0))) {
-                pointerA = columnA.charAt(0);
-                aIsPointer = true;
-            } else {
-                valueA = Integer.parseInt(columnA);
-            }
-            if (data.length > 2) {
-                final String columnB = data[2];
-                if (columnB.length() == 1 && Character.isAlphabetic(columnB.charAt(0))) {
-                    pointerB = columnB.charAt(0);
-                    bIsPointer = true;
-                } else {
-                    valueB = Integer.parseInt(columnB);
-                }
-            }
-        }
-
-        String getType() {
-            return type;
-        }
-
-        char getPointerA() {
-            return pointerA;
-        }
-
-        char getPointerB() {
-            return pointerB;
-        }
-
-        int getValueA() {
-            return valueA;
-        }
-
-        int getValueB() {
-            return valueB;
-        }
-
-        boolean isaIsPointer() {
-            return aIsPointer;
-        }
-
-        public boolean isbIsPointer() {
-            return bIsPointer;
-        }
-    }
 
 }
