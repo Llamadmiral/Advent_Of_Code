@@ -1,6 +1,7 @@
 package com.aoc;
 
 
+import com.aoc.daybase.DayBase;
 import com.aoc.days2019.day01.DayOne;
 import com.aoc.days2019.day02.DayTwo;
 import com.aoc.days2019.day03.DayThree;
@@ -33,18 +34,20 @@ import com.aoc.yearbase.YearBase;
  */
 public class Year2019 extends YearBase {
 
+    private DayBase currentDay = new DayTwo();
+
     public Year2019() {
         this.year = 2019;
     }
 
     @Override
     public void printDay() {
-        printDay(new DayOne());
+        printDay(currentDay);
     }
 
     @Override
     public void testDay() {
-        testDay(new DayOne());
+        testDay(currentDay);
     }
 
     @Override
