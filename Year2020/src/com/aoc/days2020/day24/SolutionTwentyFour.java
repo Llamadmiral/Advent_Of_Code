@@ -21,7 +21,7 @@ class SolutionTwentyFour extends SolutionBase {
         OFFSET_MAP.put("w", new int[]{-1, 0});
     }
 
-    private final Map<String, Boolean> tiles = new HashMap<>();
+    private final Map<Integer, HashMap<Integer, Boolean>> tiles = new HashMap<>();
 
     SolutionTwentyFour(final String day) {
         super(day);
@@ -41,35 +41,48 @@ class SolutionTwentyFour extends SolutionBase {
 
     @Override
     protected void solvePartTwo() {
-        Map<String, Boolean> currentTiles = tiles;
-        /*for (final Map.Entry<String, Boolean> entry : currentTiles.entrySet()) {
-            currentTiles.put(entry.getKey(), true);
-        }*/
-        //System.out.println(countBlackNeighbours(0, 0, currentTiles));
         for (int i = 0; i < 100; i++) {
-            //  System.out.println("Day " + (i + 1) + ": " + countFlippedTiles(currentTiles));
-            final Map<String, Boolean> newTiles = new HashMap<>(currentTiles);
-            for (final Map.Entry<String, Boolean> tileEntry : currentTiles.entrySet()) {
-                final String[] xes = tileEntry.getKey().split("x");
-                final int x = Integer.parseInt(xes[0]);
-                final int y = Integer.parseInt(xes[1]);
-                final int count = countBlackNeighbours(x, y, newTiles);
-                if (tileEntry.getValue()) {
-                    if (count == 0 || count > 2) {
-                        set(x, y, newTiles, false);
-                    } else {
-                        set(x, y, newTiles, true);
+            final Map<Integer, HashMap<Integer, Boolean>> currentTiles = pad(tiles);
+            for (final Map.Entry<Integer, HashMap<Integer, Boolean>> row : currentTiles.entrySet()) {
+                for (final Map.Entry<Integer, Boolean> tileEntry : row.getValue().entrySet()) {
+                    final Integer x = row.getKey();
+                    final Integer y = tileEntry.getKey();
+                    final int count = countBlackNeighbours(x, y, currentTiles);
+                    if (tileEntry.getValue()) {
+                        if (count == 0 || count > 2) {
+                            set(x, y, false);
+                        }
+                    } else if (count == 2) {
+                        set(x, y, true);
                     }
-                } else if (count == 2) {
-                    set(x, y, newTiles, true);
                 }
             }
-            currentTiles = newTiles;
         }
-        setSolutionTwo(countFlippedTiles(currentTiles));
+        setSolutionTwo(countFlippedTiles(tiles));
     }
 
-    private int countBlackNeighbours(final int x, final int y, final Map<String, Boolean> newTiles) {
+    private Map<Integer, HashMap<Integer, Boolean>> pad(final Map<Integer, HashMap<Integer, Boolean>> newTiles) {
+        final Map<Integer, HashMap<Integer, Boolean>> paddedTiles = new HashMap<>();
+        for (final Map.Entry<Integer, HashMap<Integer, Boolean>> row : newTiles.entrySet()) {
+            for (final Map.Entry<Integer, Boolean> tile : row.getValue().entrySet()) {
+                final int x = row.getKey();
+                final int y = tile.getKey();
+                for (final int[] offset : OFFSET_MAP.values()) {
+                    putIfAbsent(x + offset[0], y + offset[1], paddedTiles);
+                }
+                final HashMap<Integer, Boolean> paddedRow = paddedTiles.get(x);
+                paddedRow.put(y, tile.getValue());
+            }
+        }
+        return paddedTiles;
+    }
+
+    private void putIfAbsent(final int x, final int y, final Map<Integer, HashMap<Integer, Boolean>> newTiles) {
+        final HashMap<Integer, Boolean> row = newTiles.computeIfAbsent(x, k -> new HashMap<>());
+        row.putIfAbsent(y, false);
+    }
+
+    private int countBlackNeighbours(final int x, final int y, final Map<Integer, HashMap<Integer, Boolean>> newTiles) {
         int count = 0;
         for (final int[] offset : OFFSET_MAP.values()) {
             final boolean black = get(x + offset[0], y + offset[1], newTiles);
@@ -96,32 +109,49 @@ class SolutionTwentyFour extends SolutionBase {
         return new int[]{x, y};
     }
 
-    private int countFlippedTiles(final Map<String, Boolean> newTiles) {
+    private int countFlippedTiles(final Map<Integer, HashMap<Integer, Boolean>> newTiles) {
         int count = 0;
-        for (final Boolean tile : newTiles.values()) {
-            if (tile) {
-                count++;
+        for (final HashMap<Integer, Boolean> yCoordinates : newTiles.values()) {
+            for (final Boolean tile : yCoordinates.values()) {
+                if (tile) {
+                    count++;
+                }
             }
         }
         return count;
     }
 
     private void flip(final int x, final int y) {
-        final String key = x + "x" + y;
-        Boolean tile = tiles.get(key);
-        if (tile == null) {
-            tiles.put(key, true);
+        HashMap<Integer, Boolean> yCoordinates = tiles.get(x);
+        if (yCoordinates == null) {
+            yCoordinates = new HashMap<>();
+            yCoordinates.put(y, true);
+            tiles.put(x, yCoordinates);
         } else {
-            tiles.put(key, !tile);
+            final Boolean tile = yCoordinates.get(y);
+            yCoordinates.put(y, tile == null || !tile);
         }
     }
 
-    private boolean get(final int x, final int y, final Map<String, Boolean> newTiles) {
-        return newTiles.computeIfAbsent(x + "x" + y, k -> false);
+    private boolean get(final int x, final int y, final Map<Integer, HashMap<Integer, Boolean>> newTiles) {
+        boolean ret = false;
+        final HashMap<Integer, Boolean> row = newTiles.get(x);
+        if (row != null) {
+            final Boolean tile = row.get(y);
+            ret = tile != null && tile;
+        }
+        return ret;
     }
 
-    private void set(final int x, final int y, final Map<String, Boolean> newTiles, final boolean value) {
-        newTiles.put(x + "x" + y, value);
+    private void set(final int x, final int y, final boolean value) {
+        HashMap<Integer, Boolean> yCoordinates = tiles.get(x);
+        if (yCoordinates == null) {
+            yCoordinates = new HashMap<>();
+            yCoordinates.put(y, value);
+            tiles.put(x, yCoordinates);
+        } else {
+            yCoordinates.put(y, value);
+        }
     }
 
 }
