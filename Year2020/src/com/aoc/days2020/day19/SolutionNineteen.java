@@ -63,10 +63,6 @@ class SolutionNineteen extends SolutionBase {
         rule.addRules(rulesToAdd);
     }
 
-    private void flattenRules() {
-        removeMultipleRoutes();
-    }
-
     private void removeMultipleRoutes() {
         boolean same = false;
         while (!same) {
