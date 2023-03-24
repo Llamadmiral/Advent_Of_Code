@@ -36,11 +36,12 @@ public final class SolutionHelper {
         final List<Integer> integers = new ArrayList<>();
         final String[] strings = row.split(delimiter);
         for (final String string : strings) {
-            integers.add(new Integer(string));
+            integers.add(Integer.valueOf(string));
         }
         return integers;
     }
 
+    @SuppressWarnings("unchecked")
     public static <T> void doPermutations(final List<T[]> finalResult, final T[] starting, final T[] subResult, final Class<T> clazz) {
         if (starting.length == 0) {
             finalResult.add(subResult);

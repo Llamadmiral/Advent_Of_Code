@@ -4,19 +4,15 @@ package com.aoc.main;
 import com.aoc.Year2015;
 import com.aoc.Year2017;
 import com.aoc.Year2019;
-import com.aoc.Year2020;
-import com.aoc.util.log.Logger;
 
 /**
  * @author Llamadmiral.
  */
 public class Main {
 
-    private static final Logger LOG = new Logger();
-
     public static void main(String[] args) {
-        final Year2020 year2020 = new Year2020();
-        year2020.printDay();
+        final Year2019 year = new Year2019();
+        year.printDay();
     }
 
     public static void solvedYear() {

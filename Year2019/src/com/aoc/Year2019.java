@@ -34,7 +34,7 @@ import com.aoc.yearbase.YearBase;
  */
 public class Year2019 extends YearBase {
 
-    private DayBase currentDay = new DayTwo();
+    private final DayBase currentDay = new DayThree();
 
     public Year2019() {
         this.year = 2019;

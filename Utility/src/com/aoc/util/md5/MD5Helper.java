@@ -4,7 +4,6 @@ import com.aoc.util.log.Logger;
 import com.twmacinta.util.MD5;
 
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
 
 
 /**
@@ -13,8 +12,6 @@ import java.security.MessageDigest;
 public class MD5Helper {
 
     private static final Logger LOG = new Logger();
-
-    private static MessageDigest digest = null;
 
 
     public static byte[] md5(final String input) {
